@@ -1,0 +1,7 @@
+{
+  "name": "NyanViajes",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
