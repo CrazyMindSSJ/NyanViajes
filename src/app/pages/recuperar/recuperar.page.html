@@ -1,0 +1,23 @@
+<ion-header>
+  <ion-toolbar>
+    <div style="display: flex; justify-content: space-between; align-items: center;">
+      <ion-title>Recuperar cuenta</ion-title>
+      <ion-button fill="clear" size="large" routerLink="/login"><ion-icon name="arrow-forward-circle-outline"></ion-icon></ion-button>
+    </div>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-item>
+    <ion-input label="Ingrese correo registrado" type="email" labelPlacement="floating" 
+    placeholder="ejemplo@gmail.com"></ion-input>
+  </ion-item>
+  <ion-button id="recuperar" expand="full">Enviar correo de recuperación</ion-button>
+  <ion-alert
+  trigger="recuperar"
+  header="Correo enviado"
+  subHeader="Revise su correo"
+  message="Si no encuentra el correo en la bandejas, revise el spam"
+  [buttons]="alertButtons"
+></ion-alert>
+</ion-content>

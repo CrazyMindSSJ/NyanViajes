@@ -1,0 +1,39 @@
+<ion-header>
+  <ion-toolbar>
+    <div style="display: flex; justify-content: space-between; align-items: center;">
+      <ion-title>Registro</ion-title>
+      <ion-button fill="clear" size="large" routerLink="/login"><ion-icon name="arrow-forward-circle-outline"></ion-icon></ion-button>
+    </div>  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-card>
+    <form [formGroup]="persona" (ngSubmit)="registrar()">
+      <ion-input formControlName="rut" type="text" labelPlacement="stacked" label="RUT"></ion-input>
+      <ion-input formControlName="nombre" type="text" labelPlacement="stacked" label="Nombre"></ion-input>
+      <ion-input formControlName="fecha_nacimiento" type="date" labelPlacement="stacked" label="Fecha nacimiento"></ion-input>
+      <ion-select formControlName="genero" label="Género" labelPlacement="stacked" cancelText="No">
+        <ion-select-option>Masculino</ion-select-option>
+        <ion-select-option>Femenino</ion-select-option>
+        <ion-select-option>Otro</ion-select-option>
+      </ion-select>
+      <ion-input formControlName="email" type="email" labelPlacement="stacked" label="Correo electronico"></ion-input>
+      <ion-input formControlName="contra" type="password" labelPlacement="stacked" label="contraseña"></ion-input>
+      <ion-input formControlName="contraVali" type="password" labelPlacement="stacked" label="contraseña"></ion-input>
+      <ion-label>¿Tiene auto?</ion-label>
+      <br>
+      <ion-radio-group formControlName="tiene_auto">
+        <ion-radio value="Si">Si</ion-radio>
+        <ion-radio value="No">No</ion-radio>
+      </ion-radio-group>
+      <!--Para buscar algo dentro de un jason se busca de la siguiente forma: variable.controls.atributo.value-->
+      <ion-input *ngIf="persona.controls.tiene_auto.value =='Si'" formControlName="modelo" type="text" label="Modelo automovil" labelPlacement="stacked"></ion-input>
+      <ion-input *ngIf="persona.controls.tiene_auto.value =='Si'" formControlName="marca" type="text" label="Marca automovil" labelPlacement="stacked"></ion-input>
+      <ion-input *ngIf="persona.controls.tiene_auto.value =='Si'" formControlName="color" type="text" label="Color automovil" labelPlacement="stacked"></ion-input>
+      <ion-input *ngIf="persona.controls.tiene_auto.value =='Si'" formControlName="cant_asiento" type="number" label="Cantidad de asientos" labelPlacement="stacked"></ion-input>
+      <ion-input *ngIf="persona.controls.tiene_auto.value =='Si'" formControlName="patente" type="text" label="Patente automovil" labelPlacement="stacked"></ion-input>
+      <ion-button id="present-alert" [disabled]="persona.invalid" type="submit" size="block" color="warning">REGISTRAR</ion-button>
+      <ion-alert trigger="present-alert" header="alert!" [buttons]="alertButtons" (didDismiss)="setResult($event)"></ion-alert>
+    </form>
+  </ion-card>
+</ion-content>
