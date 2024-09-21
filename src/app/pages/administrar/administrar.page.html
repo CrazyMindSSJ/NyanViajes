@@ -1,13 +1,62 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>administrar</ion-title>
+<ion-header>
+  <ion-toolbar style="--background: #FFB6C1;">
+    <div style="display: flex; justify-content: space-between; align-items: center;">
+      <ion-title style="color: #696767; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; font-weight: 600;">
+        Administrar
+      </ion-title>
+      <ion-button fill="clear" size="large" routerLink="/login">
+        <ion-icon style="color: #696767;" name="arrow-forward-circle-outline"></ion-icon>
+      </ion-button>
+    </div>
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">administrar</ion-title>
-    </ion-toolbar>
-  </ion-header>
+<ion-content>
+  <ion-card>
+    <form [formGroup]="persona" (ngSubmit)="registrar()">
+      <!-- Campos del formulario -->
+      <ion-input formControlName="rut" type="text" labelPlacement="stacked" label="RUT" placeholder="11111111-1"></ion-input>
+      <ion-input formControlName="nombre" type="text" labelPlacement="stacked" label="Nombre"></ion-input>
+      <ion-input formControlName="fecha_nacimiento" type="date" labelPlacement="stacked" label="Fecha de nacimiento"></ion-input>
+      <ion-select formControlName="genero" label="Género" labelPlacement="stacked">
+        <ion-select-option value="Masculino">Masculino</ion-select-option>
+        <ion-select-option value="Femenino">Femenino</ion-select-option>
+        <ion-select-option value="Otro">Otro</ion-select-option>
+      </ion-select>
+      <ion-input formControlName="email" type="email" labelPlacement="stacked" label="Correo electrónico"></ion-input>
+      <ion-input formControlName="contra" type="password" labelPlacement="stacked" label="Contraseña"></ion-input>
+      <ion-input formControlName="contraVali" type="password" labelPlacement="stacked" label="Repita su Contraseña"></ion-input>
+
+      <ion-label style="font-size: 11px;">¿Tiene automóvil?</ion-label>
+      <br>
+      <ion-radio-group formControlName="tiene_auto" style="display: flex; justify-content: space-around; margin-top: 10px;">
+        <ion-item lines="none" style="flex-direction: column; align-items: center;">
+          <ion-label style="font-size: 13px;">Sí</ion-label>
+          <ion-radio value="Si"></ion-radio>
+        </ion-item>
+        <ion-item lines="none" style="flex-direction: column; align-items: center;">
+          <ion-label style="font-size: 13px;">No</ion-label>
+          <ion-radio value="No"></ion-radio>
+        </ion-item>
+      </ion-radio-group>
+
+      <ion-input *ngIf="persona.controls['tiene_auto'].value === 'Si'" formControlName="modelo" type="text" label="Modelo automóvil" labelPlacement="stacked"></ion-input>
+      <ion-input *ngIf="persona.controls['tiene_auto'].value === 'Si'" formControlName="marca" type="text" label="Marca automóvil" labelPlacement="stacked"></ion-input>
+      <ion-input *ngIf="persona.controls['tiene_auto'].value === 'Si'" formControlName="color" type="text" label="Color automóvil" labelPlacement="stacked"></ion-input>
+      <ion-select *ngIf="persona.controls['tiene_auto'].value === 'Si'" formControlName="cant_asiento" label="Cantidad de asientos" labelPlacement="stacked">
+        <ion-select-option value="3">3</ion-select-option>
+        <ion-select-option value="4">4</ion-select-option>
+        <ion-select-option value="5">5</ion-select-option>
+        <ion-select-option value="6">6</ion-select-option>
+        <ion-select-option value="7">7</ion-select-option>
+      </ion-select>
+      <ion-input *ngIf="persona.controls['tiene_auto'].value === 'Si'" formControlName="patente" type="text" label="Patente automóvil" labelPlacement="stacked" placeholder="PTCL21"></ion-input>
+    </form>
+  </ion-card>
 </ion-content>
+
+
+
+
+
+

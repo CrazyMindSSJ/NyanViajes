@@ -1,32 +1,62 @@
 <ion-header>
   <ion-toolbar>
     <div style="display: flex; justify-content: space-between; align-items: center;">
-      <ion-title>Ingresar</ion-title>
-      <ion-button fill="clear" size="large" routerLink="/home"><ion-icon name="arrow-forward-circle-outline"></ion-icon></ion-button>
+      <ion-title >Ingresar</ion-title>
+      <ion-button fill="clear" size="large" routerLink="/home">
+        <ion-icon name="arrow-forward-circle-outline"></ion-icon>
+      </ion-button>
     </div>
   </ion-toolbar>
 </ion-header>
-<ion-content >
+
+<ion-content>
   <ion-card>
     <ion-card-content>
-    <ion-input [(ngModel)]="email" type="email" fill="solid" label="Email" labelPlacement="stacked" placeholder="Miau@gmail.com"  errorText="Correo inválido">
-    </ion-input>
-    <ion-input [(ngModel)]="password" [type]="tipoContrasenia" name="password"  fill="solid" label="Contraseña" labelPlacement="floating">
-      <ion-button fill="clear" slot="end" (click)="mostrarClave()" class="small-eye-button">
-          <ion-icon slot="icon-only" [name]="iconoContrasenia" aria-hidden="true"></ion-icon>
-      </ion-button>
-  </ion-input>
-  <ion-item lines="none">
-    <div style="text-align: center; margin-top: 10px;">
+      <!-- Imagen de perfil -->
+      <div style="text-align: center; margin-bottom: 10px;">
+        <img src="assets/img/perfil.png" alt="Perfil" style="width: 75px; height: 75px; border-radius: 50%;">
     </div>
-  </ion-item>
-  <ion-button (click)="login()" expand="full" shape="round">Iniciar Sesión</ion-button> 
-  </ion-card-content>
+    
+    
+
+      <ion-input 
+        [(ngModel)]="email" 
+        type="email" 
+        fill="solid" 
+        label="Email" 
+        labelPlacement="stacked" 
+        placeholder="Miau@gmail.com" 
+        errorText="Correo inválido">
+      </ion-input>
+
+      <ion-input 
+        [(ngModel)]="password" 
+        [type]="tipoContrasenia" 
+        name="password"  
+        fill="solid" 
+        label="Contraseña" 
+        labelPlacement="floating">
+        <ion-button fill="clear" slot="end" (click)="mostrarClave()" class="small-eye-button">
+          <ion-icon slot="icon-only" [name]="iconoContrasenia" aria-hidden="true"></ion-icon>
+        </ion-button>
+      </ion-input>
+      
+      
+
+      <div style="text-align: left; margin-top: 10px;">
+        <a routerLink="/recuperar" class="text-pink">¿Olvidaste tu contraseña?</a>
+      </div>
+
+      <ion-item lines="none">
+        <div style="text-align: center; margin-top: 10px;"></div>
+      </ion-item>
+
+      <ion-button (click)="login()" [disabled]="isLoginDisabled" expand="full" shape="round" style="color: #000000;" >Iniciar Sesión</ion-button>
+
+    </ion-card-content>
   </ion-card>
+
   <div style="display: flex; justify-content: center; align-items: center; flex-direction: column; text-align: center; margin-top: 20px;">
-    <span class="text-gris">No tienes cuenta, Regístrate </span >        
-    <a routerLink="/registro" class="text-pink">AQUÍ</a>
-    <p>¿Olvidaste tu contraseña?</p>
-    <ion-button id="recover-button" routerLink="/recuperar">Recuperar contraseña</ion-button>
+    <span class="text-gris">No tienes cuenta, Regístrate <a routerLink="/registro" class="text-pink">AQUÍ</a></span>        
   </div>
 </ion-content>

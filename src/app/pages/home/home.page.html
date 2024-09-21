@@ -1,7 +1,6 @@
-
 <ion-menu contentId="main-content">
   <ion-header>
-    <ion-toolbar>
+    <ion-toolbar style="--background: #FFB6C1;">
       <ion-title>Menú inicio</ion-title>
     </ion-toolbar>
   </ion-header>
@@ -9,6 +8,7 @@
     <ion-item expand="block" routerLink="/login">Iniciar sesión</ion-item>
   </ion-content>
 </ion-menu>
+
 
 <div class="ion-page" id="main-content">
   <ion-header>
@@ -18,21 +18,31 @@
       </ion-buttons>
       <ion-title>NyanViajes!<ion-icon name="logo-octocat"></ion-icon></ion-title>
     </ion-toolbar>
-    <ion-card>
-      <ion-card-content> Bienvenido a NyanViajes :3 la aplicación de viajes para alumnos de DuocUC
-        <ion-input label="¿A dónde viajas?" label-placement="floating" fill="outline" placeholder="Enter text" class="oval-input"></ion-input>
+    <ion-card >
+      <ion-card-content >
+        Bienvenido a NyanViajes :3 la aplicación de viajes para alumnos de DuocUC
+        <ion-searchbar animated="true" placeholder="¿Donde Viajas?"></ion-searchbar>
+      
+        <br>
+        <ion-img src="assets/img/maps.png" alt="Descripción de la imagen"></ion-img>
       </ion-card-content>
     </ion-card>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
   </ion-header>
 
   <ion-tabs>
     <ion-tab-bar slot="bottom">
-      <ion-tab-button tab="reservas">
+      <ion-tab-button routerLink="/viajes">
         <ion-icon name="car-sport-outline"></ion-icon>
       </ion-tab-button>
-      <ion-tab-button tab="administrar">
+      <ion-tab-button routerLink="/administrar">
         <ion-icon name="pencil-outline"></ion-icon>
       </ion-tab-button>
+      
       <ion-tab-button tab="perfil">
         <ion-icon name="person-sharp"></ion-icon>
       </ion-tab-button>

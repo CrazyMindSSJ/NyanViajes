@@ -1,38 +1,111 @@
 <ion-header>
-  <ion-toolbar>
+  <ion-toolbar style="--background: #FFB6C1;">
     <div style="display: flex; justify-content: space-between; align-items: center;">
-      <ion-title>Registro</ion-title>
-      <ion-button fill="clear" size="large" routerLink="/login"><ion-icon name="arrow-forward-circle-outline"></ion-icon></ion-button>
-    </div>  </ion-toolbar>
+      <ion-title style="color: #696767; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; font-weight: 600;">
+        Registro
+      </ion-title>
+      <ion-button fill="clear" size="large" routerLink="/login"><ion-icon style="color: #696767;;" name="arrow-forward-circle-outline"></ion-icon></ion-button>
+    </div>
+  </ion-toolbar>
 </ion-header>
 
 <ion-content>
   <ion-card>
     <form [formGroup]="persona" (ngSubmit)="registrar()">
-      <ion-input formControlName="rut" type="text" labelPlacement="stacked" label="RUT"></ion-input>
+
+      <!-- RUT -->
+      <ion-input formControlName="rut" type="text" labelPlacement="stacked" label="RUT" placeholder="11111111-1"></ion-input>
+      <ion-text color="danger" *ngIf="persona.controls.rut.touched && persona.controls.rut.errors?.['required']">
+        El RUT es obligatorio
+      </ion-text>
+      <ion-text color="danger" *ngIf="persona.controls.rut.touched && persona.controls.rut.errors?.['pattern']">
+        El RUT no es válido
+      </ion-text>
+
+      <!-- Nombre -->
       <ion-input formControlName="nombre" type="text" labelPlacement="stacked" label="Nombre"></ion-input>
-      <ion-input formControlName="fecha_nacimiento" type="date" labelPlacement="stacked" label="Fecha nacimiento"></ion-input>
+      <ion-text color="danger" *ngIf="persona.controls.nombre.touched && persona.controls.nombre.errors?.['required']">
+        El nombre es obligatorio
+      </ion-text>
+      <ion-text color="danger" *ngIf="persona.controls.nombre.touched && persona.controls.nombre.errors?.['pattern']">
+        El nombre debe tener al menos 3 carácteres
+      </ion-text>
+
+      <!-- Fecha de Nacimiento -->
+      <ion-input formControlName="fecha_nacimiento" type="date" labelPlacement="stacked" label="Fecha de nacimiento"></ion-input>
+      <ion-text color="danger" *ngIf="persona.controls.fecha_nacimiento.touched && persona.controls.fecha_nacimiento.errors?.['menorDeEdad']">
+        Debe ser mayor de 18 años.
+      </ion-text>
+
+      <!-- Género -->
       <ion-select formControlName="genero" label="Género" labelPlacement="stacked" cancelText="No">
         <ion-select-option>Masculino</ion-select-option>
         <ion-select-option>Femenino</ion-select-option>
         <ion-select-option>Otro</ion-select-option>
       </ion-select>
-      <ion-input formControlName="email" type="email" labelPlacement="stacked" label="Correo electronico"></ion-input>
-      <ion-input formControlName="contra" type="password" labelPlacement="stacked" label="contraseña"></ion-input>
-      <ion-input formControlName="contraVali" type="password" labelPlacement="stacked" label="contraseña"></ion-input>
-      <ion-label>¿Tiene auto?</ion-label>
+      <ion-text color="danger" *ngIf="persona.controls.genero.touched && persona.controls.genero.errors?.['required']">
+        El género es obligatorio
+      </ion-text>
+
+      <!-- Correo Electrónico -->
+          <ion-input formControlName="email" type="email" labelPlacement="stacked" label="Correo electrónico" placeholder="Miau@gmail.com"></ion-input>
+      <ion-text color="danger" *ngIf="persona.controls.email.touched && persona.controls.email.errors?.['pattern']">
+        El formato del correo es inválido.
+      </ion-text>
+
+      <!-- Contraseña -->
+      <ion-input formControlName="contra" type="password" labelPlacement="stacked" label="Contraseña"></ion-input>
+      <ion-text color="danger" *ngIf="persona.controls.contra.touched && persona.controls.contra.errors?.['required']">
+        La contraseña es obligatoria
+      </ion-text>
+
+      <!-- Repetir Contraseña -->
+      <ion-input formControlName="contraVali" type="password" labelPlacement="stacked" label="Repita su Contraseña"></ion-input>
+      <ion-text color="danger" *ngIf="persona.controls.contraVali.touched && persona.controls.contraVali.errors?.['required']">
+        Debe repetir la contraseña
+      </ion-text>
+
+      <!-- ¿Tiene Automóvil? -->
+      <ion-label style="font-size: 11px;">¿Tiene automóvil?</ion-label>
       <br>
-      <ion-radio-group formControlName="tiene_auto">
-        <ion-radio value="Si">Si</ion-radio>
-        <ion-radio value="No">No</ion-radio>
+      <ion-radio-group formControlName="tiene_auto" style="display: flex; justify-content: space-around; margin-top: 10px;">
+        <ion-item lines="none" style="flex-direction: column; align-items: center;">
+          <ion-label style="font-size: 13px;">Sí</ion-label>
+          <ion-radio value="Si"></ion-radio>
+        </ion-item>
+        <ion-item lines="none" style="flex-direction: column; align-items: center;">
+          <ion-label style="font-size: 13px;">No</ion-label>
+          <ion-radio value="No"></ion-radio>
+        </ion-item>
       </ion-radio-group>
-      <!--Para buscar algo dentro de un jason se busca de la siguiente forma: variable.controls.atributo.value-->
-      <ion-input *ngIf="persona.controls.tiene_auto.value =='Si'" formControlName="modelo" type="text" label="Modelo automovil" labelPlacement="stacked"></ion-input>
-      <ion-input *ngIf="persona.controls.tiene_auto.value =='Si'" formControlName="marca" type="text" label="Marca automovil" labelPlacement="stacked"></ion-input>
-      <ion-input *ngIf="persona.controls.tiene_auto.value =='Si'" formControlName="color" type="text" label="Color automovil" labelPlacement="stacked"></ion-input>
-      <ion-input *ngIf="persona.controls.tiene_auto.value =='Si'" formControlName="cant_asiento" type="number" label="Cantidad de asientos" labelPlacement="stacked"></ion-input>
-      <ion-input *ngIf="persona.controls.tiene_auto.value =='Si'" formControlName="patente" type="text" label="Patente automovil" labelPlacement="stacked"></ion-input>
-      <ion-button id="present-alert" [disabled]="persona.invalid" type="submit" size="block" color="warning">REGISTRAR</ion-button>
+
+      <!-- Campos adicionales para automóvil -->
+      <ion-input *ngIf="persona.controls.tiene_auto.value == 'Si'" formControlName="modelo" type="text" label="Modelo automóvil" labelPlacement="stacked"></ion-input>
+      <ion-input *ngIf="persona.controls.tiene_auto.value == 'Si'" formControlName="marca" type="text" label="Marca automóvil" labelPlacement="stacked"></ion-input>
+      <ion-input *ngIf="persona.controls.tiene_auto.value == 'Si'" formControlName="color" type="text" label="Color automóvil" labelPlacement="stacked"></ion-input>
+
+      <!-- Cantidad de Asientos -->
+      <ion-select *ngIf="persona.controls.tiene_auto.value == 'Si'" formControlName="cant_asiento" label="Cantidad de asientos" labelPlacement="stacked">
+        <ion-select-option value="2">3</ion-select-option>
+        <ion-select-option value="4">4</ion-select-option>
+        <ion-select-option value="5">5</ion-select-option>
+        <ion-select-option value="6">6</ion-select-option>
+        <ion-select-option value="7">7</ion-select-option>
+      </ion-select>
+      <ion-text color="danger" *ngIf="persona.controls.cant_asiento.touched && persona.controls.cant_asiento.errors?.['required']">
+        La cantidad de asientos es obligatoria
+      </ion-text>
+
+      <!-- Patente -->
+      <ion-input *ngIf="persona.controls.tiene_auto.value == 'Si'" formControlName="patente" type="text" label="Patente automóvil" labelPlacement="stacked" placeholder="PTCL21"></ion-input>
+      <ion-text color="danger" *ngIf="persona.controls.patente.touched && persona.controls.patente.errors?.['pattern']">
+        La patente no tiene un formato válido
+      </ion-text>
+
+      <!-- Botón de Registro -->
+      <ion-button id="present-alert" [disabled]="persona.invalid" type="submit" size="block" style="--background: #f8a2af; color: #000000;">
+        REGISTRAR
+      </ion-button>
       <ion-alert trigger="present-alert" header="alert!" [buttons]="alertButtons" (didDismiss)="setResult($event)"></ion-alert>
     </form>
   </ion-card>
