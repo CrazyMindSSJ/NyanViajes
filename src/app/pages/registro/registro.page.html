@@ -48,7 +48,7 @@
       </ion-text>
 
       <!-- Correo Electrónico -->
-          <ion-input formControlName="email" type="email" labelPlacement="stacked" label="Correo electrónico" placeholder="Miau@gmail.com"></ion-input>
+          <ion-input formControlName="email" type="email" labelPlacement="stacked" label="Correo electrónico" placeholder="Miau@duocuc.cl"></ion-input>
       <ion-text color="danger" *ngIf="persona.controls.email.touched && persona.controls.email.errors?.['pattern']">
         El formato del correo es inválido.
       </ion-text>
@@ -64,6 +64,12 @@
       <ion-text color="danger" *ngIf="persona.controls.contraVali.touched && persona.controls.contraVali.errors?.['required']">
         Debe repetir la contraseña
       </ion-text>
+
+      <ion-select formControlName="categoria" label="Categoría" labelPlacement="stacked" cancelText="Cancelar">
+        <ion-select-option value="Estudiante">Estudiante</ion-select-option>
+        <ion-select-option value="Profesor">Profesor</ion-select-option>
+        <ion-select-option value="Administrador" disabled>Admin</ion-select-option>
+      </ion-select>
 
       <!-- ¿Tiene Automóvil? -->
       <ion-label style="font-size: 11px;">¿Tiene automóvil?</ion-label>
@@ -104,9 +110,8 @@
 
       <!-- Botón de Registro -->
       <ion-button id="present-alert" [disabled]="persona.invalid" type="submit" size="block" style="--background: #f8a2af; color: #000000;">
-        REGISTRAR
+        <ion-icon name="save-outline"></ion-icon>
       </ion-button>
-      <ion-alert trigger="present-alert" header="alert!" [buttons]="alertButtons" (didDismiss)="setResult($event)"></ion-alert>
-    </form>
+        </form>
   </ion-card>
 </ion-content>

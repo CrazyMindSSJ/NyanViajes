@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators, AbstractControl, ValidationErrors } from '@angular/forms';
 import { Router } from '@angular/router';
+import { CrudService } from 'src/app/services/crud.service';
 
 @Component({
   selector: 'app-registrar',
@@ -26,6 +27,7 @@ export class RegistroPage implements OnInit {
     // Retornar un error si el usuario es menor de 18
     return edad >= 18 ? null : { menorDeEdad: true };
   }
+
   // Validador personalizado para comparar contraseñas
   validarContrasenas(group: AbstractControl): ValidationErrors | null {
     const contra = group.get('contra')?.value;
@@ -33,63 +35,49 @@ export class RegistroPage implements OnInit {
     return contra === contraVali ? null : { contrasenasNoCoinciden: true };
   }
 
+  // Formulario persona, ahora con el nuevo campo 'categoria'
   persona = new FormGroup({
     rut: new FormControl('', [Validators.required, Validators.pattern("[0-9]{7,8}-[0-9kK]{1}")]),
     nombre: new FormControl('', [Validators.required, Validators.pattern("[a-z A-Z]{3,30}")]),
-    // Aplica la validación personalizada aquí
     fecha_nacimiento: new FormControl('', [Validators.required, this.mayorDeEdad.bind(this)]),
     genero: new FormControl('', [Validators.required]),
-    email: new FormControl('', [Validators.required, Validators.pattern("^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$")]),
+    email: new FormControl('', [Validators.required, Validators.pattern("^[a-zA-Z0-9._%+-]+@[duocuc]+\\.[cl]{2}$")]),
     contra: new FormControl('', [Validators.required]),
     contraVali: new FormControl('', [Validators.required]),
     tiene_auto: new FormControl('No', [Validators.required]),
     modelo: new FormControl(''),
     marca: new FormControl(''),
     color: new FormControl(''),
-    cant_asiento: new FormControl('', [Validators.required]),
-    patente: new FormControl('', [Validators.pattern("[A-Z]{2}-[A-Z0-9]{2}-[0-9]{2}")])
+    cant_asiento: new FormControl('', []),
+    patente: new FormControl('', [Validators.pattern("[A-Z]{2}-[A-Z0-9]{2}-[0-9]{2}")]),
+    categoria: new FormControl('Estudiante', [Validators.required])
   });
 
-  constructor(private router: Router) { }
+  personas: any[] = [];
+
+  constructor(
+    private router: Router,
+    private crudService: CrudService
+  ) { }
 
   // Método para validar las contraseñas
   public validarContra(): boolean {
     return this.persona.controls.contra.value === this.persona.controls.contraVali.value;
   }
 
-  ngOnInit() { }
-  
-
-  public alertButtons = [
-    {
-      text: 'Cancel',
-      role: 'cancel',
-      handler: () => {
-        console.log('Alert canceled');
-      },
-    },
-    {
-      text: 'OK',
-      role: 'confirm',
-      handler: () => {
-        console.log('Alert confirmed');
-      },
-    },
-  ];
+  ngOnInit() {
+    this.personas = this.crudService.getUsuarios();
+  }
 
   // Método de registro
-  public registrar(): void {
-    if (this.persona.valid) {
-      console.log(this.persona.value);
-      this.router.navigate(['/login']);
+  registrar() {
+    console.log('Botón de registrar presionado');
+    console.log(this.persona.value);
+    if (this.crudService.createUsuarios(this.persona.value)) {
+      alert("USUARIO CREADO CON ÉXITO!");
+      this.persona.reset();
     } else {
-      // Mostrar errores en el formulario si no es válido
-      console.log('Formulario no válido');
+      alert("ERROR! No se pudo crear el usuario!");
     }
   }
-
-  setResult(ev: any) {
-    console.log(`Dismissed with role: ${ev.detail.role}`);
-  }
-  
 }
