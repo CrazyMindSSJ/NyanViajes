@@ -4,7 +4,7 @@ import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 const routes: Routes = [
   {
     path: 'home',
-    loadChildren: () => import('./pages/home/home.module').then( m => m.HomePageModule)
+    loadChildren: () => import('./pages/home/home.module').then(m => m.HomePageModule)
   },
   {
     path: '',
@@ -13,31 +13,31 @@ const routes: Routes = [
   },
   {
     path: 'login',
-    loadChildren: () => import('./pages/login/login.module').then( m => m.LoginPageModule)
+    loadChildren: () => import('./pages/login/login.module').then(m => m.LoginPageModule) // Esta línea se queda igual
   },
   {
     path: 'registro',
-    loadChildren: () => import('./pages/registro/registro.module').then( m => m.RegistroPageModule)
+    loadChildren: () => import('./pages/registro/registro.module').then(m => m.RegistroPageModule)
   },
   {
     path: 'recuperar',
-    loadChildren: () => import('./pages/recuperar/recuperar.module').then( m => m.RecuperarPageModule)
+    loadChildren: () => import('./pages/recuperar/recuperar.module').then(m => m.RecuperarPageModule)
   },
   {
     path: 'viajes',
-    loadChildren: () => import('./pages/viajes/viajes.module').then( m => m.ViajesPageModule)
+    loadChildren: () => import('./pages/viajes/viajes.module').then(m => m.ViajesPageModule)
   },
   {
     path: 'administrar',
-    loadChildren: () => import('./pages/administrar/administrar.module').then( m => m.AdministrarPageModule)
+    loadChildren: () => import('./pages/administrar/administrar.module').then(m => m.AdministrarPageModule)
   },
   {
     path: 'perfil',
-    loadChildren: () => import('./pages/perfil/perfil.module').then( m => m.PerfilPageModule)
+    loadChildren: () => import('./pages/perfil/perfil.module').then(m => m.PerfilPageModule)
   },
   {
     path: '**',
-    loadChildren: () => import('./pages/error/error.module').then( m => m.ErrorPageModule)
+    loadChildren: () => import('./pages/error/error.module').then(m => m.ErrorPageModule)
   },
 ];
 
@@ -48,3 +48,4 @@ const routes: Routes = [
   exports: [RouterModule]
 })
 export class AppRoutingModule { }
+

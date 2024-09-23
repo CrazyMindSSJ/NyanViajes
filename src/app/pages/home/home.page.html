@@ -5,10 +5,13 @@
     </ion-toolbar>
   </ion-header>
   <ion-content class="ion-padding">
-    <ion-item expand="block" routerLink="/login">Iniciar sesión</ion-item>
+    <ion-list>
+      <ion-item expand="block" routerLink="/mis-viajes">Mis Viajes</ion-item>
+      <ion-item expand="block" routerLink="/contacto">Contacto</ion-item>
+      <ion-item expand="block" routerLink="/login" style="color: #FFB600; margin-top: 20px;">Cerrar sesión</ion-item>
+    </ion-list>
   </ion-content>
 </ion-menu>
-
 
 <div class="ion-page" id="main-content">
   <ion-header>
@@ -16,38 +19,48 @@
       <ion-buttons slot="start">
         <ion-menu-button></ion-menu-button>
       </ion-buttons>
-      <ion-title>NyanViajes!<ion-icon name="logo-octocat"></ion-icon></ion-title>
+      <ion-title>
+        NyanViajes! <ion-icon name="logo-octocat"></ion-icon>
+      </ion-title>
     </ion-toolbar>
-    <ion-card >
-      <ion-card-content >
-        Bienvenido a NyanViajes :3 la aplicación de viajes para alumnos de DuocUC
-        <ion-searchbar animated="true" placeholder="¿Donde Viajas?"></ion-searchbar>
-      
-        <br>
-        <ion-img src="assets/img/maps.png" alt="Descripción de la imagen"></ion-img>
+  </ion-header>
+
+  <ion-content class="ion-padding" style="background-color: #f9f9f9;">
+    <ion-card>
+      <ion-card-content>
+        <h2 style="text-align: center; color: #696767; font-size: 2.5rem;">
+          Bienvenido a NyanViajes
+        </h2>
+        <p style="text-align: center; font-size: 1.2rem;">
+          La aplicación de viajes para alumnos de <span style="color: #FFB600;">Duoc</span>UC
+        </p>
+        <ion-searchbar animated="true" placeholder="¿Dónde Viajas?" style="margin-bottom: 20px;"></ion-searchbar>
+        <ion-img src="assets/img/maps.png" alt="Descripción de la imagen" style="display: block; margin: 0 auto;"></ion-img>
       </ion-card-content>
     </ion-card>
+
     <br>
-    <br>
-    <br>
-    <br>
-    <br>
-  </ion-header>
+  </ion-content>
 
   <ion-tabs>
     <ion-tab-bar slot="bottom">
       <ion-tab-button routerLink="/viajes">
         <ion-icon name="car-sport-outline"></ion-icon>
       </ion-tab-button>
-      <ion-tab-button routerLink="/administrar">
+
+      <ion-tab-button *ngIf="isAdmin" routerLink="/administrar">
         <ion-icon name="pencil-outline"></ion-icon>
       </ion-tab-button>
-      
-      <ion-tab-button tab="perfil">
+
+      <ion-tab-button routerLink="/perfil">
         <ion-icon name="person-sharp"></ion-icon>
       </ion-tab-button>
     </ion-tab-bar>
   </ion-tabs>
 
+
+  
 </div>
+
+
 

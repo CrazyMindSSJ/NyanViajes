@@ -4,48 +4,67 @@ import { Injectable } from '@angular/core';
   providedIn: 'root'
 })
 export class CrudService {
-
-  //aqui podemos crear variables:
-  personas: any[] = [];
+  // Aquí podemos crear variables:
+  personas: any[] = [
+    {
+      rut: '12345678-9', 
+      nombre: 'Admin',
+      fecha_nacimiento: '2000-01-01',
+      genero: 'Masculino',
+      email: 'admin@duocuc.cl',
+      contra: 'admin123',
+      contraVali: 'admin1234',
+      tiene_auto: 'No',
+      modelo: '',
+      marca: '',
+      color: '',
+      cant_asiento: '',
+      patente: '',
+      categoria: 'Administrador',
+      isAdmin: true 
+    }
+  ];
 
   constructor() { }
 
-  //aqui vamos a crear toda nuestra logica de programacion
-  //DAO:
-  public createUsuarios(persona:any):boolean{
-    if( this.getUsuario(persona.rut)==undefined ){
+  // Aquí vamos a crear toda nuestra lógica de programación
+  // DAO:
+  public createUsuarios(persona: any): boolean {
+    if (this.getUsuario(persona.rut) == undefined) {
       this.personas.push(persona);
       return true;
     }
     return false;
   }
 
-  public getUsuario(rut:string){
-    return this.personas.find(elemento=> elemento.rut == rut);
+  public getUsuario(rut: string) {
+    return this.personas.find(elemento => elemento.rut === rut);
   }
 
-  public getUsuarios():any[]{
+  public getUsuarios(): any[] {
     return this.personas;
   }
 
-  public updateUsuarios(rut:string, nuevoUsuario:any){
-    const indice = this.personas.findIndex(elemento => elemento.rut == rut);
-    this.personas[indice]=nuevoUsuario;
-    this.personas.push(nuevoUsuario);
-    if(indice == -1){
-      return false;
-    }
-    this.personas.splice(indice,1);
-    return true;  
+  public validarUsuario(email: string, contra: string) {
+    // Método para validar el usuario con email y contraseña
+    return this.personas.find(usuario => usuario.email === email && usuario.contra === contra);
   }
 
-  public deleteUsuarios(rut:string){
-    const indice = this.personas.findIndex(elemento => elemento.rut == rut);
-    if(indice == -1){
+  public updateUsuarios(rut: string, nuevoUsuario: any) {
+    const indice = this.personas.findIndex(elemento => elemento.rut === rut);
+    if (indice === -1) {
       return false;
     }
-    this.personas.splice(indice,1);
+    this.personas[indice] = nuevoUsuario;
     return true;
   }
 
+  public deleteUsuarios(rut: string) {
+    const indice = this.personas.findIndex(elemento => elemento.rut === rut);
+    if (indice === -1) {
+      return false;
+    }
+    this.personas.splice(indice, 1);
+    return true;
+  }
 }

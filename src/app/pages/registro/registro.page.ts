@@ -28,7 +28,7 @@ export class RegistroPage implements OnInit {
     return edad >= 18 ? null : { menorDeEdad: true };
   }
 
-  // Validador personalizado para comparar contraseñas
+  // Validador para comparar contraseñas
   validarContrasenas(group: AbstractControl): ValidationErrors | null {
     const contra = group.get('contra')?.value;
     const contraVali = group.get('contraVali')?.value;
@@ -69,12 +69,18 @@ export class RegistroPage implements OnInit {
     this.personas = this.crudService.getUsuarios();
   }
 
+//Datos del admin
+
+
+
   // Método de registro
   registrar() {
     console.log('Botón de registrar presionado');
     console.log(this.persona.value);
     if (this.crudService.createUsuarios(this.persona.value)) {
       alert("USUARIO CREADO CON ÉXITO!");
+      localStorage.setItem('usuarioLogueado', JSON.stringify(this.persona.value));
+      this.router.navigate(['/login']);
       this.persona.reset();
     } else {
       alert("ERROR! No se pudo crear el usuario!");

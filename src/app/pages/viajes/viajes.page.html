@@ -1,8 +1,13 @@
 <ion-header [translucent]="true">
   <ion-toolbar style="--background: #FFB6C1;">
-    <ion-title style="color: #696767; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; font-weight: 600;">
-      Viajes Disponibles
-    </ion-title>
+    <div style="display: flex; justify-content: space-between; align-items: center;">
+      <ion-title style="color: #696767; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; font-weight: 600;">
+        Viajes Disponibles
+      </ion-title>
+      <ion-button fill="clear" size="large" routerLink="/home">
+        <ion-icon style="color: #696767;" name="arrow-forward-circle-outline"></ion-icon>
+      </ion-button>
+    </div>
   </ion-toolbar>
 </ion-header>
 
@@ -76,7 +81,7 @@
       <br><strong>Vehículo:</strong> Chevrolet Spark, color rojo, Patente 4D98c.
       <br><strong>Contacto:</strong> camila.torres&#64;duocuc.cl
     </ion-card-content>
-    <ion-button expand="block" style="background-color: #FFB6C1; color: #696767;">Tomar viaje</ion-button>
+    <ion-button expand="block" style="background-color: #FFB6C1; color: #000000;">Tomar viaje</ion-button>
   </ion-card>
 
 </ion-content>

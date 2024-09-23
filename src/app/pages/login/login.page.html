@@ -1,23 +1,21 @@
 <ion-header>
-  <ion-toolbar>
+  <ion-toolbar style="background-color: #FFB6C1;">
     <div style="display: flex; justify-content: space-between; align-items: center;">
-      <ion-title >Ingresar</ion-title>
+      <ion-title style="color: #696767;">Ingresar</ion-title>
       <ion-button fill="clear" size="large" routerLink="/home">
-        <ion-icon name="arrow-forward-circle-outline"></ion-icon>
+        <ion-icon name="arrow-forward-circle-outline" style="color: #696767;"></ion-icon>
       </ion-button>
     </div>
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
-  <ion-card>
+<ion-content style="background-color: #f9f9f9;">
+  <ion-card style="background-color: #ffffff;">
     <ion-card-content>
       <!-- Imagen de perfil -->
       <div style="text-align: center; margin-bottom: 10px;">
         <img src="assets/img/perfil.png" alt="Perfil" style="width: 75px; height: 75px; border-radius: 50%;">
-    </div>
-    
-    
+      </div>
 
       <ion-input 
         [(ngModel)]="email" 
@@ -40,8 +38,6 @@
           <ion-icon slot="icon-only" [name]="iconoContrasenia" aria-hidden="true"></ion-icon>
         </ion-button>
       </ion-input>
-      
-      
 
       <div style="text-align: left; margin-top: 10px;">
         <a routerLink="/recuperar" class="text-pink">¿Olvidaste tu contraseña?</a>
@@ -51,12 +47,12 @@
         <div style="text-align: center; margin-top: 10px;"></div>
       </ion-item>
 
-      <ion-button (click)="login()" [disabled]="isLoginDisabled" expand="full" shape="round" style="color: #000000;" >Iniciar Sesión</ion-button>
-
+      <ion-button (click)="login()" [disabled]="isLoginDisabled" expand="full" shape="round" style="color: #000000;">Iniciar Sesión</ion-button>
     </ion-card-content>
   </ion-card>
 
   <div style="display: flex; justify-content: center; align-items: center; flex-direction: column; text-align: center; margin-top: 20px;">
-    <span class="text-gris">No tienes cuenta, Regístrate <a routerLink="/registro" class="text-pink">AQUÍ</a></span>        
+    <span style="color: #696767;">No tienes cuenta, Regístrate <a routerLink="/registro" class="text-pink">AQUÍ</a></span>
   </div>
 </ion-content>
+

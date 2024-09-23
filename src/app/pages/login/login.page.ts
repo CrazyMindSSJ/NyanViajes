@@ -9,10 +9,8 @@ import { CrudService } from 'src/app/services/crud.service'; // Asegúrate de qu
   styleUrls: ['./login.page.scss'],
 })
 export class LoginPage implements OnInit {
-
   tipoContrasenia: string = 'password';  
   iconoContrasenia: string = 'eye';  
-
   email: string = "";
   password: string = "";
 
@@ -25,21 +23,16 @@ export class LoginPage implements OnInit {
   async login() {
     const loading = await this.loadingController.create({
       message: 'Iniciando sesión...',
-      duration: 2000 // Duración del loading en milisegundos
+      duration: 2000 
     });
     await loading.present();
 
-    // Obtenemos los usuarios almacenados en el CRUD
-    const usuariosRegistrados = this.crudService.getUsuarios();  // Obtenemos los usuarios
-
     // Validamos el usuario con el email y contraseña ingresados
-    const usuarioValido = usuariosRegistrados.some(usuario => 
-      usuario.email === this.email && usuario.contra === this.password  // Cambiamos `password` a `contra` para que coincida con el campo del registro
-    );
+    const usuario = this.crudService.validarUsuario(this.email, this.password); // Usamos el método validarUsuario
 
-    if (usuarioValido) {
+    if (usuario) {
       // Guardar información del usuario logueado en localStorage
-      localStorage.setItem('usuarioLogueado', JSON.stringify({ email: this.email }));
+      localStorage.setItem('usuarioLogueado', JSON.stringify(usuario)); // Guardamos toda la información del usuario
       this.router.navigate(['/home']);  // Si es válido, redirige a home
     } else {
       alert("CORREO O CONTRASEÑA INCORRECTOS!");  // Si no es válido, muestra un mensaje de error
