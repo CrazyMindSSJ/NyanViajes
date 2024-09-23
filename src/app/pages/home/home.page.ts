@@ -15,7 +15,7 @@ export class HomePage {
 
     if (usuarioLogueado) {
       this.isAdmin = usuarioLogueado.isAdmin; // Verificamos si el usuario logueado es admin
-      this.nombreUsuario = this.isAdmin ? 'Admin' : usuarioLogueado.nombre; // Asigna el nombre correcto
+      this.nombreUsuario = this.isAdmin ? 'Administrador' : usuarioLogueado.nombre; // Asigna el nombre correcto
       this.edadUsuario = this.calcularEdad(usuarioLogueado.fecha_nacimiento); // Calcula la edad
     }
   }

@@ -12,7 +12,7 @@ export class CrudService {
       fecha_nacimiento: '2000-01-01',
       genero: 'Masculino',
       email: 'admin@duocuc.cl',
-      contra: 'admin123',
+      contra: 'admin1234',
       contraVali: 'admin1234',
       tiene_auto: 'No',
       modelo: '',
