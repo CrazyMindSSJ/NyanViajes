@@ -17,7 +17,7 @@ export class LoginPage implements OnInit {
   constructor(
     private router: Router, 
     private loadingController: LoadingController, 
-    private crudService: CrudService  // Inyectamos el CrudService
+    private crudService: CrudService
   ) { }
 
   async login() {
