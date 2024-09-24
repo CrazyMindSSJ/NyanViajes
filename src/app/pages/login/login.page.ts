@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { LoadingController } from '@ionic/angular';
-import { CrudService } from 'src/app/services/crud.service'; // Asegúrate de que este servicio esté importado correctamente
+import { CrudService } from 'src/app/services/crud.service';
 
 @Component({
   selector: 'app-login',

@@ -14,17 +14,13 @@ export class RegistroPage implements OnInit {
   mayorDeEdad(control: AbstractControl): ValidationErrors | null {
     const fechaNacimiento = new Date(control.value);
     const hoy = new Date();
-
-    // Calcular la edad
     let edad = hoy.getFullYear() - fechaNacimiento.getFullYear();
     const mes = hoy.getMonth() - fechaNacimiento.getMonth();
 
-    // Ajustar si el cumpleaños aún no ha pasado este año
     if (mes < 0 || (mes === 0 && hoy.getDate() < fechaNacimiento.getDate())) {
       edad--;
     }
 
-    // Retornar un error si el usuario es menor de 18
     return edad >= 18 ? null : { menorDeEdad: true };
   }
 
@@ -35,43 +31,31 @@ export class RegistroPage implements OnInit {
     return contra === contraVali ? null : { contrasenasNoCoinciden: true };
   }
 
-  // Formulario persona, ahora con el nuevo campo 'categoria'
+  // Formulario persona
   persona = new FormGroup({
     rut: new FormControl('', [Validators.required, Validators.pattern("[0-9]{7,8}-[0-9kK]{1}")]),
-    nombre: new FormControl('', [Validators.required, Validators.pattern("[a-z A-Z]{3,30}")]),
+    nombre: new FormControl('', [Validators.required, Validators.pattern("[a-zA-Z]{3,30}")]),
     fecha_nacimiento: new FormControl('', [Validators.required, this.mayorDeEdad.bind(this)]),
     genero: new FormControl('', [Validators.required]),
     email: new FormControl('', [Validators.required, Validators.pattern("^[a-zA-Z0-9._%+-]+@[duocuc]+\\.[cl]{2}$")]),
-    contra: new FormControl('', [Validators.required]),
+    contra: new FormControl('', [Validators.required, Validators.minLength(8), Validators.maxLength(16)]),
     contraVali: new FormControl('', [Validators.required]),
     tiene_auto: new FormControl('No', [Validators.required]),
     modelo: new FormControl(''),
     marca: new FormControl(''),
     color: new FormControl(''),
     cant_asiento: new FormControl('', []),
-    patente: new FormControl('', [Validators.pattern("[A-Z]{2}-[A-Z0-9]{2}-[0-9]{2}")]),
+    patente: new FormControl('', [Validators.pattern("^[a-zA-Z0-9]{5}$")]),
     categoria: new FormControl('Estudiante', [Validators.required])
   });
 
   personas: any[] = [];
 
-  constructor(
-    private router: Router,
-    private crudService: CrudService
-  ) { }
-
-  // Método para validar las contraseñas
-  public validarContra(): boolean {
-    return this.persona.controls.contra.value === this.persona.controls.contraVali.value;
-  }
+  constructor(private router: Router, private crudService: CrudService) { }
 
   ngOnInit() {
     this.personas = this.crudService.getUsuarios();
   }
-
-//Datos del admin
-
-
 
   // Método de registro
   registrar() {

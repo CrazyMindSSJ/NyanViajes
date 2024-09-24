@@ -58,6 +58,12 @@
       <ion-text color="danger" *ngIf="persona.controls.contra.touched && persona.controls.contra.errors?.['required']">
         La contraseña es obligatoria
       </ion-text>
+      <ion-text color="danger" *ngIf="persona.controls.contra.touched && persona.controls.contra.errors?.['minlength']">
+        La contraseña debe tener al menos 8 caracteres
+      </ion-text>
+      <ion-text color="danger" *ngIf="persona.controls.contra.touched && persona.controls.contra.errors?.['maxlength']">
+        La contraseña no puede exceder los 16 caracteres
+      </ion-text>
 
       <!-- Repetir Contraseña -->
       <ion-input formControlName="contraVali" type="password" labelPlacement="stacked" label="Repita su Contraseña"></ion-input>

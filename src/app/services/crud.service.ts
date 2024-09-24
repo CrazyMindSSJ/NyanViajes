@@ -67,4 +67,8 @@ export class CrudService {
     this.personas.splice(indice, 1);
     return true;
   }
+
+  public findUsuarioByEmail(email: string): any | undefined {
+    return this.personas.find(usuario => usuario.email === email);
+  }
 }
