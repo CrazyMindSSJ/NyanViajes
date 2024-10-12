@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { AbstractControl, FormControl, FormGroup, ValidationErrors, Validators } from '@angular/forms';
+import { AbstractControl, FormControl, FormGroup, ValidationErrors, ValidatorFn, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { CrudService } from 'src/app/services/crud.service';
+import { __awaiter } from 'tslib';
 
 @Component({
   selector: 'app-administrar',
@@ -12,97 +13,122 @@ export class AdministrarPage implements OnInit {
   // Formulario para registrar/actualizar usuarios
   persona = new FormGroup({
     rut: new FormControl('', [Validators.required, Validators.pattern("[0-9]{7,8}-[0-9kK]{1}")]),
-    nombre: new FormControl('', [Validators.required, Validators.pattern("[a-z A-Z]{3,30}")]),
-    fecha_nacimiento: new FormControl('', [Validators.required, this.mayorDeEdad.bind(this)]),
+    nombre: new FormControl('', [Validators.required, Validators.pattern("[a-zA-Z ]{3,}")]),
+    fecha_nacimiento: new FormControl('', [Validators.required]),
     genero: new FormControl('', [Validators.required]),
-    email: new FormControl('', [Validators.required, Validators.pattern("^[a-zA-Z0-9._%+-]+@[duocuc.-]+\\.[CLcl]{2,}$")]),
-    contra: new FormControl('', [Validators.required]),
-    contraVali: new FormControl('', [Validators.required]),
+    email: new FormControl('', [Validators.required, Validators.pattern("[a-zA-Z0-9.]+(@duocuc.cl)")]),
+    contra: new FormControl('', [Validators.required, Validators.pattern("^(?=.*[-!#$%&/()?¡_.])(?=.*[A-Za-z])(?=.*[a-z]).{8,}$")]),
+    contraVali: new FormControl('', [Validators.required, Validators.pattern("^(?=.*[-!#$%&/()?¡_.])(?=.*[A-Za-z])(?=.*[a-z]).{8,}$")]),
     tiene_auto: new FormControl('No', [Validators.required]),
     modelo: new FormControl(''),
     marca: new FormControl(''),
     color: new FormControl(''),
-    cant_asiento: new FormControl(''),
-    patente: new FormControl('', [Validators.pattern("[A-Z]{2}-[A-Z0-9]{2}-[0-9]{2}")]),
-    categoria: new FormControl('', [Validators.required])
+    cant_asiento: new FormControl('', []),
+    patente: new FormControl('', [Validators.pattern("^[a-zA-Z0-9]{5}$")]),
+    categoria: new FormControl('Estudiante', [Validators.required])
   });
 
-  personas: any[] = []; // Lista de usuarios
+  personas: any[] = [];
+  botonModificar: boolean = true;
 
   constructor(
     private router: Router,
-    private crudService: CrudService) { }
-
-  ngOnInit() {
-    this.actualizarListaPersonas(); // Cargar la lista de usuarios al iniciar
-  }
-
-  // Método para validar que el usuario sea mayor de edad
-  mayorDeEdad(control: AbstractControl): ValidationErrors | null {
-    const fechaNacimiento = new Date(control.value);
-    const hoy = new Date();
-    let edad = hoy.getFullYear() - fechaNacimiento.getFullYear();
-    const mes = hoy.getMonth() - fechaNacimiento.getMonth();
-    if (mes < 0 || (mes === 0 && hoy.getDate() < fechaNacimiento.getDate())) {
-      edad--;
+    private crudService: CrudService) { 
+      this.persona.get("rut")?.setValidators([Validators.required,Validators.pattern("[0-9]{7,8}-[0-9kK]{1}"),this.validarRut()]);
     }
-    return edad >= 18 ? null : { menorDeEdad: true }; // Retornar error si es menor de 18
+
+  async ngOnInit() {
+    this.personas =  await this.crudService.getUsuarios();
   }
 
-  // Método para registrar un nuevo usuario
-  registrar() {
-    if (this.crudService.createUsuarios(this.persona.value)) {
-      alert("USUARIO CREADO CON ÉXITO!");
-      this.actualizarListaPersonas(); // Actualiza la lista de usuarios
-      this.persona.reset(); // Resetea el formulario
-    } else {
-      alert("ERROR! No se pudo crear el usuario!");
+  validarEdad18(fecha_nacimiento: string){
+    var edad = 0;
+    if(fecha_nacimiento){
+      const fecha_date = new Date(fecha_nacimiento);
+      const timeDiff = Math.abs(Date.now() - fecha_date.getTime());
+      edad = Math.floor((timeDiff / (1000 * 3600 * 24))/365);
+    }
+    if(edad>=18){
+      return true;
+    }else{
+      return false;
     }
   }
 
-  // Método para buscar un usuario por RUT
-  buscar(rut_buscar: string) {
-    const usuarioEncontrado = this.crudService.getUsuario(rut_buscar);
-    if (usuarioEncontrado) {
-      this.persona.setValue(usuarioEncontrado); // Rellena el formulario con los datos encontrados
-    } else {
-      alert("Usuario no encontrado");
-    }
+  validarRut():ValidatorFn{
+    return () => {
+      const rut = this.persona.controls.rut.value;
+      const dv_validar = rut?.replace("-","").split("").splice(-1).reverse()[0];
+      let rut_limpio = [];
+      if(rut?.length==10){
+        rut_limpio = rut?.replace("-","").split("").splice(0,8).reverse();
+      }else{
+        rut_limpio = rut?.replace("-","").split("").splice(0,7).reverse() || [];
+      }
+      let factor = 2;
+      let total = 0;
+      for(let num of rut_limpio){
+        total = total + ((+num)*factor);
+        factor = factor + 1;
+        if(factor==8){
+          factor = 2;
+        }
+      }
+      var dv = (11-(total%11)).toString();
+      if(+dv>=10){
+        dv = "k";
+      }
+      if(dv_validar!=dv.toString()) return {isValid: false};
+      return null;
+    };
   }
 
-  // Método para modificar un usuario existente
-  modificar() {
-    const rut_buscar = this.persona.controls.rut.value;
-    if (!rut_buscar) {
-      alert("RUT no válido para modificar");
+  async registrar(){
+    if( !this.validarEdad18(this.persona.controls.fecha_nacimiento.value || "") ){
+      alert("ERROR! debe tener al menos 18 años para registrarse!");
       return;
     }
 
-    if (this.crudService.updateUsuarios(rut_buscar, this.persona.value)) {
-      alert("Usuario modificado con éxito");
-      this.actualizarListaPersonas(); // Actualiza la lista después de modificar
-      this.persona.reset(); 
-    } else {
-      alert("Error! usuario no modificado");
+    if(this.persona.controls.contra.value != this.persona.controls.contraVali.value){
+      alert("ERROR! las contraseñas no coinciden!");
+      return;
+    }
+
+    if( await this.crudService.createUsuario(this.persona.value) ){
+      alert("USUARIO CREADO CON ÉXITO!");
+      this.persona.reset();
+      this.personas = await this.crudService.getUsuarios();
+    }else{
+      alert("ERROR! NO SE PUDO CREAR EL USUARIO!");
     }
   }
 
-  // Método para eliminar un usuario
-  eliminar(rut_eliminar: string) {
-    if (this.crudService.deleteUsuarios(rut_eliminar)) {
-      alert("Usuario eliminado con éxito!");
-      this.actualizarListaPersonas(); // Actualiza la lista después de eliminar
-    } else {
-      alert("ERROR! Usuario no eliminado");
+  async buscar(rut_buscar:string){
+    this.persona.setValue(await this.crudService.getUsuario(rut_buscar) );
+    this.botonModificar = false;
+  }
+
+  async modificar(){
+    var rut_buscar: string = this.persona.controls.rut.value || "";
+    if(await this.crudService.updateUsuario( rut_buscar , this.persona.value)){
+      alert("USUARIO MODIFICADO CON ÉXITO!");
+      this.botonModificar = true;
+      this.persona.reset();
+      this.personas = await this.crudService.getUsuarios();
+    }else{
+      alert("ERROR! USUARIO NO MODIFICADO!");
     }
   }
 
-  // Método para actualizar la lista de usuarios
-  actualizarListaPersonas() {
-    this.personas = this.crudService.getUsuarios(); // Cargar usuarios desde el servicio
+  async eliminar(rut_eliminar:string){
+    if(await this.crudService.deleteUsuario(rut_eliminar) ){
+      alert("USUARIO ELIMINADO CON ÉXITO!")
+      this.personas = await this.crudService.getUsuarios();
+    }else{
+      alert("ERROR! USUARIO NO ELIMINADO!")
+    }
   }
 
-  // Método para limpiar el formulario
   limpiar() {
     this.persona.reset();
   }

@@ -9,15 +9,7 @@
 
 <ion-content>
   <ion-item>
-    <ion-input label="Ingrese correo registrado" type="email" labelPlacement="floating" 
-    placeholder="Miau@gmail.com"></ion-input>
+    <ion-input [(ngModel)]="email" type="email" label="Ingrese correo registrado" labelPlacement="floating" placeholder="Miau@gmail.com"></ion-input>
   </ion-item>
-  <ion-button id="recuperar" expand="full" style="color:#585656">Enviar correo de recuperación</ion-button>
-  <ion-alert
-  trigger="recuperar"
-  header="Correo enviado"
-  subHeader="Revise su correo"
-  message="Si no encuentra el correo en la bandejas, revise el spam"
-  [buttons]="alertButtons"
-></ion-alert>
+  <ion-button (click)="recuperar()" size="block" color="success">RECUPERAR</ion-button> 
 </ion-content>

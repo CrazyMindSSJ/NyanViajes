@@ -12,7 +12,7 @@ export class LoginPage implements OnInit {
   tipoContrasenia: string = 'password';  
   iconoContrasenia: string = 'eye';  
   email: string = "";
-  password: string = "";
+  contrasena: string = "";
 
   constructor(
     private router: Router, 
@@ -25,17 +25,11 @@ export class LoginPage implements OnInit {
       message: 'Iniciando sesión...',
       duration: 2000 
     });
-    await loading.present();
-
-    // Validamos el usuario con el email y contraseña ingresados
-    const usuario = this.crudService.validarUsuario(this.email, this.password); // Usamos el método validarUsuario
-
-    if (usuario) {
-      // Guardar información del usuario logueado en localStorage
-      localStorage.setItem('usuarioLogueado', JSON.stringify(usuario)); // Guardamos toda la información del usuario
-      this.router.navigate(['/home']);  // Si es válido, redirige a home
-    } else {
-      alert("CORREO O CONTRASEÑA INCORRECTOS!");  // Si no es válido, muestra un mensaje de error
+    await loading.present()
+    if(await this.crudService.login(this.email,this.contrasena)){
+      this.router.navigate(['/home']);
+    }else{
+      alert("Correo o contraseña invalidos! intente nuevamente");
     }
   }
 
@@ -53,6 +47,6 @@ export class LoginPage implements OnInit {
 
   get isLoginDisabled() {
     // Deshabilitar el botón si no se ingresan email o password
-    return this.email.trim() === '' || this.password.trim() === '';
+    return this.email.trim() === '' || this.contrasena.trim() === '';
   }
 }

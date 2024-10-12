@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { CrudService } from 'src/app/services/crud.service';
 
 @Component({
   selector: 'app-recuperar',
@@ -7,11 +9,20 @@ import { Component, OnInit } from '@angular/core';
 })
 export class RecuperarPage implements OnInit {
 
-  constructor() { }
+  email : string = "";
+
+  constructor(private router: Router,private crudService: CrudService) { }
 
   ngOnInit() {
   }
 
-  alertButtons = ['Ok'];
+  async recuperar(){
+    if(await this.crudService.recuperarUsuario(this.email)){
+      alert("Revisa tu correo para encontrar la nueva contraseña!")
+      this.router.navigate(['/login']);
+    }else{
+      alert("ERROR! el usuario no existe!")
+    }
+  }
 
 }
