@@ -8,7 +8,7 @@
     <ion-list>
       <ion-item expand="block" routerLink="/mis-viajes">Mis Viajes</ion-item>
       <ion-item expand="block" routerLink="/contacto">Contacto</ion-item>
-      <ion-item expand="block" routerLink="/login" style="color: #FFB600; margin-top: 20px;">Cerrar sesión</ion-item>
+      <ion-item (click)="logout()" expand="block" style="color: #FFB600; margin-top: 20px;">Cerrar sesión</ion-item>
     </ion-list>
   </ion-content>
 </ion-menu>
@@ -48,7 +48,7 @@
         <ion-icon name="car-sport-outline"></ion-icon>
       </ion-tab-button>
 
-      <ion-tab-button *ngIf="isAdmin" routerLink="/administrar">
+      <ion-tab-button *ngIf="persona.categoria=='Administrador'" routerLink="/administrar">
         <ion-icon name="pencil-outline"></ion-icon>
       </ion-tab-button>
 
