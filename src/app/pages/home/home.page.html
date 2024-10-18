@@ -20,26 +20,13 @@
         <ion-menu-button></ion-menu-button>
       </ion-buttons>
       <ion-title>
-        NyanViajes! <ion-icon name="logo-octocat"></ion-icon>
+        Bienvenido {{persona.nombre}} a NyanViajes! <ion-icon name="logo-octocat"></ion-icon>
       </ion-title>
     </ion-toolbar>
   </ion-header>
 
-  <ion-content class="ion-padding" style="background-color: #f9f9f9;">
-    <ion-card>
-      <ion-card-content>
-        <h2 style="text-align: center; color: #696767; font-size: 2.5rem;">
-          Bienvenido a NyanViajes
-        </h2>
-        <p style="text-align: center; font-size: 1.2rem;">
-          La aplicación de viajes para alumnos de <span style="color: #FFB600;">Duoc</span>UC
-        </p>
-        <ion-searchbar animated="true" placeholder="¿Dónde Viajas?" style="margin-bottom: 20px;"></ion-searchbar>
-        <ion-img src="assets/img/maps.png" alt="Descripción de la imagen" style="display: block; margin: 0 auto;"></ion-img>
-      </ion-card-content>
-    </ion-card>
-
-    <br>
+  <ion-content>
+    <div id="map_html"></div>
   </ion-content>
 
   <ion-tabs>
@@ -61,6 +48,3 @@
 
   
 </div>
-
-
-

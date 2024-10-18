@@ -1,4 +1,7 @@
-
+#map_html {
+  height: 100vh; /* La altura completa de la ventana */
+  width: 100%;   /* Asegurarse que ocupe todo el ancho */
+}
 ion-content {
   --background: #ffffff; 
 }
@@ -51,3 +54,4 @@ ion-content {
   --background: #ffffff; /* Color de fondo blanco */
   
 }
+
