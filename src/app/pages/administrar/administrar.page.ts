@@ -35,6 +35,7 @@ export class AdministrarPage implements OnInit {
     private router: Router,
     private crudService: CrudService) { 
       this.persona.get("rut")?.setValidators([Validators.required,Validators.pattern("[0-9]{7,8}-[0-9kK]{1}"),this.validarRut()]);
+      
     }
 
   async ngOnInit() {
@@ -80,6 +81,16 @@ export class AdministrarPage implements OnInit {
       }
       if(dv_validar!=dv.toString()) return {isValid: false};
       return null;
+    };
+  }
+  validarPatente(): ValidatorFn {
+    return (control) => {
+      const patente = control.value;
+      const patenteRegex = /^[A-Z]{2}\d{5}$|^[A-Z]{3}\d{5}$/;
+      if (!patenteRegex.test(patente)) {
+        return { isValid: false }; 
+      }
+      return null; 
     };
   }
 
