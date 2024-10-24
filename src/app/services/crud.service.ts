@@ -27,8 +27,42 @@ export class CrudService {
       "cant_asiento": '',
       "patente": '',
       "categoria": 'Administrador'
-    }
+    };
+    let usu1 = {
+      "rut": '21241316-k', 
+      "nombre": 'Seabstian Urrutia',
+      "fecha_nacimiento": '2003-16-03',
+      "genero": 'Masculino',
+      "email": 'seba@duocuc.cl',
+      "contra": 'Seba123.',
+      "contraVali": 'Seba123.',
+      "tiene_auto": 'Si',
+      "modelo": 'GTR-34',
+      "marca": 'Nissan',
+      "color": 'Plateado',
+      "cant_asiento": '4',
+      "patente": 'XDGG13',
+      "categoria": 'Estudiante'
+    };
+    let usu2 = {
+      "rut": '12345678-9', 
+      "nombre": 'Betzabe Ruiz',
+      "fecha_nacimiento": '2003-09-08',
+      "genero": 'Femenino',
+      "email": 'betsa@duocuc.cl',
+      "contra": 'Bets123.',
+      "contraVali": 'Bets123.',
+      "tiene_auto": 'No',
+      "modelo": '',
+      "marca": '',
+      "color": '',
+      "cant_asiento": '',
+      "patente": '',
+      "categoria": 'Estudiante'
+    };
     await this.createUsuario(admin);
+    await this.createUsuario(usu1);
+    await this.createUsuario(usu2);
   }
   // Aquí vamos a crear toda nuestra lógica de programación
   // DAO:

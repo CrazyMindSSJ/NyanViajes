@@ -14,9 +14,44 @@ export class CrudViajesService {
   async init(){
     await this.storage.create();
     let viaje1 = {
-      
+      "id_viaje":"1",
+      "conductor":"Sebastian",
+      "capa_disp":"4",
+      "destino":"Tarsis 1698, Puente Alto, Región Metropolitana",
+      "lat":"-33.59442060239603",
+      "long":"-70.55584509878297",
+      "dis_met":"3000",
+      "tie_min":"9",
+      "estado":"Pendiente",
+      "pasajeros":""
+    };
+    let viaje2 = {
+      "id_viaje":"2",
+      "conductor":"Sebastian",
+      "capa_disp":"0",
+      "destino":"Tarsis 1698, Puente Alto, Región Metropolitana",
+      "lat":"-33.59442060239603",
+      "long":"-70.55584509878297",
+      "dis_met":"3000",
+      "tie_min":"9",
+      "estado":"Finalizado",
+      "pasajeros":""
+    }
+    let viaje3 = {
+      "id_viaje":"3",
+      "conductor":"Sebastian",
+      "capa_disp":"1",
+      "destino":"Tongoy 1002, La Pintana, Región Metropolitana",
+      "lat":"-33.580451215803116",
+      "long":"-70.64769204356487",
+      "dis_met":"9743",
+      "tie_min":"17",
+      "estado":"En Curso",
+      "pasajeros":""
     };
     await this.createViaje(viaje1);
+    await this.createViaje(viaje2);
+    await this.createViaje(viaje3);
   }
 
   //DAO

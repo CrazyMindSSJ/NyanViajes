@@ -12,7 +12,7 @@ export class RegistroPage implements OnInit {
 
   // Formulario persona
   persona = new FormGroup({
-    rut: new FormControl('', [Validators.required, Validators.pattern("[0-9]{7,8}-[0-9kK]{1}")]),
+    rut: new FormControl('', [Validators.required, Validators.pattern("[0-9]{7,8}-[0-9k]{1}")]),
     nombre: new FormControl('', [Validators.required, Validators.pattern("[a-zA-Z ]{3,}")]),
     fecha_nacimiento: new FormControl('', [Validators.required]),
     genero: new FormControl('', [Validators.required]),
@@ -27,8 +27,6 @@ export class RegistroPage implements OnInit {
     patente: new FormControl('', [Validators.pattern("^[a-zA-Z0-9]{5,6}$")]),
     categoria: new FormControl('Estudiante', [Validators.required])
   });
-
-  personas: any[] = [];
 
   constructor(private router: Router, private crudService: CrudService) {
     this.persona.get("rut")?.setValidators([Validators.required,Validators.pattern("[0-9]{7,8}-[0-9kK]{1}"),this.validarRut()]);
@@ -91,7 +89,7 @@ export class RegistroPage implements OnInit {
       }
       var dv = (11-(total%11)).toString();
       if(+dv>=10){
-        dv = "K";
+        dv = "k";
       }
       if(dv_validar!=dv.toString()) return {isValid: false};
       return null;
