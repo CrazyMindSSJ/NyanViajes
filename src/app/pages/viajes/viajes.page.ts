@@ -30,7 +30,8 @@ export class ViajesPage implements OnInit {
 
 
 
-  ngOnInit() {
+  async ngOnInit() {
+    await this.obtenerViajes();
   }
 
   async obtenerViajes(){
