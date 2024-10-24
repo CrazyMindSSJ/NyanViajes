@@ -40,8 +40,6 @@ export class HomePage implements OnInit{
     this.initMap();
   }
 
-  
-
   initMap(){
     this.map = L.map("map_html").locate({setView:true,maxZoom:16});
 

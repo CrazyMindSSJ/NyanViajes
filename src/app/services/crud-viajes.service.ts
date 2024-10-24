@@ -23,6 +23,7 @@ export class CrudViajesService {
       "dis_met":"3000",
       "tie_min":"9",
       "estado":"Pendiente",
+      "valor":"3000",
       "pasajeros":""
     };
     let viaje2 = {
@@ -35,6 +36,7 @@ export class CrudViajesService {
       "dis_met":"3000",
       "tie_min":"9",
       "estado":"Finalizado",
+      "valor":"3000",
       "pasajeros":""
     }
     let viaje3 = {
@@ -47,7 +49,8 @@ export class CrudViajesService {
       "dis_met":"9743",
       "tie_min":"17",
       "estado":"En Curso",
-      "pasajeros":""
+      "valor":"6000",
+      "pasajeros":"3"
     };
     await this.createViaje(viaje1);
     await this.createViaje(viaje2);
