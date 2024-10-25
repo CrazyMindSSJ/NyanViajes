@@ -13,9 +13,9 @@
   </ion-content>
 </ion-menu>
 
-<div class="ion-page" id="main-content">
+<div class="ion-page" id="main-content" >
   <ion-header>
-    <ion-toolbar>
+    <ion-toolbar style="--background: #FFB6C1;">
       <ion-buttons slot="start">
         <ion-menu-button></ion-menu-button>
       </ion-buttons>
@@ -25,28 +25,10 @@
     </ion-toolbar>
   </ion-header>
 
+    
+  <div id="map_html"></div>
+  
   <ion-content>
-    <!-- Tarjeta con título de viaje -->
-    <ion-card style="background-color: #fcced5; border-radius: 10px; text-align: center;">
-      <ion-card-subtitle style="margin: 10px 0 0 20px; text-align: left; font-weight: bold; color: #555;">
-        <ion-card style="padding: 10px; border-radius: 15px; background-color: #f5f5f5; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); display: flex; align-items: center; justify-content: center; text-align: center;">
-          <ion-text style="font-size: 18px; font-weight: 600; color: #555;">
-            BUSCA TU VIAJE AQUÍ
-          </ion-text>
-          <ion-icon  name="arrow-down-outline"style="font-size: 30px; margin-left: 10px;"></ion-icon>
-        </ion-card>
-      </ion-card-subtitle> 
-    </ion-card>
-  
-    <!-- Mapa fuera del ion-card -->
-    <div id="map_html" style="height: 400px; width: 90%; margin: 20px auto; border-radius: 10px; background-color: #ffffff; box-shadow: 0 2px 15px rgba(0, 0, 0, 0.1);"></div>
-  </ion-content>
-  
-  
- 
-  
-  
-
   <ion-tabs>
     <ion-tab-bar slot="bottom">
       <ion-tab-button routerLink="/viajes">
@@ -62,7 +44,5 @@
       </ion-tab-button>
     </ion-tab-bar>
   </ion-tabs>
-
-
-  
+</ion-content>
 </div>

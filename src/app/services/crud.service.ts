@@ -30,7 +30,7 @@ export class CrudService {
     };
     let usu1 = {
       "rut": '21241316-k', 
-      "nombre": 'Seabstian Urrutia',
+      "nombre": 'Sebastian Urrutia',
       "fecha_nacimiento": '2003-16-03',
       "genero": 'Masculino',
       "email": 'seba@duocuc.cl',
@@ -45,7 +45,7 @@ export class CrudService {
       "categoria": 'Estudiante'
     };
     let usu2 = {
-      "rut": '12345678-9', 
+      "rut": '21392915-1', 
       "nombre": 'Betzabe Ruiz',
       "fecha_nacimiento": '2003-09-08',
       "genero": 'Femenino',

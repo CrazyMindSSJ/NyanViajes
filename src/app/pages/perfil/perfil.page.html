@@ -1,14 +1,15 @@
-<ion-header>
-  <ion-toolbar style="background-attachment: fixed;">
+<ion-header [translucent]="true">
+  <ion-toolbar style="--background: #FFB6C1;">
     <div style="display: flex; justify-content: space-between; align-items: center;">
-      <ion-title style="color: #696767; font-size: 1.5rem;">Perfil</ion-title>
+      <ion-title style="color: #696767; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; font-weight: 600;">
+        Perfil
+      </ion-title>
       <ion-button fill="clear" size="large" routerLink="/home">
-        <ion-icon name="arrow-forward-circle-outline" style="color: #696767;"></ion-icon>
+        <ion-icon style="color: #696767;" name="arrow-forward-circle-outline"></ion-icon>
       </ion-button>
     </div>
   </ion-toolbar>
 </ion-header>
-
 <ion-content [fullscreen]="true" style="background-color: #f9f9f9;">
   <ion-card style="background-color: #ffffff;">
     <div style="text-align: center;">

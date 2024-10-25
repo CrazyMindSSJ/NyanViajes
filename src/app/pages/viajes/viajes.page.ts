@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
+import { RouterLink } from '@angular/router';
 import { CrudViajesService } from 'src/app/services/crud-viajes.service';
 
 
@@ -25,13 +26,13 @@ export class ViajesPage implements OnInit {
   })
 
   viajes: any[] = [];
+  
 
   constructor(private crudViajes: CrudViajesService) { }
 
 
-
-  async ngOnInit() {
-    await this.obtenerViajes();
+  ngOnInit() {
+    this.obtenerViajes();
   }
 
   async obtenerViajes(){

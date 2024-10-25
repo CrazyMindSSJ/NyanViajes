@@ -7,6 +7,8 @@ import { Storage } from '@ionic/storage-angular';
 })
 export class CrudViajesService {
 
+  private currentId = 3;
+
   constructor(private storage: Storage) {
     this.init();
    }
@@ -43,7 +45,7 @@ export class CrudViajesService {
       "id_viaje":"3",
       "conductor":"Sebastian",
       "capa_disp":"1",
-      "destino":"Tongoy 1002, La Pintana, Región Metropolitana",
+      "destino":"Tongoy 1002, La Pintana, Región Metropolitana",                                                                                  
       "lat":"-33.580451215803116",
       "long":"-70.64769204356487",
       "dis_met":"9743",
@@ -63,6 +65,7 @@ export class CrudViajesService {
     if(viajes.find(via=>via.id_viaje==viaje.id_viaje)!=undefined){
       return false;
     }
+    viaje.id_viaje = this.generateAutoIncrementId();
     viajes.push(viaje);
     await this.storage.set("viajes",viajes);
     return true;
@@ -98,6 +101,13 @@ export class CrudViajesService {
     viajes.splice(indice,1);
     await this.storage.set("viajes",viajes);
     return true;
+  }
+
+  private generateAutoIncrementId(): number {
+    if (this.currentId > 999999) {
+      this.currentId = 3;
+    }
+    return this.currentId++;
   }
 
 }

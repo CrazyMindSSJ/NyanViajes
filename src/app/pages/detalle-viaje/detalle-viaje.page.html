@@ -1,0 +1,19 @@
+<ion-header>
+  <ion-toolbar style="--background: #FFB6C1;">
+    <ion-title>Detalle</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-card>
+    <ion-content>
+      <ion-note>Conductor: {{viaje.conductor}}</ion-note>
+      <ion-note>Destino: {{viaje.destino}}</ion-note>
+      <ion-note>Asientos disponibles: {{viaje.tie_min}}</ion-note>
+      <ion-note>Tiempo: {{viaje.tie_min}}</ion-note>
+      <ion-note>Estado: {{viaje.estado}}</ion-note>
+      <ion-note>Valor: {{viaje.valor | currency}}</ion-note>
+      <ion-note>Pasajeros: {{viaje.pasajeros}}</ion-note>
+    </ion-content>
+  </ion-card>
+</ion-content>

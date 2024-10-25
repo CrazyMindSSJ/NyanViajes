@@ -1,12 +1,12 @@
 #map_html {
-  height: 300px; 
-  width: 80%;    
-
+  height: 88%; 
+  width: 100%;    
+  color:#000000
 }
 
 
 ion-content {
-  --background: #ffffff; 
+  --background: #FFB6C1; 
 }
 
 /*  botón */
@@ -35,7 +35,7 @@ ion-menu ion-title {
 
 /* contenido principal */
 ion-header {
-  --background: #D3D3D3; 
+  --background: #FFB6C1; 
 }
 
 ion-toolbar {
@@ -47,7 +47,7 @@ ion-title {
 }
 
 ion-content {
-  --background: #ffffff; 
+  --background: #FFB6C1; 
   color: #000000; 
 }
 .oval-input {

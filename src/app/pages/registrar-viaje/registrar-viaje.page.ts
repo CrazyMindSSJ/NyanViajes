@@ -1,39 +1,48 @@
-import { Component, OnInit} from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
+import { Component, OnInit } from '@angular/core';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
+import { CrudViajesService } from 'src/app/services/crud-viajes.service';
 import { NavController } from '@ionic/angular';
 
 import * as L from 'leaflet';
 import * as G from 'leaflet-control-geocoder';
 import 'leaflet-routing-machine';
 
-@Component({
-  selector: 'app-home',
-  templateUrl: 'home.page.html',
-  styleUrls: ['home.page.scss'],
-})
 
-export class HomePage implements OnInit{
-  persona: any;
+@Component({
+  selector: 'app-registrar-viaje',
+  templateUrl: './registrar-viaje.page.html',
+  styleUrls: ['./registrar-viaje.page.scss'],
+})
+export class RegistrarViajePage implements OnInit {
+
   private map: L.Map | undefined;
   private geocoder: G.Geocoder | undefined;
 
   viaje = new FormGroup({
     id_viaje: new FormControl(),
-    conductor: new FormControl(),
-    capa_disp: new FormControl(),
-    destino: new FormControl(),
-    lat: new FormControl(),
-    long: new FormControl(),
-    dis_met: new FormControl(),
+    conductor: new FormControl('',[Validators.required]),
+    capa_disp: new FormControl('',[Validators.required]),
+    destino: new FormControl('',[Validators.required]),
+    lat: new FormControl('',[Validators.required]),
+    long: new FormControl('',[Validators.required]),
+    dis_met: new FormControl('',[Validators.required]),
     tie_min: new FormControl(),
     estado: new FormControl('pendiente'),
+    valor: new FormControl('',[Validators.required]),
     pasajeros: new FormControl([])
-  });
+  })
 
-  constructor(private navController: NavController) {}
+  viajes: any[] = [];
+  constructor(private crudViajes: CrudViajesService, private router: Router,private navController: NavController) { }
 
-  ngOnInit(){
-    this.persona = JSON.parse(localStorage.getItem("persona") || '');
+  ngOnInit() {
+  }
+
+  public async registrar(){
+    if(await this.crudViajes.createViaje(this.viaje.value)){
+      this.router.navigate(["/viaje"])
+    }
   }
 
   ngAfterViewInit() {
@@ -80,10 +89,4 @@ export class HomePage implements OnInit{
     });
 
   }
-
-  logout(){
-    localStorage.removeItem('persona');
-    this.navController.navigateRoot('/login')
-  }
-
 }

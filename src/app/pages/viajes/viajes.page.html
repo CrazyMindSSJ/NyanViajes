@@ -16,9 +16,19 @@
   <ion-item>
     <ion-label>
       <strong>{{v.destino}}</strong><br>
-      <ion-note>Asientos disponibles: {{v.capa_disp}}</ion-note>
+      <ion-note>Asientos disponibles: {{v.capa_disp}}</ion-note><br>
+      <ion-note>Precio: {{v.valor | currency}}</ion-note>
     </ion-label>
+    <ion-button routerLink="/detalle-viaje/{id}" size="default">Detalle</ion-button>
   </ion-item>
-
 </ion-card>
+
+
+<ion-button shape="round" class="btn-add" routerLink="/registrar-viaje">
+  <ion-icon name="add-circle-outline"></ion-icon>
+</ion-button>
 </ion-content>
+
+<style>
+  
+</style>
