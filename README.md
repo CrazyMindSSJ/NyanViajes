@@ -126,7 +126,7 @@ Actualmente, **NyanViajes** se encuentra en fase de desarrollo. Estamos trabajan
 #### ✧ 4.Iniciar el Servidor de Desarrollo Una vez que todas las dependencias estén instaladas, puedes iniciar el servidor de desarrollo de Ionic utilizando el siguiente comando:
 > ionic serve
 #### ✧ 5. FINALMENTE: Esto abrirá la aplicación en el navegador, permitiéndote visualizar  la interfaz de NyanViajes.
-#### ✧ 6. FINALMENTE: Si deseas explorar el codigo de este proyecto, puedes acceder desde GitBash colocando el siguiente comando antes de levantar el servidor.
+#### ✧ 6. Si deseas explorar el codigo de este proyecto, puedes acceder desde GitBash colocando el siguiente comando antes de levantar el servidor.
 >code .
 </div>  
 
