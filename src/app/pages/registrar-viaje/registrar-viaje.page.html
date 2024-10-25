@@ -12,7 +12,7 @@
 </ion-header>
 <ion-content>
   <div id="map_html"></div>
-  <form [formGroup]="viaje" (ngSubmit)="registrar()">
+  <form [formGroup]="viaje">
     <ion-list>
       <ion-item>
         <ion-input type="number" label="Capacidad disponible" labelPlacement="floating" placeholder="Ej: 1,2,3,4,etc..."></ion-input>
@@ -22,5 +22,5 @@
       </ion-item>
     </ion-list>
   </form>
-  <ion-button expand="block" type="submit">Crear viaje</ion-button>
+  <ion-button (click)="registrar()" expand="block">Crear viaje</ion-button>
 </ion-content>

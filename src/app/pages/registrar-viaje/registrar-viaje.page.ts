@@ -16,12 +16,13 @@ import 'leaflet-routing-machine';
 })
 export class RegistrarViajePage implements OnInit {
 
+  usuario: any;
   private map: L.Map | undefined;
   private geocoder: G.Geocoder | undefined;
 
   viaje = new FormGroup({
     id_viaje: new FormControl(),
-    conductor: new FormControl('',[Validators.required]),
+    conductor: new FormControl(),
     capa_disp: new FormControl('',[Validators.required]),
     destino: new FormControl('',[Validators.required]),
     lat: new FormControl('',[Validators.required]),
@@ -37,9 +38,12 @@ export class RegistrarViajePage implements OnInit {
   constructor(private crudViajes: CrudViajesService, private router: Router,private navController: NavController) { }
 
   ngOnInit() {
+    this.usuario = JSON.parse(localStorage.getItem("usuario") || '');
+    this.viaje.controls.conductor.setValue(this.usuario.nombre);
   }
 
   public async registrar(){
+    console.log("Presiono registrar")
     if(await this.crudViajes.createViaje(this.viaje.value)){
       this.router.navigate(["/viaje"])
     }
@@ -72,6 +76,7 @@ export class RegistrarViajePage implements OnInit {
     this.geocoder.on('markgeocode', (e)=>{
       let lat = e.geocode.properties['lat'];
       let lon = e.geocode.properties['lon'];
+
       this.viaje.controls.destino.setValue(e.geocode.properties['display_name']);
       this.viaje.controls.lat.setValue(lat);
       this.viaje.controls.long.setValue(lon);
