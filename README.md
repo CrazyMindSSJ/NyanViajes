@@ -25,6 +25,11 @@
 
 ✦                3|_El Impacto y futuro de NyanViajes_ 
 
+✦                4|_Tecnologias Utilizadas_ 
+
+✦                3|_Como levantar el proyecto en Git Bash_ 
+
+
 ︿︿︿︿︿︿︿︿( 🚗 )︿︿︿︿︿︿︿︿
 </div>
 
@@ -115,12 +120,14 @@ Actualmente, **NyanViajes** se encuentra en fase de desarrollo. Estamos trabajan
 ## ✧ ![dacdh0c-ac97d1fc-32a1-49ca-b8ba-cf42630f733b](https://github.com/user-attachments/assets/8e4060de-63b7-42f6-a56e-5dbe95ada786)✧ Pasos para Levantar el Proyecto:
 #### ✧ 1. Clonar el Repositorio desde GitHub:Abrir Git Bash y clona el repositorio  ( https://github.com/CrazyMindSSJ/NyanViajes.git )
 #### ✧ 2.Navegar al Directorio del Proyecto: Después de clonar el repositorio, accede al directorio del proyecto con el siguiente comando:
->cd Cuchau
+>cd NyanViajes
 #### ✧ 3.Instalar Dependencias: El proyecto utiliza Ionic y Angular, por lo que necesitarás tener Node.js y npm instalados. Si no los tienes, instálalos:
 > Comando:npm install
 #### ✧ 4.Iniciar el Servidor de Desarrollo Una vez que todas las dependencias estén instaladas, puedes iniciar el servidor de desarrollo de Ionic utilizando el siguiente comando:
 > ionic serve
 #### ✧ 5. FINALMENTE: Esto abrirá la aplicación en el navegador, permitiéndote visualizar  la interfaz de NyanViajes.
+#### ✧ 6. FINALMENTE: Si deseas explorar el codigo de este proyecto, puedes acceder desde GitBash colocando el siguiente comando antes de levantar el servidor.
+>code .
 </div>  
 
 
