@@ -27,7 +27,7 @@
 
 ✦                4|_Tecnologias Utilizadas_ 
 
-✦                3|_Como levantar el proyecto en Git Bash_ 
+✦                5|_Como levantar el proyecto en Git Bash_ 
 
 
 ︿︿︿︿︿︿︿︿( 🚗 )︿︿︿︿︿︿︿︿
