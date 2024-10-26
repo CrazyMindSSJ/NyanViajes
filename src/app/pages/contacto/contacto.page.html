@@ -1,0 +1,67 @@
+<ion-header>
+  <ion-toolbar color="light">
+    <ion-item routerLink="/perfil" detail="true">
+      <ion-icon name="mail-outline" slot="start" style="color: #FFB6C1;"></ion-icon>
+      <span style="font-size: 1.2rem; color: #696767;">Contacto</span>
+    </ion-item>
+    <ion-buttons slot="end">
+      <ion-button routerLink="/perfil">
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div class="ion-padding">
+    <h2 style="color: #FFB6C1; text-align: center;">Contáctanos</h2>
+    
+    <ion-card>
+      <ion-card-header>
+        <ion-card-title style="font-size: 1.5rem; color: #696767;">¿Tienes preguntas o dudas?</ion-card-title>
+      </ion-card-header>
+      <ion-card-content>
+        <p style="color: #696767;">Estamos aquí para ayudarte. Completa el formulario a continuación y nos pondremos en contacto contigo a la brevedad.</p>
+
+        <form (ngSubmit)="sendMessage()">
+          <ion-item>
+            <ion-label position="stacked">Nombre</ion-label>
+            <ion-input type="text" placeholder="Ingresa tu nombre" required></ion-input>
+          </ion-item>
+          
+          <ion-item>
+            <ion-label position="stacked">Correo Electrónico</ion-label>
+            <ion-input type="email" placeholder="Ingresa tu correo" required [(ngModel)]="email" name="email"></ion-input>
+          </ion-item>
+        
+          <ion-item>
+            <ion-label position="stacked">Mensaje</ion-label>
+            <ion-textarea placeholder="Escribe tu mensaje" required [(ngModel)]="message" name="message"></ion-textarea>
+          </ion-item>
+        
+          <ion-button expand="full" type="submit" style="background-color: #FFB6C1; color: #696767; margin-top: 10px;">
+            Enviar Mensaje
+          </ion-button>
+        </form>
+        
+
+        
+        
+      </ion-card-content>
+    </ion-card>
+
+    <ion-card style="margin-top: 20px;">
+      <ion-card-header>
+        <ion-card-title style="font-size: 1.5rem; color: #696767;">Otras formas de contacto</ion-card-title>
+      </ion-card-header>
+      <ion-card-content>
+        <p style="color: #696767;">También puedes ponerte en contacto con nosotros a través de:</p>
+        <ul style="color: #696767;">
+          <li><ion-icon name="call-outline" style="color: #FFB6C1;"></ion-icon> Teléfono: (+56) 2 2585 6990</li>
+          <li><ion-icon name="logo-whatsapp" style="color: #FFB6C1;"></ion-icon> WhatsApp:  +56958142089</li>
+          <li><ion-icon name="mail-outline" style="color: #FFB6C1;"></ion-icon> Email: NyanSoporte&#64;duocuc.cl</li> 
+        </ul>
+      </ion-card-content>
+    </ion-card>
+  </div>
+</ion-content>
+

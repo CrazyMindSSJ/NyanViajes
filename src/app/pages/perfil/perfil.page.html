@@ -35,9 +35,9 @@
                  border-radius: 8px; 
                  padding: 10px; 
                  text-align: center; 
-                 --border-color: #FFB6C1; /* Cambia el color del borde a rosa */
-                 --highlight-color: #FFB6C1; /* Cambia el color de la línea de enfoque a rosa */
-                 --color: #696767; /* Cambia el color del texto a gris */
+                 --border-color: #FFB6C1; 
+                 --highlight-color: #FFB6C1; 
+                 --color: #696767; 
                  ">
         </ion-input>
         <ion-icon name="pencil-outline" 
@@ -45,12 +45,7 @@
                   style="cursor: pointer; color: #f062d3; font-size: 20px;">
         </ion-icon>
       </div>
-      <p *ngIf="!isEditing && biografia.trim() === ''" style="text-align: center; color: gray; margin-top: 10px; font-style: italic;">
-        Breve biografía del usuario o información adicional aquí.
-      </p>
-      <p *ngIf="!isEditing && biografia.trim() !== ''" style="text-align: center; color: #696767; margin-top: 10px;">
-        {{ biografia }}
-      </p>
+     
     </ion-card-content>
   </ion-card>
   
@@ -65,7 +60,7 @@
    
     <ion-list style="margin-top: 16px;">
       <ion-item *ngFor="let comentario of comentarios">
-        <ion-label>{{ comentario }}</ion-label>
+        <ion-label><strong>{{ comentario.usuario }}:</strong> {{ comentario.texto }}</ion-label>
       </ion-item>
     </ion-list>
   </div>

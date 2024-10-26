@@ -6,7 +6,7 @@ const routes: Routes = [
   {
     path: 'home',
     canActivate: [authGuard],
-    loadChildren: ()=> import('./pages/home/home.module').then( m => m.HomePageModule)
+    loadChildren: () => import('./pages/home/home.module').then(m => m.HomePageModule)
   },
   {
     path: '',
@@ -28,25 +28,32 @@ const routes: Routes = [
   
   {
     path: 'detalle-viajes/:id',
-    loadChildren: () => import('./pages/detalle-viaje/detalle-viaje.module').then( m => m.DetalleViajePageModule)
+    loadChildren: () => import('./pages/detalle-viaje/detalle-viaje.module').then(m => m.DetalleViajePageModule)
   },
   {
     path: 'registrar-viaje',
-    loadChildren: () => import('./pages/registrar-viaje/registrar-viaje.module').then( m => m.RegistrarViajePageModule)
+    loadChildren: () => import('./pages/registrar-viaje/registrar-viaje.module').then(m => m.RegistrarViajePageModule)
   },
   {
     path: 'viaje',
-    loadChildren: () => import('./pages/viaje/viaje.module').then( m => m.ViajePageModule)
+    loadChildren: () => import('./pages/viaje/viaje.module').then(m => m.ViajePageModule)
+  },
+  {
+    path: 'mis-viajes',
+    loadChildren: () => import('./pages/mis-viajes/mis-viajes.module').then(m => m.MisViajesPageModule)
+  },
+  {
+    path: 'contacto',
+    loadChildren: () => import('./pages/contacto/contacto.module').then(m => m.ContactoPageModule)
+  },
+  {
+    path: 'ayuda',
+    loadChildren: () => import('./pages/ayuda/ayuda.module').then(m => m.AyudaPageModule)
   },
   {
     path: '**',
     loadChildren: () => import('./pages/error/error.module').then(m => m.ErrorPageModule)
   },
-  
-
-  
-
-
 ];
 
 @NgModule({
@@ -56,4 +63,5 @@ const routes: Routes = [
   exports: [RouterModule]
 })
 export class AppRoutingModule { }
+
 
