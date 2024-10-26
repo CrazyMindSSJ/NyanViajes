@@ -4,24 +4,21 @@
       <ion-title style="color: #696767; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; font-weight: 600;">
         Viajes Disponibles
       </ion-title>
-      <ion-button fill="clear" size="large" routerLink="/home">
-        <ion-icon style="color: #696767;" name="arrow-forward-circle-outline"></ion-icon>
-      </ion-button>
     </div>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
-<ion-card *ngFor="let v of viajes">
-  <ion-item>
-    <ion-label>
-      <strong>{{v.destino}}</strong><br>
-      <ion-note>Asientos disponibles: {{v.capa_disp}}</ion-note><br>
-      <ion-note>Precio: {{v.valor | currency}}</ion-note>
-    </ion-label>
-    <ion-button routerLink="/detalle-viaje/{id}" size="default">Detalle</ion-button>
-  </ion-item>
-</ion-card>
+  <ion-card *ngFor="let v of viajes">
+    <ion-item>
+      <ion-label>
+        <strong>{{v.destino}}</strong><br>
+        <ion-note>Asientos disponibles: {{v.capa_disp}}</ion-note><br>
+        <ion-note>Precio: {{v.valor | currency}}</ion-note>
+      </ion-label>
+      <ion-button [routerLink]="['/detalle-viaje', v.id_viaje]" size="default">Detalle</ion-button>
+    </ion-item>
+  </ion-card>
 
 
 <ion-button shape="round" class="btn-add" routerLink="/registrar-viaje">

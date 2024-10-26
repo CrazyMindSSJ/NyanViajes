@@ -18,10 +18,6 @@ const routes: Routes = [
     loadChildren: () => import('./pages/login/login.module').then(m => m.LoginPageModule)
   },
   {
-    path: 'home',
-    loadChildren: () => import('./pages/home/home.module').then(m => m.HomePageModule)
-  },
-  {
     path: 'registro',
     loadChildren: () => import('./pages/registro/registro.module').then(m => m.RegistroPageModule)
   },
@@ -29,18 +25,7 @@ const routes: Routes = [
     path: 'recuperar',
     loadChildren: () => import('./pages/recuperar/recuperar.module').then(m => m.RecuperarPageModule)
   },
-  {
-    path: 'viajes',
-    loadChildren: () => import('./pages/viajes/viajes.module').then(m => m.ViajesPageModule)
-  },
-  {
-    path: 'administrar',
-    loadChildren: () => import('./pages/administrar/administrar.module').then(m => m.AdministrarPageModule)
-  },
-  {
-    path: 'perfil',
-    loadChildren: () => import('./pages/perfil/perfil.module').then(m => m.PerfilPageModule)
-  },
+  
   {
     path: 'detalle-viajes/:id',
     loadChildren: () => import('./pages/detalle-viaje/detalle-viaje.module').then( m => m.DetalleViajePageModule)

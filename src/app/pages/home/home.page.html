@@ -24,25 +24,22 @@
       </ion-title>
     </ion-toolbar>
   </ion-header>
-
-    
-  <div id="map_html"></div>
   
   <ion-content>
-  <ion-tabs>
-    <ion-tab-bar slot="bottom">
-      <ion-tab-button routerLink="/viajes">
-        <ion-icon name="car-sport-outline"></ion-icon>
-      </ion-tab-button>
+    <ion-tabs>
+      <ion-tab-bar slot="bottom">
+        <ion-tab-button tab="viajes">
+          <ion-icon name="car-sport-outline"></ion-icon>
+        </ion-tab-button>
 
-      <ion-tab-button *ngIf="persona.categoria=='Administrador'" routerLink="/administrar">
-        <ion-icon name="pencil-outline"></ion-icon>
-      </ion-tab-button>
+        <ion-tab-button *ngIf="persona.categoria=='Administrador'" tab="administrar">
+          <ion-icon name="pencil-outline"></ion-icon>
+        </ion-tab-button>
 
-      <ion-tab-button routerLink="/perfil">
-        <ion-icon name="person-sharp"></ion-icon>
-      </ion-tab-button>
-    </ion-tab-bar>
-  </ion-tabs>
-</ion-content>
+        <ion-tab-button tab="perfil">
+          <ion-icon name="person-sharp"></ion-icon>
+        </ion-tab-button>
+      </ion-tab-bar>
+    </ion-tabs>
+  </ion-content>
 </div>

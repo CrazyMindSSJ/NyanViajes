@@ -1,3 +1,4 @@
+// detalle-viaje.page.ts
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { CrudViajesService } from 'src/app/services/crud-viajes.service';
@@ -16,11 +17,11 @@ export class DetalleViajePage implements OnInit {
 
   ngOnInit() {
     this.id = +(this.activatedRouted.snapshot.paramMap.get("id") || "");
+    this.obtenerViaje();
   }
 
-  obtenerViaje(){
+  obtenerViaje() {
     this.viaje = this.crudViajes.getViaje(this.id);
   }
-  
 
 }

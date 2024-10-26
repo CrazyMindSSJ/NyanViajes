@@ -83,7 +83,7 @@ export class RegistrarViajePage implements OnInit {
 
       if(this.map){
         L.Routing.control({
-          waypoints: [L.latLng(-33.608552227594245, -70.58039819211703),
+          waypoints: [L.latLng(-33.59844040672239, -70.57881148451541),
             L.latLng(lat,lon)],
             fitSelectedRoutes: true,
           }).on('routesfound', (e)=>{

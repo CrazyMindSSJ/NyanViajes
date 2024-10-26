@@ -51,6 +51,7 @@ export class PerfilPage implements OnInit {
     // Aquí puedes manejar el almacenamiento de la biografía si es necesario
     console.log("Biografía guardada: ", this.biografia);
   }
+
 }
 
 
