@@ -42,8 +42,10 @@ export class HomePage implements OnInit{
 
   initMap(){
     this.map = L.map("map_html").locate({setView:true,maxZoom:16});
+    
 
     var marker = L.marker([-33.59844040672239, -70.57881148451541]).addTo(this.map);
+    
 
     L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png',{
       maxZoom: 19,

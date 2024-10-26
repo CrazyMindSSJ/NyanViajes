@@ -7,52 +7,59 @@ import { NavController } from '@ionic/angular';
   styleUrls: ['./perfil.page.scss'],
 })
 export class PerfilPage implements OnInit {
-  persona: any; // Declaramos la variable persona
-  nuevoComentario: string = ''; // Para almacenar el nuevo comentario
-  comentarios: string[] = []; // Array para almacenar los comentarios
-  isEditing: boolean = false; // Controlar el estado de edición
-  biografia: string = ''; // Biografía inicialmente vacía
+  persona: any;
+  nuevoComentario: string = '';
+  comentarios: { usuario: string; texto: string }[] = [];
+  isEditing: boolean = false;
+  biografia: string = '';
+  viajesHistorial: { destino: string; fecha: Date }[] = []; 
+  nuevoViaje: string = ''; 
 
   constructor(private navController: NavController) {}
 
   ngOnInit() {
     const personaJSON = localStorage.getItem("persona");
-    this.persona = personaJSON ? JSON.parse(personaJSON) : null;
-    this.biografia = 'Breve biografía del usuario o información adicional aquí.'; // Biografía por defecto
+    this.persona = personaJSON ? JSON.parse(personaJSON) : { nombre: 'Usuario', categoria: 'General' };
+    this.biografia = 'Escribe tu biografía aqui';
   }
 
-  // Método para agregar un comentario
+  // Método para agregar un comentario con el nombre del usuario
   addComment() {
     if (this.nuevoComentario.trim() !== '') {
-      this.comentarios.push(this.nuevoComentario.trim()); // Agrega el nuevo comentario al array
-      this.nuevoComentario = ''; // Limpia el campo de entrada
+      this.comentarios.push({ usuario: this.persona.nombre, texto: this.nuevoComentario.trim() });
+      this.nuevoComentario = '';
     }
   }
 
-  // Método para alternar el estado de edición
+  // Alternar el estado de edición
   toggleEdit() {
-    this.isEditing = !this.isEditing; // Cambia el estado de edición
+    this.isEditing = !this.isEditing;
     if (this.isEditing) {
-      // Si entra en modo de edición, también activa el input
       setTimeout(() => {
         const input = document.querySelector('ion-input');
         if (input) {
-          input.setFocus(); // Enfoca el input al entrar en modo de edición
+          input.setFocus();
         }
       }, 100);
     } else {
-      this.saveBio(); // Guarda la biografía cuando se cierra la edición
+      this.saveBio();
     }
   }
 
-  // Método para guardar la biografía al presionar Enter
+  // Guardar la biografía
   saveBio() {
-    this.isEditing = false; // Finaliza la edición
-    // Aquí puedes manejar el almacenamiento de la biografía si es necesario
+    this.isEditing = false;
     console.log("Biografía guardada: ", this.biografia);
   }
-}
 
+  // Método para agregar un viaje al historial
+  finalizarViaje() {
+    if (this.nuevoViaje.trim() !== '') {
+      this.viajesHistorial.push({ destino: this.nuevoViaje, fecha: new Date() });
+      this.nuevoViaje = ''; 
+    }
+  }
+}
 
 
 
