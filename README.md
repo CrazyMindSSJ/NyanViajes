@@ -120,4 +120,4 @@ Actualmente, **NyanViajes** se encuentra en fase de desarrollo. Estamos trabajan
 ![dbbypmk-d107bad7-d34b-4cbd-9a1b-c32e7c191524](https://github.com/user-attachments/assets/a6fa0e47-af50-486a-89a4-e282c90850ce)
 
 </div>  
-#### ✧ Si encuentras útil nuestra aplicación, apóyanos con una ⭐ en GitHub.
+ ✧ Si encuentras útil nuestra aplicación, apóyanos con una ⭐ en GitHub ✧
