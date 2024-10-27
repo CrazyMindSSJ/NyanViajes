@@ -61,12 +61,13 @@ Este proyecto soluciona problemas de movilidad en la comunidad estudiantil, ofre
 Es aqui cuando Nuestra Aplicación entra para ofrecer y brindar solución. Busacamos proporcionar una plataforma que permita a los estudiantes organizarse y compartir transporte, facilitando su regreso 
 a casa de forma segura y económica.
 <div align="center">
+__  .   .   .   .   .   .   .   ︿   ^•⩊•^  ︿   .   .   .   .   .   .   .  __
 
 #### ✧ ![dacdh0c-ac97d1fc-32a1-49ca-b8ba-cf42630f733b](https://github.com/user-attachments/assets/e058da1c-0ca7-4bd7-a9a4-6b366088d5d8) ✧¿Dónde recibir ayuda?
 Para asistencia, puedes abrir un "Issue" en el repositorio o contactar al equipo de desarrollo a través de la página de soporte en GitHub.
 <div align="center">
   
-__  .   .   .   .   .   .   .   ︿   ^•⩊•^  ︿   .   .   .   .   .   .   .  __
+
 </div>  
 
 
