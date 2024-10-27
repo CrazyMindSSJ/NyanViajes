@@ -1,0 +1,41 @@
+.detalle-card {
+  --background: #FFF;
+  margin: 16px;
+  border-radius: 12px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+ion-card-header {
+  text-align: center;
+}
+
+ion-card-title {
+  font-size: 1.4rem;
+  color: #333;
+  font-weight: 600;
+}
+
+ion-card-subtitle {
+  font-size: 1rem;
+  color: #888;
+}
+
+ion-item {
+  --inner-padding-start: 8px;
+  --inner-padding-end: 8px;
+  padding: 8px 0;
+}
+
+ion-icon {
+  color: #FFB6C1;
+}
+
+ion-label {
+  font-weight: 500;
+  color: #555;
+}
+
+ion-note {
+  font-weight: 600;
+  color: #333;
+}

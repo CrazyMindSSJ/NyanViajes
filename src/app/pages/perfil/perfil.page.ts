@@ -52,8 +52,6 @@ export class PerfilPage implements OnInit {
     console.log("Biografía guardada: ", this.biografia);
   }
 
-<<<<<<< HEAD
-=======
   // Método para agregar un viaje al historial
   finalizarViaje() {
     if (this.nuevoViaje.trim() !== '') {
@@ -61,7 +59,6 @@ export class PerfilPage implements OnInit {
       this.nuevoViaje = ''; 
     }
   }
->>>>>>> 7f0ac0096fc35dc484757afd340ae8a51d93d4a2
 }
 
 

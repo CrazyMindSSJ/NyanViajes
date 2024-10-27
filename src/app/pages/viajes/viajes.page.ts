@@ -10,6 +10,8 @@ import { CrudViajesService } from 'src/app/services/crud-viajes.service';
   styleUrls: ['./viajes.page.scss'],
 })
 export class ViajesPage implements OnInit {
+
+  persona: any;
   
   viaje = new FormGroup({
     id_viaje: new FormControl(),
@@ -30,13 +32,15 @@ export class ViajesPage implements OnInit {
 
   constructor(private crudViajes: CrudViajesService) { }
 
-
   ngOnInit() {
     this.obtenerViajes();
+    this.persona = JSON.parse(localStorage.getItem("persona") || '');
+    
   }
 
-  async obtenerViajes(){
-    this.viajes = await this.crudViajes.getViajes();
+  async obtenerViajes() {
+    const allViajes = await this.crudViajes.getViajes();
+    this.viajes = allViajes.filter(viaje => viaje.capa_disp > 0 && viaje.estado !== "Finalizado");
   }
-
+  
 }

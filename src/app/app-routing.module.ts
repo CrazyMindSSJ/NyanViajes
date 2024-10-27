@@ -25,18 +25,13 @@ const routes: Routes = [
     path: 'recuperar',
     loadChildren: () => import('./pages/recuperar/recuperar.module').then(m => m.RecuperarPageModule)
   },
-  
   {
-    path: 'detalle-viajes/:id',
+    path: 'detalle-viaje/:id',
     loadChildren: () => import('./pages/detalle-viaje/detalle-viaje.module').then(m => m.DetalleViajePageModule)
-  },
+  },    
   {
     path: 'registrar-viaje',
     loadChildren: () => import('./pages/registrar-viaje/registrar-viaje.module').then(m => m.RegistrarViajePageModule)
-  },
-  {
-    path: 'viaje',
-    loadChildren: () => import('./pages/viaje/viaje.module').then(m => m.ViajePageModule)
   },
   {
     path: 'mis-viajes',

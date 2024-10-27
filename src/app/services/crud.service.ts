@@ -14,7 +14,7 @@ export class CrudService {
     await this.storage.create();
     let admin = {
       "rut": '12345678-9', 
-      "nombre": 'Admin',
+      "nombre": 'Alan',
       "fecha_nacimiento": '2000-01-01',
       "genero": 'Masculino',
       "email": 'admin@duocuc.cl',

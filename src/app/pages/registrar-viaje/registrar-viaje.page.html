@@ -4,21 +4,34 @@
       <ion-title style="color: #696767; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; font-weight: 600;">
         Registrar viaje
       </ion-title>
-      <ion-button fill="clear" size="large" tab="home/viajes">
+      <ion-button fill="clear" size="large" routerLink="/home/viajes">
         <ion-icon style="color: #696767;" name="arrow-forward-circle-outline"></ion-icon>
       </ion-button>
     </div>
   </ion-toolbar>
 </ion-header>
-<ion-content>
+
+<ion-content> 
   <div id="map_html"></div>
   <form [formGroup]="viaje">
     <ion-list>
       <ion-item>
-        <ion-input type="number" label="Capacidad disponible" labelPlacement="floating" placeholder="Ej: 1,2,3,4,etc..."></ion-input>
+        <ion-input
+          type="number"
+          label="Capacidad disponible"
+          labelPlacement="floating"
+          placeholder="Ej: 1,2,3,4,etc..."
+          formControlName="capa_disp">
+        </ion-input>
       </ion-item>
       <ion-item>
-        <ion-input type="number" label="Valor" labelPlacement="floating" placeholder="Ej: 3000"></ion-input>
+        <ion-input
+          type="number"
+          label="Valor"
+          labelPlacement="floating"
+          placeholder="Ej: 3000"
+          formControlName="valor">
+        </ion-input>
       </ion-item>
     </ion-list>
   </form>

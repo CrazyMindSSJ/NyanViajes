@@ -21,7 +21,7 @@
   </ion-card>
 
 
-<ion-button shape="round" class="btn-add" routerLink="/registrar-viaje">
+<ion-button *ngIf="persona.tiene_auto == 'Si'" shape="round" class="btn-add" routerLink="/registrar-viaje">
   <ion-icon name="add-circle-outline"></ion-icon>
 </ion-button>
 </ion-content>
