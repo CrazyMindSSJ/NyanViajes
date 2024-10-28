@@ -28,7 +28,7 @@ const routes: Routes = [
   {
     path: 'detalle-viaje/:id',
     loadChildren: () => import('./pages/detalle-viaje/detalle-viaje.module').then(m => m.DetalleViajePageModule)
-  },    
+  },
   {
     path: 'registrar-viaje',
     loadChildren: () => import('./pages/registrar-viaje/registrar-viaje.module').then(m => m.RegistrarViajePageModule)
@@ -46,17 +46,19 @@ const routes: Routes = [
     loadChildren: () => import('./pages/ayuda/ayuda.module').then(m => m.AyudaPageModule)
   },
   {
+    path: 'perfil', // Nueva ruta para la página de perfil
+    loadChildren: () => import('./pages/perfil/perfil.module').then(m => m.PerfilPageModule)
+  },
+  {
     path: '**',
     loadChildren: () => import('./pages/error/error.module').then(m => m.ErrorPageModule)
   },
 ];
 
 @NgModule({
-  imports: [
-    RouterModule.forRoot(routes, { preloadingStrategy: PreloadAllModules })
-  ],
+  imports: [RouterModule.forRoot(routes, { preloadingStrategy: PreloadAllModules })],
   exports: [RouterModule]
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}
 
 

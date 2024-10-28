@@ -41,7 +41,7 @@ export class RegistrarViajePage implements OnInit, AfterViewInit {
   public async registrar() {
     console.log("Presiono registrar");
     const viajeData = this.viaje.value;
-  
+
     const resultado = await this.crudViajes.createViaje(viajeData, this.persona.rut);
   
     if (resultado) {
@@ -57,34 +57,34 @@ export class RegistrarViajePage implements OnInit, AfterViewInit {
 
   initMap() {
     this.map = L.map("map_html").locate({ setView: true, maxZoom: 16 });
-
+  
     L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
       maxZoom: 19,
       attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
     }).addTo(this.map);
-
+  
     this.map.on('locationfound', (e) => {
       console.log(e.latlng.lat);
       console.log(e.latlng.lng);
     });
-
+  
     this.geocoder = G.geocoder({
       placeholder: "Ingrese dirección a buscar",
       errorMessage: "Dirección no encontrada"
     }).addTo(this.map);
-
+  
     this.geocoder.on('markgeocode', (e) => {
       let lat = e.geocode.properties['lat'];
       let lon = e.geocode.properties['lon'];
-
+  
       this.viaje.controls.destino.setValue(e.geocode.properties['display_name']);
       this.viaje.controls.lat.setValue(lat);
       this.viaje.controls.long.setValue(lon);
-
+  
       if (this.map) {
         L.Routing.control({
           waypoints: [
-            L.latLng(-33.59844040672239, -70.57881148451541),
+            L.latLng(-33.59844040672239, -70.57881148451541), // Cambia esto a las coordenadas que necesites
             L.latLng(lat, lon)
           ],
           fitSelectedRoutes: true,
@@ -94,5 +94,18 @@ export class RegistrarViajePage implements OnInit, AfterViewInit {
         }).addTo(this.map);
       }
     });
-  }
+  
+    // Definición del ícono verde
+    var greenIcon = L.icon({
+      iconUrl: 'leaf-red.png',
+      iconSize: [38, 95], 
+      iconAnchor: [22, 94], 
+      popupAnchor: [-3, -76] 
+    });
+  
+    // Agregar el marcador con el ícono verde en la ubicación de Duoc Puente Alto
+    L.marker([-33.612146, -70.575818], { icon: greenIcon }).addTo(this.map)
+      .bindPopup('Duoc Puente Alto') // Pop-up para el marcador
+      .openPopup(); // Abrir el pop-up automáticamente
+  }  
 }
