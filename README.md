@@ -107,11 +107,15 @@ Actualmente, **NyanViajes** se encuentra en fase de desarrollo. Estamos trabajan
 ####  ✧7. Además debes agregar los otros comandos de npm install que son dependencias para que la aplciación funcione correctamente:
 EJECUTA EN CONSOLA de git bash
 > npm install leaflet
+✧
 > npm install @types/leaflet
+✧
 > npm install leaflet-control-geocoder
+✧
 > npm install leaflet-routing-machine
+✧
 > npm install @types/leaflet-routing-machine
->code .
+
 </div>  
 
 
