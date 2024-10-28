@@ -40,7 +40,9 @@ export class ViajesPage implements OnInit {
 
   async obtenerViajes() {
     const allViajes = await this.crudViajes.getViajes();
-    this.viajes = allViajes.filter(viaje => viaje.capa_disp > 0 && viaje.estado !== "Finalizado");
+    this.viajes = allViajes
+      .filter(viaje => viaje.capa_disp > 0 && viaje.estado !== "Finalizado"); 
   }
+  
   
 }

@@ -16,65 +16,68 @@ export class CrudViajesService {
 
   async init() {
     await this.storage.create();
-    let rutConductor = '21241316-k';
-    
-    let viaje1 = {
-      "capa_disp": "4",
-      "destino": "Tarsis 1698, Puente Alto, Región Metropolitana",
-      "lat": "-33.59442060239603",
-      "long": "-70.55584509878297",
-      "dis_met": "3000",
-      "tie_min": "9",
-      "estado": "Pendiente",
-      "valor": "3000",
-      "pasajeros": []
-    };
-    
-    let viaje2 = {
-      "capa_disp": "0",
-      "destino": "Tarsis 1698, Puente Alto, Región Metropolitana",
-      "lat": "-33.59442060239603",
-      "long": "-70.55584509878297",
-      "dis_met": "3000",
-      "tie_min": "9",
-      "estado": "Finalizado",
-      "valor": "3000",
-      "pasajeros": []
+    const savedViajes = await this.storage.get('viajes');
+      if (!savedViajes || savedViajes.length === 0) {
+      let rutConductor = '21241316-k';
+      let viaje1 = {
+        "capa_disp": "4",
+        "destino": "Tarsis 1698, Puente Alto, Región Metropolitana",
+        "lat": "-33.59442060239603",
+        "long": "-70.55584509878297",
+        "dis_met": "3000",
+        "tie_min": "9",
+        "estado": "Pendiente",
+        "valor": "3000",
+        "pasajeros": []
+      };
+      
+      let viaje2 = {
+        "capa_disp": "0",
+        "destino": "Tarsis 1698, Puente Alto, Región Metropolitana",
+        "lat": "-33.59442060239603",
+        "long": "-70.55584509878297",
+        "dis_met": "3000",
+        "tie_min": "9",
+        "estado": "Finalizado",
+        "valor": "3000",
+        "pasajeros": []
+      };
+  
+      await this.createViaje(viaje1, rutConductor);
+      await this.createViaje(viaje2, rutConductor);
+  
+      await this.storage.set('viajes', [viaje1, viaje2]);
     }
-    
-    let viaje3 = {
-      "capa_disp": "1",
-      "destino": "Tongoy 1002, La Pintana, Región Metropolitana",
-      "lat": "-33.580451215803116",
-      "long": "-70.64769204356487",
-      "dis_met": "9743",
-      "tie_min": "17",
-      "estado": "En Curso",
-      "valor": "6000",
-      "pasajeros": []
-    };
-
-    await this.createViaje(viaje1, rutConductor);
-    await this.createViaje(viaje2, rutConductor);
-    await this.createViaje(viaje3, rutConductor);
   }
+  
 
   // DAO
   public async createViaje(viaje: any, rutConductor: string): Promise<boolean> {
     let viajes: any[] = await this.storage.get("viajes") || [];
     
     const conductor = await this.crudUsuarios.getUsuario(rutConductor);
-    if (conductor) {
-      viaje.conductor = conductor.nombre; 
-    } else {
-      return false;
+    if (!conductor) {
+        return false; 
     }
   
-    viaje.id_viaje = this.generateAutoIncrementId();
+    viaje.conductor = conductor.nombre; 
+
+    viaje.id_viaje = await this.generateAutoIncrementId(); 
+    
+    if (typeof viaje.id_viaje !== 'number' || isNaN(viaje.id_viaje)) {
+        console.error("El ID generado no es un número:", viaje.id_viaje);
+        return false;
+    }
+
     viajes.push(viaje);
+
     await this.storage.set("viajes", viajes);
     return true;
-  }
+}
+
+
+
+
 
   public async getViaje(id_viaje: number): Promise<any> {
     let viajes: any[] = await this.storage.get("viajes") || [];
@@ -125,9 +128,13 @@ export class CrudViajesService {
     return true;
   }
 
-  private generateAutoIncrementId(): number {
-    return this.currentId++;
-  }
+  private async generateAutoIncrementId(): Promise<number> {
+    const viajes: any[] = await this.storage.get("viajes") || [];
+    const maxId = viajes.reduce((max, viaje) => Math.max(max, viaje.id_viaje ? Number(viaje.id_viaje) : 0), 0);
+    this.currentId = maxId + 1;
+    return this.currentId; 
+}
+
 
   public async tomarViaje(id_viaje: number, rut: string): Promise<boolean> {
     let viaje = await this.getViaje(id_viaje);
