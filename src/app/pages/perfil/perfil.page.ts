@@ -42,8 +42,14 @@ export class PerfilPage implements OnInit {
         }
       }, 100);
     } else {
-      this.saveBio();
+      this.saveName(); // Guardar el nombre al salir de la edición
     }
+  }
+
+  // Guardar el nombre
+  saveName() {
+    this.isEditing = false;
+    console.log("Nombre guardado: ", this.persona.nombre);
   }
 
   // Guardar la biografía
@@ -60,6 +66,7 @@ export class PerfilPage implements OnInit {
     }
   }
 }
+
 
 
 

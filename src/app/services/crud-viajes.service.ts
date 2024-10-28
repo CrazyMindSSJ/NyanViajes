@@ -181,5 +181,8 @@ export class CrudViajesService {
     const viaje = await this.getViaje(id_viaje);
     return viaje && viaje.conductor === rut; 
   }
-  
+  public async getHistorialViajes(): Promise<any[]> {
+    let viajes: any[] = await this.storage.get("viajes") || [];
+    return viajes.filter(viaje => viaje.estado === "Finalizado");
+  }
 }

@@ -13,21 +13,25 @@
   </ion-content>
 </ion-menu>
 
-<div class="ion-page" id="main-content" >
+<div class="ion-page" id="main-content">
   <ion-header>
     <ion-toolbar style="--background: #FFB6C1;">
       <ion-buttons slot="start">
         <ion-menu-button></ion-menu-button>
       </ion-buttons>
       <ion-title style="font-size: 14px;">
-        Bienvenido {{persona.nombre}} a NyanViajes! <ion-icon  name="logo-octocat" ></ion-icon>
+        Bienvenido {{persona.nombre}} a NyanViajes! <ion-icon name="logo-octocat"></ion-icon>
       </ion-title>
     </ion-toolbar>
   </ion-header>
-  
-  <ion-content>
+
+  <ion-content style="--background: #ffffff;">
+    <ion-card>
+      <img src="assets/img/LOGOWO.png" alt="" style="width: 100%; height: auto; border-radius: 10px;">
+    </ion-card>
+    
     <ion-tabs>
-      <ion-tab-bar slot="bottom">
+      <ion-tab-bar slot="bottom" style="--background: #f9cdd4;">
         <ion-tab-button tab="viajes">
           <ion-icon name="car-sport-outline"></ion-icon>
         </ion-tab-button>
