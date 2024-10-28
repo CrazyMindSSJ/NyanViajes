@@ -40,14 +40,9 @@ export class ViajesPage implements OnInit {
     this.viajes = allViajes
       .filter(viaje => viaje.capa_disp > 0 && viaje.estado !== "Finalizado"); 
   }
-<<<<<<< HEAD
   
-  
-}
-=======
 
   irAHistorial() {
-    this.router.navigate(['/mis-viajes']); // Redirige a la página de historial
+    this.router.navigate(['/mis-viajes']);
   }
 }
->>>>>>> 83bc3bb9c1978002bd56c0c0ebae3a027d47d3b0
