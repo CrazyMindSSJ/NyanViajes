@@ -79,6 +79,7 @@ export class CrudViajesService {
   public async getViaje(id_viaje: number): Promise<any> {
     let viajes: any[] = await this.storage.get("viajes") || [];
     let viaje = viajes.find(via => via.id_viaje == id_viaje);
+    
     if (viaje) {
       viaje.pasajerosNombres = await Promise.all(
         viaje.pasajeros.map(async (rut: string) => {
@@ -86,9 +87,16 @@ export class CrudViajesService {
           return usuario ? usuario.nombre : 'Desconocido';
         })
       );
+    } else {
+      viaje = {
+        pasajeros: [],
+        pasajerosNombres: []
+      };
     }
-    return viaje;
+  
+    return viaje; 
   }
+  
 
   public async getViajes(): Promise<any[]> {
     let viajes: any[] = await this.storage.get("viajes") || [];

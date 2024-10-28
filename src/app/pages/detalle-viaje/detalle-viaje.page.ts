@@ -10,7 +10,7 @@ import { CrudService } from 'src/app/services/crud.service';
 })
 export class DetalleViajePage implements OnInit {
   id: number = 0;
-  viaje: any;
+  viaje: any = {};
   persona: any;
   puedeTomarViaje: boolean = false;
   esConductor: boolean = false;
@@ -27,11 +27,20 @@ export class DetalleViajePage implements OnInit {
     this.persona = JSON.parse(localStorage.getItem("persona") || '{}');
     this.esConductor = this.persona.tiene_auto === 'Si';
 
-    await this.obtenerViaje();
+    this.obtenerViaje();
   }
 
   async obtenerViaje() {
     this.viaje = await this.crudViajes.getViaje(this.id);
+  
+    if (!this.viaje) {
+      console.error('Viaje no encontrado');
+      return;
+    }
+  
+    this.viaje.pasajerosNombres = this.viaje.pasajerosNombres || [];
+    console.log('Pasajeros:', this.viaje.pasajerosNombres);
+    
     this.puedeTomarViaje = !this.esConductor && this.viaje.capa_disp > 0 && !this.viaje.pasajeros.includes(this.persona.rut);
   }
 
