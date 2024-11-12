@@ -6,6 +6,7 @@ import { NavController } from '@ionic/angular';
 import * as L from 'leaflet';
 import * as G from 'leaflet-control-geocoder';
 import 'leaflet-routing-machine';
+import { AlertController } from '@ionic/angular';
 
 @Component({
   selector: 'app-registrar-viaje',
@@ -31,7 +32,7 @@ export class RegistrarViajePage implements OnInit, AfterViewInit {
     pasajeros: new FormControl([]) // Mantener como array
   });
 
-  constructor(private crudViajes: CrudViajesService, private router: Router, private navController: NavController) { }
+  constructor(private crudViajes: CrudViajesService, private router: Router, private navController: NavController, private alertController: AlertController) { }
 
   ngOnInit() {
     this.persona = JSON.parse(localStorage.getItem("persona") || '');
@@ -40,15 +41,49 @@ export class RegistrarViajePage implements OnInit, AfterViewInit {
 
   public async registrar() {
     console.log("Presiono registrar");
-    const viajeData = this.viaje.value;
 
-    const resultado = await this.crudViajes.createViaje(viajeData, this.persona.rut);
-  
-    if (resultado) {
-      this.router.navigate(["home/viajes"]);
-    } else {
-      console.error("Error al registrar el viaje. Asegúrese de que el conductor exista.");
-    }
+    const confirmAlert = await this.alertController.create({
+      header: 'Confirmación',
+      message: '¿Seguro quieres realizar este viaje?',
+      buttons: [
+        {
+          text: 'Cancelar',
+          role: 'cancel',
+          handler: () => {
+            console.log("Registro de viaje cancelado");
+          }
+        },
+        {
+          text: 'Aceptar',
+          handler: async () => {
+            const viajeData = this.viaje.value;
+            const resultado = await this.crudViajes.createViaje(viajeData, this.persona.rut);
+
+            if (resultado) {
+              const successAlert = await this.alertController.create({
+                header: 'Viaje creado',
+                message: 'Viaje generado con éxito',
+                buttons: [
+                  {
+                    text: 'Aceptar',
+                    handler: () => {
+                      this.router.navigate(['home/viajes']).then(() => {
+                        window.location.reload(); // Refresca la pantalla después de redirigir a home/viajes
+                      });
+                    }
+                  }
+                ]
+              });
+              await successAlert.present();
+            } else {
+              console.error("Error al registrar el viaje. Asegúrese de que el conductor exista.");
+            }
+          }
+        }
+      ]
+    });
+
+    await confirmAlert.present();
   }
   
   ngAfterViewInit() {
