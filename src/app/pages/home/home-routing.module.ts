@@ -20,6 +20,10 @@ const routes: Routes = [
         loadChildren: () => import('../perfil/perfil.module').then(m => m.PerfilPageModule)
       },
       {
+        path: 'administrar-viajes',
+        loadChildren: () => import('../administrar-viajes/administrar-viajes.module').then( m => m.AdministrarViajesPageModule)
+      },
+      {
         path: '',
         redirectTo: '',
         pathMatch: 'full'

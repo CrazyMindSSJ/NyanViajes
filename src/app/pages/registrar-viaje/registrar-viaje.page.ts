@@ -20,7 +20,7 @@ export class RegistrarViajePage implements OnInit, AfterViewInit {
   private geocoder: G.Geocoder | undefined;
 
   viaje = new FormGroup({
-    conductor: new FormControl(),  // El nombre se establecerá después
+    conductor: new FormControl(),  
     capa_disp: new FormControl('', [Validators.required]),
     destino: new FormControl('', [Validators.required]),
     lat: new FormControl('', [Validators.required]),
@@ -29,7 +29,8 @@ export class RegistrarViajePage implements OnInit, AfterViewInit {
     tie_min: new FormControl(),
     estado: new FormControl('Pendiente'),
     valor: new FormControl('', [Validators.required]),
-    pasajeros: new FormControl([]) // Mantener como array
+    hora_salida: new FormControl('',Validators.required),
+    pasajeros: new FormControl([]) 
   });
 
   constructor(private crudViajes: CrudViajesService, private router: Router, private navController: NavController, private alertController: AlertController) { }

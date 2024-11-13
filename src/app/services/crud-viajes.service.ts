@@ -28,6 +28,7 @@ export class CrudViajesService {
         "tie_min": "9",
         "estado": "Pendiente",
         "valor": "3000",
+        "hora_salida":"19:00",
         "pasajeros": []
       };
       
@@ -40,6 +41,7 @@ export class CrudViajesService {
         "tie_min": "9",
         "estado": "Finalizado",
         "valor": "3000",
+        "hora_salida":"20:00",
         "pasajeros": []
       };
   

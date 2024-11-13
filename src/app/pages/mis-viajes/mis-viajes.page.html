@@ -2,3 +2,17 @@
   <ion-icon name="car-sport-outline" slot="start" style="color: #FFB6C1;"></ion-icon>
   <span style="font-size: 1rem; color: #696767;">Mis Viajes</span>
 </ion-item>
+<ion-content>
+  <ion-card *ngFor="let viaje of misViajes" class="viaje-card">
+    <ion-item lines="none" class="viaje-item">
+      <ion-label class="viaje-label">
+        <h2>{{viaje.destino}}</h2>
+        <p>Conductor: {{viaje.conductor}}</p>
+        <p>Asientos disponibles: {{viaje.capa_disp}}</p>
+        <p>Precio: {{viaje.valor | currency}}</p>
+        <p>Hora de salida: {{viaje.hora_salida}}</p>
+        <p>Estado: {{viaje.estado}}</p>
+      </ion-label>
+    </ion-item>
+  </ion-card>
+</ion-content>

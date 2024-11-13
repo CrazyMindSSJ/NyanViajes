@@ -46,13 +46,17 @@ const routes: Routes = [
     loadChildren: () => import('./pages/ayuda/ayuda.module').then(m => m.AyudaPageModule)
   },
   {
-    path: 'perfil', // Nueva ruta para la página de perfil
+    path: 'perfil',
     loadChildren: () => import('./pages/perfil/perfil.module').then(m => m.PerfilPageModule)
   },
   {
     path: '**',
     loadChildren: () => import('./pages/error/error.module').then(m => m.ErrorPageModule)
   },
+  
+
+  
+
 ];
 
 @NgModule({

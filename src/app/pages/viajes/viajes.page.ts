@@ -21,8 +21,9 @@ export class ViajesPage implements OnInit {
     long: new FormControl(),
     dis_met: new FormControl(),
     tie_min: new FormControl(),
-    estado: new FormControl('pendiente'),
+    estado: new FormControl('Pendiente'),
     valor: new FormControl(),
+    hora_salida: new FormControl(),
     pasajeros: new FormControl([]),
   });
 
