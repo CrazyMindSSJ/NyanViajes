@@ -7,7 +7,7 @@
       <ion-buttons slot="end">
         <ion-button 
           style="--background: #FFB6C1; border-radius: 50%; width: 40px; height: 40px; display: flex; align-items: center; justify-content: center;" 
-          routerLink="/home">
+          routerLink="/home/viajes">
           <ion-icon name="arrow-forward-outline" style="color: white;"></ion-icon>
         </ion-button>
       </ion-buttons>
@@ -48,6 +48,21 @@
     </ion-card-header>
     
     <ion-card-content>
+      <div class="qr-container">
+        <qrcode
+        [qrdata]="persona.rut + ' | ' + persona.nombre + ' | ' +  persona.email  + ' | ' + persona.categoria"
+        [allowEmptyString]="true"
+        [cssClass]="'center'"
+        [colorDark]="'#000000ff'"
+        [colorLight]="'#ffffffff'"
+        [elementType]="'svg'"
+        [errorCorrectionLevel]="'M'"
+        [margin]="4"
+        [scale]="1"
+        [title]="'A custom title attribute'"
+        [width]="180">
+      </qrcode>
+      </div>
       <div style="text-align: center;">
         <ion-input 
           [(ngModel)]="biografia" 

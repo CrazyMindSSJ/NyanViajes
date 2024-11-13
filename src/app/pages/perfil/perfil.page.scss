@@ -6,3 +6,12 @@ ion-title {
   ion-toolbar {
     background-color: #FFB6C1;
   }
+
+  .qr-container {
+    display: flex;
+    justify-content: center;
+    padding: 10px 0; /* Ajusta el valor según el espacio que desees arriba y abajo */
+    width: 100%;
+  }
+  
+  
