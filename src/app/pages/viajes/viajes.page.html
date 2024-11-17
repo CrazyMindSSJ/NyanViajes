@@ -13,8 +13,12 @@
     <ion-item>
       <ion-label>
         <strong>{{v.destino}}</strong><br>
+        <ion-note>ID del Viaje: {{v.id_viaje}}</ion-note><br>
         <ion-note>Asientos disponibles: {{v.capa_disp}}</ion-note><br>
-        <ion-note>Precio: {{v.valor | currency}}</ion-note>
+        <ion-note>Hora de Salida: {{v.hora_salida}}</ion-note><br>
+        <ion-note>Precio (CL): {{v.valor | currency}}</ion-note><br>
+        <ion-note>Precio (USD): {{ v.valorDolar | currency}}</ion-note><br>
+        <ion-note>Valor Dolar: {{dolar}}</ion-note><br>
       </ion-label>
       <ion-button [routerLink]="['/detalle-viaje', v.id_viaje]" size="default">Detalle</ion-button>
     </ion-item>
