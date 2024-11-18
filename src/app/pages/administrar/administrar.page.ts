@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { AbstractControl, FormControl, FormGroup, ValidationErrors, ValidatorFn, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { UnsubscriptionError } from 'rxjs';
 import { CrudService } from 'src/app/services/crud.service';
+import { FirebaseUsuarioService } from 'src/app/services/firebase-usuario.service';
 import { __awaiter } from 'tslib';
 
 @Component({
@@ -29,17 +31,18 @@ export class AdministrarPage implements OnInit {
   });
 
   personas: any[] = [];
+
   botonModificar: boolean = true;
 
   constructor(
     private router: Router,
-    private crudService: CrudService) { 
+    private firebase: FirebaseUsuarioService) { 
       this.persona.get("rut")?.setValidators([Validators.required,Validators.pattern("[0-9]{7,8}-[0-9kK]{1}"),this.validarRut()]);
       
     }
 
   async ngOnInit() {
-    this.personas =  await this.crudService.getUsuarios();
+    this.cargarUsuarios();
   }
 
   validarEdad18(fecha_nacimiento: string){
@@ -83,6 +86,12 @@ export class AdministrarPage implements OnInit {
       return null;
     };
   }
+
+  cargarUsuarios(){
+    this.firebase.getUsuarios().subscribe(data=>{this.personas = data});
+
+  }
+
   validarPatente(): ValidatorFn {
     return (control) => {
       const patente = control.value;
@@ -95,49 +104,31 @@ export class AdministrarPage implements OnInit {
   }
 
   async registrar(){
-    if( !this.validarEdad18(this.persona.controls.fecha_nacimiento.value || "") ){
-      alert("ERROR! debe tener al menos 18 años para registrarse!");
-      return;
-    }
-
-    if(this.persona.controls.contra.value != this.persona.controls.contraVali.value){
-      alert("ERROR! las contraseñas no coinciden!");
-      return;
-    }
-
-    if( await this.crudService.createUsuario(this.persona.value) ){
-      alert("USUARIO CREADO CON ÉXITO!");
+    if(await this.firebase.crearUsuario(this.persona.value)){
+      alert("USUARIO REGISTRADO!");
       this.persona.reset();
-      this.personas = await this.crudService.getUsuarios();
     }else{
-      alert("ERROR! NO SE PUDO CREAR EL USUARIO!");
+      alert("ERROR! USUARIO YA EXISTE!");
     }
   }
 
-  async buscar(rut_buscar:string){
-    this.persona.setValue(await this.crudService.getUsuario(rut_buscar) );
+  async buscar(persona:any){
+    this.persona.setValue(persona);
     this.botonModificar = false;
   }
 
   async modificar(){
-    var rut_buscar: string = this.persona.controls.rut.value || "";
-    if(await this.crudService.updateUsuario( rut_buscar , this.persona.value)){
-      alert("USUARIO MODIFICADO CON ÉXITO!");
-      this.botonModificar = true;
+    this.firebase.updateUsuario(this.persona.value).then(()=>{
+      alert("USUARIO MODIFICADO!");
       this.persona.reset();
-      this.personas = await this.crudService.getUsuarios();
-    }else{
-      alert("ERROR! USUARIO NO MODIFICADO!");
-    }
+    }).catch(error=>{
+      console.log("ERROR: " + error);
+    });
   }
 
   async eliminar(rut_eliminar:string){
-    if(await this.crudService.deleteUsuario(rut_eliminar) ){
-      alert("USUARIO ELIMINADO CON ÉXITO!")
-      this.personas = await this.crudService.getUsuarios();
-    }else{
-      alert("ERROR! USUARIO NO ELIMINADO!")
-    }
+    this.firebase.deleteUsuario(rut_eliminar);
+
   }
 
   limpiar() {

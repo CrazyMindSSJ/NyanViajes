@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators, AbstractControl, ValidationErrors, ValidatorFn } from '@angular/forms';
 import { Router } from '@angular/router';
 import { CrudService } from 'src/app/services/crud.service';
+import { FirebaseUsuarioService } from 'src/app/services/firebase-usuario.service';
 
 @Component({
   selector: 'app-registrar',
@@ -28,7 +29,7 @@ export class RegistroPage implements OnInit {
     categoria: new FormControl('Estudiante', [Validators.required])
   });
 
-  constructor(private router: Router, private crudService: CrudService) {
+  constructor(private router: Router, private fireService: FirebaseUsuarioService) {
     this.persona.get("rut")?.setValidators([Validators.required,Validators.pattern("[0-9]{7,8}-[0-9kK]{1}"),this.validarRut()]);
    }
 
@@ -46,7 +47,7 @@ export class RegistroPage implements OnInit {
       return;
     }
 
-    if(await this.crudService.createUsuario(this.persona.value)){
+    if(await this.fireService.crearUsuario(this.persona.value)){
       this.router.navigate(['/login']);
       this.persona.reset();
       alert("Usuario creado con éxito!")
