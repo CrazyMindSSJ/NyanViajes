@@ -1,12 +1,12 @@
 import { Component, OnInit, AfterViewInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { CrudViajesService } from 'src/app/services/crud-viajes.service';
 import { NavController } from '@ionic/angular';
 import * as L from 'leaflet';
 import * as G from 'leaflet-control-geocoder';
 import 'leaflet-routing-machine';
 import { AlertController } from '@ionic/angular';
+import { FirebaseViajes } from 'src/app/services/fire-viajes.service';
 
 @Component({
   selector: 'app-registrar-viaje',
@@ -33,7 +33,7 @@ export class RegistrarViajePage implements OnInit, AfterViewInit {
     pasajeros: new FormControl([]) 
   });
 
-  constructor(private crudViajes: CrudViajesService, private router: Router, private navController: NavController, private alertController: AlertController) { }
+  constructor(private firebase: FirebaseViajes, private router: Router, private navController: NavController, private alertController: AlertController) { }
 
   ngOnInit() {
     this.persona = JSON.parse(localStorage.getItem("persona") || '');
@@ -58,7 +58,7 @@ export class RegistrarViajePage implements OnInit, AfterViewInit {
           text: 'Aceptar',
           handler: async () => {
             const viajeData = this.viaje.value;
-            const resultado = await this.crudViajes.createViaje(viajeData, this.persona.rut);
+            const resultado = await this.firebase.crearViaje(viajeData, this.persona.rut);
 
             if (resultado) {
               const successAlert = await this.alertController.create({

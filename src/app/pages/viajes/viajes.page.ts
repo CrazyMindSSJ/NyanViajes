@@ -3,6 +3,8 @@ import { FormControl, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router'; // Importa Router para la navegación
 import { CrudViajesService } from 'src/app/services/crud-viajes.service';
 import { ApiService } from 'src/app/services/api.service';
+import { FirebaseViajes } from 'src/app/services/fire-viajes.service';
+import { map } from 'rxjs/operators';
 
 @Component({
   selector: 'app-viajes',
@@ -33,7 +35,7 @@ export class ViajesPage implements OnInit {
 
   viajes: any[] = [];
   
-  constructor(private crudViajes: CrudViajesService, private router: Router, private api: ApiService) { }
+  constructor(private fireViajes: FirebaseViajes, private router: Router, private api: ApiService) { }
 
   ngOnInit() {
     //this.obtenerViajes();
@@ -62,10 +64,21 @@ export class ViajesPage implements OnInit {
   }
 
   async obtenerViajes() {
-    const allViajes = await this.crudViajes.getViajes();
-    this.viajes = allViajes
-      .filter(viaje => viaje.capa_disp > 0 && viaje.estado !== "Finalizado");
-    this.actualizarValoresDolar(); // Actualizamos los valores en dólares
+    this.fireViajes.getViajes()
+      .pipe(
+        map((viajes: any[]) =>
+          viajes.filter(viaje => viaje.capa_disp > 0 && viaje.estado !== "Finalizado")
+        )
+      )
+      .subscribe(
+        (viajesFiltrados) => {
+          this.viajes = viajesFiltrados;
+          this.actualizarValoresDolar(); // Actualizamos los valores en dólares
+        },
+        (error) => {
+          console.error("Error obteniendo los viajes:", error);
+        }
+      );
   }
   
 

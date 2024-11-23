@@ -4,6 +4,8 @@ import { CrudViajesService } from 'src/app/services/crud-viajes.service';
 import { CrudService } from 'src/app/services/crud.service';
 import * as L from 'leaflet';
 import 'leaflet-routing-machine';
+import { FirebaseViajes } from 'src/app/services/fire-viajes.service';
+import { FirebaseUsuarioService } from 'src/app/services/firebase-usuario.service';
 
 @Component({
   selector: 'app-detalle-viaje',
@@ -21,8 +23,8 @@ export class DetalleViajePage implements OnInit, AfterViewInit {
 
   constructor(
     private activatedRouted: ActivatedRoute,
-    private crudViajes: CrudViajesService,
-    private crudUsuarios: CrudService
+    private fireViajes: FirebaseViajes,
+    private fireUsuario: FirebaseUsuarioService
   ) {}
 
   async ngOnInit() {
@@ -34,7 +36,7 @@ export class DetalleViajePage implements OnInit, AfterViewInit {
   }
 
   async obtenerViaje() {
-    this.viaje = await this.crudViajes.getViaje(this.id);
+    this.viaje = await this.fireViajes.getViaje(this.id);
   
     if (!this.viaje) {
       console.error('Viaje no encontrado');
@@ -54,7 +56,7 @@ export class DetalleViajePage implements OnInit, AfterViewInit {
   }
 
   async tomarViaje() {
-    const exito = await this.crudViajes.tomarViaje(this.id, this.persona.rut);
+    const exito = await this.fireViajes.tomarViaje(this.id, this.persona.rut);
     if (exito) {
       await this.obtenerViaje(); 
     }
