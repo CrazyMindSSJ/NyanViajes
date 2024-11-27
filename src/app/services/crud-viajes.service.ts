@@ -77,10 +77,6 @@ export class CrudViajesService {
     return true;
   }
 
-
-
-
-
   public async getViaje(id_viaje: number): Promise<any> {
     let viajes: any[] = await this.storage.get("viajes") || [];
     let viaje = viajes.find(via => via.id_viaje == id_viaje);
@@ -98,7 +94,6 @@ export class CrudViajesService {
         pasajerosNombres: []
       };
     }
-  
     return viaje; 
   }
   
@@ -119,7 +114,7 @@ export class CrudViajesService {
     return true;
   }
 
-  public async deleteUsuario(id_viaje: number): Promise<boolean> {
+  public async deleteViaje(id_viaje: number): Promise<boolean> {
     let viajes: any[] = await this.storage.get("viajes") || [];
     let indice: number = viajes.findIndex(via => via.id_viaje == id_viaje);
     if (indice == -1) {
@@ -183,6 +178,7 @@ export class CrudViajesService {
     const viaje = await this.getViaje(id_viaje);
     return viaje && viaje.conductor === rut; 
   }
+  
   public async getHistorialViajes(): Promise<any[]> {
     let viajes: any[] = await this.storage.get("viajes") || [];
     return viajes.filter(viaje => viaje.estado === "Finalizado");

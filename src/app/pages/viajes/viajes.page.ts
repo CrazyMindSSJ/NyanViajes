@@ -18,7 +18,7 @@ export class ViajesPage implements OnInit {
   persona: any;
   
   viaje = new FormGroup({
-    id_viaje: new FormControl(),
+    id: new FormControl(),
     conductor: new FormControl(),
     capa_disp: new FormControl(),
     destino: new FormControl(),
@@ -41,6 +41,7 @@ export class ViajesPage implements OnInit {
     //this.obtenerViajes();
     this.persona = JSON.parse(localStorage.getItem("persona") || '');
     //this.consumirAPI();
+    console.log(this.viaje.controls.id)
   }
 
   ionViewWillEnter() {

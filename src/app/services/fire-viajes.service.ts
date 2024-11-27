@@ -63,15 +63,81 @@ export class FirebaseViajes{
     return this.firestore.collection('viajes').valueChanges();
   }
 
-  getViaje(id: string) {
-    return this.firestore.collection('viajes').doc(id).valueChanges();
+  getViaje(id_viaje: string) {
+    return this.firestore.collection('viajes').doc(id_viaje).valueChanges();
   }
 
   updateViaje(viaje: any) {
     return this.firestore.collection('viajes').doc(viaje.id).update(viaje);
   }
 
-  deleteViaje(id: string) {
-    return this.firestore.collection('viajes').doc(id).delete();
+  deleteViaje(id_viaje: string) {
+    return this.firestore.collection('viajes').doc(id_viaje).delete();
   }
+
+  public async tomarViaje(id_viaje: string, rut: string): Promise<boolean> {
+    const viajeDoc = this.firestore.collection('viajes').doc(id_viaje);
+    const viajeSnap = await viajeDoc.get().toPromise();
+    
+    if (!viajeSnap?.exists) return false;
+  
+    const viaje = viajeSnap.data() as any;
+    if (viaje.capa_disp <= 0 || viaje.pasajeros.includes(rut)) return false;
+  
+    viaje.pasajeros.push(rut);
+    viaje.capa_disp--;
+  
+    await viajeDoc.update(viaje);
+    return true;
+  }
+  
+  public async salirViaje(id_viaje: string, rut: string): Promise<boolean> {
+    const viajeDoc = this.firestore.collection('viajes').doc(id_viaje.toString());
+    const viajeSnap = await viajeDoc.get().toPromise();
+    
+    if (!viajeSnap?.exists) return false;
+  
+    const viaje = viajeSnap.data() as any;
+    if (!viaje.pasajeros.includes(rut)) return false;
+  
+    viaje.pasajeros = viaje.pasajeros.filter((pasajero: string) => pasajero !== rut);
+    viaje.capa_disp++;
+  
+    await viajeDoc.update(viaje);
+    return true;
+  }
+  
+  public async cambiarEstadoViaje(id_viaje: string): Promise<boolean> {
+    const viajeDoc = this.firestore.collection('viajes').doc(id_viaje.toString());
+    const viajeSnap = await viajeDoc.get().toPromise();
+    
+    if (!viajeSnap?.exists) return false;
+  
+    const viaje = viajeSnap.data() as any;
+  
+    switch (viaje.estado) {
+      case 'Pendiente':
+        viaje.estado = 'En Curso';
+        break;
+      case 'En Curso':
+        viaje.estado = 'Finalizado';
+        break;
+      default:
+        return false;
+    }
+  
+    await viajeDoc.update(viaje);
+    return true;
+  }
+  
+  public async esConductorDelViaje(id_viaje: string, rut: string): Promise<boolean> {
+    const viajeSnap = await this.firestore.collection('viajes').doc(id_viaje.toString()).get().toPromise();
+  
+    if (!viajeSnap?.exists) return false;
+  
+    const viaje = viajeSnap.data() as any;
+    return viaje.conductor === rut;
+  }
+  
+  
 }

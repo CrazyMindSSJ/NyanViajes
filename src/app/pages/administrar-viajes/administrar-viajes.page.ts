@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { CrudViajesService } from 'src/app/services/crud-viajes.service';
+import { FirebaseViajes } from 'src/app/services/fire-viajes.service';
 
 @Component({
   selector: 'app-administrar-viajes',
@@ -23,14 +24,16 @@ export class AdministrarViajesPage implements OnInit {
     pasajeros: []
   };
 
-  constructor(private crudViajesService: CrudViajesService) { }
+  viaje: any;
+
+  constructor(private fireViajes: FirebaseViajes) { }
 
   async ngOnInit() {
     await this.cargarViajes();
   }
 
   async cargarViajes() {
-    this.viajes = await this.crudViajesService.getViajes();
+   await this.fireViajes.getViajes();
   }
 
   seleccionarViaje(viaje: any) {
@@ -38,26 +41,17 @@ export class AdministrarViajesPage implements OnInit {
   }
 
   async actualizarViaje() {
-    if (this.viajeSeleccionado) {
-      const exito = await this.crudViajesService.updateViaje(this.viajeSeleccionado.id_viaje, this.viajeSeleccionado);
-      if (exito) {
-        alert('Viaje actualizado exitosamente');
-        await this.cargarViajes();
-        this.viajeSeleccionado = null;
-      } else {
-        alert('Error al actualizar el viaje');
-      }
-    }
+    this.fireViajes.updateViaje(this.nuevoViaje.value).then(()=>{
+      alert("Viaje modificado!");
+      this.viajeSeleccionado.reset();
+    }).catch(error=>{
+      console.log("ERROR: "+ error)
+    })
   }
 
-  async eliminarViaje(id_viaje: number) {
-    const exito = await this.crudViajesService.deleteUsuario(id_viaje);
-    if (exito) {
-      alert('Viaje eliminado exitosamente');
-      await this.cargarViajes();
-    } else {
-      alert('Error al eliminar el viaje');
-    }
+  eliminarViaje(id_viaje: string) {
+   this.fireViajes.deleteViaje(id_viaje);
+    
   }
 
 }

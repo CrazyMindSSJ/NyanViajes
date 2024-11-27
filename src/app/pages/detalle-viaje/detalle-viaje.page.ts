@@ -13,7 +13,7 @@ import { FirebaseUsuarioService } from 'src/app/services/firebase-usuario.servic
   styleUrls: ['./detalle-viaje.page.scss'],
 })
 export class DetalleViajePage implements OnInit, AfterViewInit {
-  id: number = 0;
+  id: string = '';
   viaje: any = {};
   persona: any;
   puedeTomarViaje: boolean = false;
@@ -28,15 +28,22 @@ export class DetalleViajePage implements OnInit, AfterViewInit {
   ) {}
 
   async ngOnInit() {
-    this.id = +this.activatedRouted.snapshot.paramMap.get("id")!;
+    this.id = this.activatedRouted.snapshot.paramMap.get('id')||'';
     this.persona = JSON.parse(localStorage.getItem("persona") || '{}');
     this.esConductor = this.persona.tiene_auto === 'Si';
 
+    this.fireViajes.getViaje(this.id.toString()).subscribe((data) => {
+      this.viaje = data; 
+    });
     await this.obtenerViaje();
+
+    console.log('ID obtenido de la ruta:', this.id);
+    console.log('Viaje obtenido desde Firebase:', this.viaje);
+
   }
 
   async obtenerViaje() {
-    this.viaje = await this.fireViajes.getViaje(this.id);
+    this.viaje = await this.fireViajes.getViaje(this.id.toString());
   
     if (!this.viaje) {
       console.error('Viaje no encontrado');
@@ -63,7 +70,7 @@ export class DetalleViajePage implements OnInit, AfterViewInit {
   }
 
   async salirDelViaje() {
-    const exito = await this.crudViajes.salirViaje(this.id, this.persona.rut);
+    const exito = await this.fireViajes.salirViaje(this.id, this.persona.rut);
     if (exito) {
       await this.obtenerViaje();
     }
@@ -71,7 +78,7 @@ export class DetalleViajePage implements OnInit, AfterViewInit {
 
   async cambiarEstado() {
     if (this.esConductor) {
-      const exito = await this.crudViajes.cambiarEstadoViaje(this.id);
+      const exito = await this.fireViajes.cambiarEstadoViaje(this.id);
       if (exito) {
         this.viaje.estado = this.viaje.estado === 'Pendiente' ? 'En Curso' : 'Finalizado';
         this.viajeFinalizado = this.viaje.estado === 'Finalizado';
