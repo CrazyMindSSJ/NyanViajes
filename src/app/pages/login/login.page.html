@@ -1,55 +1,63 @@
 <ion-header>
-  <ion-toolbar style="background-color: #FFB6C1;">
-    <div style="display: flex; justify-content: space-between; align-items: center;">
-      <ion-title style="color: #696767;">Ingresar</ion-title>
-    </div>
+  <ion-toolbar style="background: linear-gradient(to right, #FFB6C1, #FF69B4); box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);">
+    <ion-title style="text-align: center; color: white; font-size: 24px; font-weight: bold; text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);">
+      Ingresar
+    </ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content style="background-color: #f9f9f9;">
-  <ion-card style="background-color: #ffffff;">
+<ion-content style="background: linear-gradient(to bottom, #FFB6C1, #f9f9f9); padding: 20px;">
+  <!-- Tarjeta de Login -->
+  <ion-card style="background-color: #ffffff; box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); border-radius: 15px;">
     <ion-card-content>
-      <!-- Imagen de perfil -->
-      <div style="text-align: center; margin-bottom: 10px;">
-        <img src="assets/img/perfil.png" alt="Perfil" style="width: 75px; height: 75px; border-radius: 50%;">
+      <!-- Imagen de perfil centrada y más grande -->
+      <div style="display: flex; justify-content: center; align-items: center; margin-bottom: 20px;">
+        <img src="assets/img/nyanviajes.png" alt="Perfil" style="width: 150px; height: 150px; border-radius: 50%; border: 4px solid #FFB6C1;">
       </div>
 
-      <ion-input 
-        [(ngModel)]="email" 
-        type="email" 
-        fill="solid" 
-        label="Email" 
-        labelPlacement="stacked" 
-        placeholder="Miau@duocuc.cl" 
-        errorText="Correo inválido">
-      </ion-input>
-
-      <ion-input 
-        [(ngModel)]="contrasena" 
-        [type]="tipoContrasenia" 
-        name="password"  
-        fill="solid" 
-        label="Contraseña" 
-        labelPlacement="floating">
-        <ion-button fill="clear" slot="end" (click)="mostrarClave()" class="small-eye-button">
-          <ion-icon slot="icon-only" [name]="iconoContrasenia" aria-hidden="true"></ion-icon>
-        </ion-button>
-      </ion-input>
-
-      <div style="text-align: left; margin-top: 10px;">
-        <a routerLink="/recuperar" class="text-pink">¿Olvidaste tu contraseña?</a>
-      </div>
-
-      <ion-item lines="none">
-        <div style="text-align: center; margin-top: 10px;"></div>
+      <!-- Input de Email -->
+      <ion-item lines="none" style="margin-bottom: 15px; border-radius: 10px; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);">
+        <ion-icon name="mail-outline" slot="start" style="color: #FFB6C1;"></ion-icon>
+        <ion-input
+          [(ngModel)]="email"
+          type="email"
+          placeholder="Correo electrónico"
+          style="--padding-start: 10px;">
+        </ion-input>
       </ion-item>
 
-      <ion-button (click)="login()" expand="full" shape="round" style="color: #000000;">Iniciar Sesión</ion-button>
+      <!-- Input de Contraseña -->
+      <ion-item lines="none" style="margin-bottom: 15px; border-radius: 10px; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);">
+        <ion-icon name="lock-closed-outline" slot="start" style="color: #FFB6C1;"></ion-icon>
+        <ion-input
+          [(ngModel)]="contrasena"
+          [type]="tipoContrasenia"
+          placeholder="Contraseña"
+          style="--padding-start: 10px;">
+        </ion-input>
+        <ion-button fill="clear" slot="end" (click)="mostrarClave()" style="color: #FFB6C1;">
+          <ion-icon [name]="iconoContrasenia" slot="icon-only"></ion-icon>
+        </ion-button>
+      </ion-item>
+
+      <!-- Enlace de recuperación de contraseña -->
+      <div style="text-align: right; margin-bottom: 20px;">
+        <a routerLink="/recuperar" style="color: #FFB6C1; font-size: 14px; text-decoration: none;">¿Olvidaste tu contraseña?</a>
+      </div>
+
+      <!-- Botón de inicio de sesión -->
+      <ion-button (click)="login()" expand="block" shape="round" style="background-color: #FFB6C1; color: white; font-weight: bold; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);">
+        Iniciar Sesión
+      </ion-button>
     </ion-card-content>
   </ion-card>
 
-  <div style="display: flex; justify-content: center; align-items: center; flex-direction: column; text-align: center; margin-top: 20px;">
-    <span style="color: #696767;">No tienes cuenta, Regístrate <a routerLink="/registro" class="text-pink">AQUÍ</a></span>
+  <!-- Enlace para registrarse -->
+  <div style="text-align: center; margin-top: 20px;">
+    <span style="color: #696767; font-size: 14px;">
+      No tienes cuenta, Regístrate <a routerLink="/registro" style="color: #FFB6C1; font-weight: bold; text-decoration: none;">AQUÍ</a>
+    </span>
   </div>
 </ion-content>
+
 

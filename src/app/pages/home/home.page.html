@@ -1,54 +1,128 @@
 <ion-menu contentId="main-content">
   <ion-header>
-    <ion-toolbar style="--background: #FFB6C1;">
-      <ion-title>Menú inicio</ion-title>
+    <ion-toolbar style="--background: #9c6fff; box-shadow: none;">
+      <ion-title style="color: #ffffff; font-weight: bold; font-size: 18px;">Menú inicio</ion-title>
     </ion-toolbar>
   </ion-header>
-  <ion-content class="ion-padding">
-    <ion-list>
-      <ion-item expand="block" routerLink="/mis-viajes">Mis Viajes</ion-item>
-      <ion-item expand="block" routerLink="/contacto">Contacto</ion-item>
-      <ion-item (click)="logout()" expand="block" style="color: #FFB600; margin-top: 20px;">Cerrar sesión</ion-item>
+
+  <ion-content style="background: #f8bbd0; margin: 0; padding: 0; box-shadow: none;">
+    <ion-list style="margin: 0; padding: 0; background: #f8bbd0;">
+      <!-- Mis Viajes -->
+      <ion-item expand="block" routerLink="/mis-viajes" 
+        style="--background: #9c6fff; color: white; border-radius: 10px; margin-bottom: 12px; margin-top: 20px; font-family: 'Comic Sans MS', sans-serif; font-size: 16px; box-shadow: none; transition: all 0.3s ease-in-out;">
+        <ion-icon name="airplane-outline" slot="start" style="color: #ffffff; font-size: 22px;"></ion-icon>
+        <span>Mis Viajes</span>
+      </ion-item>
+
+      <!-- Contacto -->
+      <ion-item expand="block" routerLink="/contacto" 
+        style="--background: #9c6fff; color: white; border-radius: 10px; margin-bottom: 12px; font-family: 'Comic Sans MS', sans-serif; font-size: 16px; box-shadow: none; transition: all 0.3s ease-in-out;">
+        <ion-icon name="mail-outline" slot="start" style="color: #ffffff; font-size: 22px;"></ion-icon>
+        <span>Contacto</span>
+      </ion-item>
+
+      <!-- Cerrar Sesión -->
+      <ion-item (click)="logout()" expand="block" 
+        style="--background: #ffb74d; color: rgb(50, 47, 47); border-radius: 10px; margin-top: 20px; font-family: 'Comic Sans MS', sans-serif; font-size: 16px; padding: 12px 0; text-align: center; font-weight: bold; box-shadow: none; transition: all 0.3s ease-in-out;">
+        <ion-icon name="log-out-outline" slot="start" style="color: white; font-size: 22px;"></ion-icon>
+        <span>Cerrar sesión</span>
+      </ion-item>
     </ion-list>
   </ion-content>
 </ion-menu>
 
-<div class="ion-page" id="main-content">
+
+
+
+
+
+
+
+<div class="ion-page" id="main-content" style="background: #e3f2fd; height: 100vh; display: flex; flex-direction: column; justify-content: space-between; position: relative; overflow: hidden;">
+  <!-- Animación de las estrellas -->
+  <style>
+    @keyframes twinkle {
+      0% { opacity: 0; transform: scale(0.8); }
+      50% { opacity: 1; transform: scale(1.2); }
+      100% { opacity: 0; transform: scale(0.8); }
+    }
+
+    .twinkle-star {
+      position: absolute;
+      color: white;
+      font-size: 30px;
+      animation: twinkle 3s infinite;
+    }
+  </style>
+
   <ion-header>
-    <ion-toolbar style="--background: #FFB6C1;">
+    <ion-toolbar style="--background: linear-gradient(45deg, #9c6fff, #f8bbd0); box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);">
       <ion-buttons slot="start">
-        <ion-menu-button></ion-menu-button>
+        <ion-menu-button style="color: white; font-size: 28px; padding: 5px;"></ion-menu-button>
       </ion-buttons>
-      <ion-title style="font-size: 14px;">
-        Bienvenido {{persona.nombre}} a NyanViajes! <ion-icon name="logo-octocat"></ion-icon>
+      <ion-title style="font-size: 15px; color: white; font-weight: bold; text-align: center;">
+        Bienvenido {{persona.nombre}} a NyanViajes! <ion-icon name="rocket-outline" style="color: #fff1f1; margin-left: 10px;"></ion-icon>
       </ion-title>
     </ion-toolbar>
   </ion-header>
 
-  <ion-content style="--background: #ffffff;">
-    <ion-card>
-      <img src="assets/img/LOGOWO.png" alt="" style="width: 100%; height: auto; border-radius: 10px;">
-    </ion-card>
+  <ion-content style="background: transparent; display: flex; flex-direction: column; align-items: center; justify-content: flex-start;">
+    <div style="display: flex; justify-content: center; align-items: center; flex-direction: column; margin-top: 120px;">
+      <div style="background: linear-gradient(135deg, #f8bbd0, #ffffff); border-radius: 50%; padding: 25px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); width: 220px; height: 220px; display: flex; justify-content: center; align-items: center;">
+        <img src="assets/img/LOGOWO.png" alt="NyanViajes Logo" style="width: 100%; height: auto; border-radius: 50%;">
+      </div>
+      <h2 style="font-size: 26px; font-weight: bold; margin-top: 20px; text-align: center; 
+      text-shadow: 0 2px 4px rgba(77, 77, 77, 0.2); 
+      background: linear-gradient(45deg, #ff0000, #ff7f00, #ffff00, #00ff00, #0000ff, #4b0082, #8b00ff);
+      -webkit-background-clip: text; 
+      color: transparent;">
+      ¡Tu viaje seguro y de confianza!
+    </h2>
     
-    <ion-tabs>
-      <ion-tab-bar slot="bottom" style="--background: #f9cdd4;">
-        <ion-tab-button tab="viajes">
-          <ion-icon name="car-sport-outline"></ion-icon>
-        </ion-tab-button>
-
-        <ion-tab-button *ngIf="persona.categoria=='Administrador'" tab="administrar">
-          <ion-icon name="pencil-outline"></ion-icon>
-        </ion-tab-button>
-
-        <ion-tab-button tab="administrar-viajes"  *ngIf="persona.categoria =='Administrador' || persona.tiene_auto == 'Si'">
-          <ion-icon name="create-outline"></ion-icon>
-        </ion-tab-button>
-
-        <ion-tab-button tab="perfil">
-          <ion-icon name="person-sharp"></ion-icon>
-        </ion-tab-button>
-
-      </ion-tab-bar>
-    </ion-tabs>
+  
+    </div>
   </ion-content>
-</div>
+
+  <ion-tabs>
+    <ion-tab-bar slot="bottom" style="--background: linear-gradient(45deg, #f8bbd0, #9c6fff); box-shadow: 0 -4px 6px rgba(0, 0, 0, 0.1);">
+      <ion-tab-button tab="viajes">
+        <ion-icon name="car-sport-outline" style="color: white;"></ion-icon>
+        
+      </ion-tab-button>
+
+      <ion-tab-button *ngIf="persona.categoria == 'Administrador'" tab="administrar">
+        <ion-icon name="settings-outline" style="color: #4caf50;"></ion-icon>
+      
+      </ion-tab-button>
+
+      <ion-tab-button *ngIf="persona.categoria == 'Administrador' || persona.tiene_auto == 'Si'" tab="administrar-viajes">
+        <ion-icon name="create-outline" style="color: #ffeb3b;"></ion-icon>
+  
+      </ion-tab-button>
+
+      <ion-tab-button tab="perfil">
+        <ion-icon name="person-circle-outline" style="color: #ffffff;"></ion-icon>
+        
+      </ion-tab-button>
+    </ion-tab-bar>
+  </ion-tabs>
+
+<!-- Estrellas animadas con posición aleatoria -->
+<div class="twinkle-star" style="top: 5%; left: 10%; font-size: 30px;">✦</div>
+<div class="twinkle-star" style="top: 15%; left: 70%; font-size: 24px;">✧</div>
+<div class="twinkle-star" style="top: 30%; right: 20%; font-size: 28px;">✦</div>
+<div class="twinkle-star" style="bottom: 15%; left: 25%; font-size: 32px;">✧</div>
+<div class="twinkle-star" style="top: 80%; left: 5%; font-size: 22px;">✦</div>
+<div class="twinkle-star" style="top: 10%; right: 10%; font-size: 32px;">✧</div>
+<div class="twinkle-star" style="top: 25%; right: 60%; font-size: 28px;">✦</div>
+<div class="twinkle-star" style="top: 5%; left: 30%; font-size: 30px;">✦</div>  
+<div class="twinkle-star" style="top: 10%; left: 60%; font-size: 32px;">✧</div>  
+<div class="twinkle-star" style="top: 35%; left: 55%; font-size: 28px;">✦</div>  
+<div class="twinkle-star" style="top: 40%; left: 10%; font-size: 30px;">✧</div>  
+<div class="twinkle-star" style="top: 60%; left: 80%; font-size: 26px;">✦</div>  
+ 
+
+
+
+
+
