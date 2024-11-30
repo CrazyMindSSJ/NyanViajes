@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { FirebaseUsuarioService } from './firebase-usuario.service';
+import { Viaje } from '../types';
 
 @Injectable({
   providedIn: 'root'
@@ -63,8 +64,15 @@ export class FirebaseViajes{
     return this.firestore.collection('viajes').valueChanges();
   }
 
+  getViajesFinalizados(rut: string) {
+    return this.firestore.collection<Viaje>('viajes', ref => 
+      ref.where('estado', '==', 'Finalizado')
+        .where('pasajeros', 'array-contains', rut)
+      ).valueChanges();
+  }
+
   getViaje(id_viaje: string) {
-    return this.firestore.collection('viajes').doc(id_viaje).valueChanges();
+    return this.firestore.collection('viajes').doc<Viaje>(id_viaje).valueChanges();
   }
 
   updateViaje(viaje: any) {
@@ -76,59 +84,89 @@ export class FirebaseViajes{
   }
 
   public async tomarViaje(id_viaje: string, rut: string): Promise<boolean> {
-    const viajeDoc = this.firestore.collection('viajes').doc(id_viaje);
-    const viajeSnap = await viajeDoc.get().toPromise();
-    
-    if (!viajeSnap?.exists) return false;
+    try {
+      const viajeDoc = this.firestore.collection('viajes').doc(id_viaje);
+      const viajeSnap = await viajeDoc.get().toPromise();
   
-    const viaje = viajeSnap.data() as any;
-    if (viaje.capa_disp <= 0 || viaje.pasajeros.includes(rut)) return false;
+      if (!viajeSnap?.exists) return false;
   
-    viaje.pasajeros.push(rut);
-    viaje.capa_disp--;
+      const viaje = viajeSnap.data() as any;
   
-    await viajeDoc.update(viaje);
-    return true;
+      // Validar capacidad y que el usuario no esté ya en la lista de pasajeros
+      if (viaje.capa_disp <= 0 || (viaje.pasajeros && viaje.pasajeros.includes(rut))) return false;
+  
+      const nuevosPasajeros = [...(viaje.pasajeros || []), rut];
+      const nuevaCapacidad = viaje.capa_disp - 1;
+  
+      await viajeDoc.update({
+        pasajeros: nuevosPasajeros,
+        capa_disp: nuevaCapacidad
+      });
+  
+      return true;
+    } catch (error) {
+      console.error("Error al tomar el viaje:", error);
+      return false;
+    }
   }
+  
   
   public async salirViaje(id_viaje: string, rut: string): Promise<boolean> {
-    const viajeDoc = this.firestore.collection('viajes').doc(id_viaje.toString());
-    const viajeSnap = await viajeDoc.get().toPromise();
-    
-    if (!viajeSnap?.exists) return false;
+    try {
+      const viajeDoc = this.firestore.collection('viajes').doc(id_viaje);
+      const viajeSnap = await viajeDoc.get().toPromise();
   
-    const viaje = viajeSnap.data() as any;
-    if (!viaje.pasajeros.includes(rut)) return false;
+      if (!viajeSnap?.exists) return false;
   
-    viaje.pasajeros = viaje.pasajeros.filter((pasajero: string) => pasajero !== rut);
-    viaje.capa_disp++;
+      const viaje = viajeSnap.data() as any;
   
-    await viajeDoc.update(viaje);
-    return true;
-  }
+      // Validación: revisar si el usuario está en la lista de pasajeros
+      if (!viaje.pasajeros || !viaje.pasajeros.includes(rut)) return false;
   
-  public async cambiarEstadoViaje(id_viaje: string): Promise<boolean> {
-    const viajeDoc = this.firestore.collection('viajes').doc(id_viaje.toString());
-    const viajeSnap = await viajeDoc.get().toPromise();
-    
-    if (!viajeSnap?.exists) return false;
+      // Actualizar lista de pasajeros y capacidad disponible
+      const nuevosPasajeros = viaje.pasajeros.filter((pasajero: string) => pasajero !== rut);
+      const nuevaCapacidad = viaje.capa_disp + 1;
   
-    const viaje = viajeSnap.data() as any;
+      await viajeDoc.update({
+        pasajeros: nuevosPasajeros,
+        capa_disp: nuevaCapacidad
+      });
   
-    switch (viaje.estado) {
-      case 'Pendiente':
-        viaje.estado = 'En Curso';
-        break;
-      case 'En Curso':
-        viaje.estado = 'Finalizado';
-        break;
-      default:
-        return false;
+      return true;
+    } catch (error) {
+      console.error("Error al salir del viaje:", error);
+      return false;
     }
-  
-    await viajeDoc.update(viaje);
-    return true;
   }
+  
+  
+  public async cambiarEstado(id_viaje: string, rutConductor: string): Promise<boolean> {
+    try {
+      const viajeDoc = this.firestore.collection('viajes').doc(id_viaje);
+      const viajeSnap = await viajeDoc.get().toPromise();
+  
+      if (!viajeSnap?.exists) return false;
+  
+      const viaje = viajeSnap.data() as any;
+  
+      // Validar que solo el conductor pueda cambiar el estado
+      if (viaje.conductor !== rutConductor) return false;
+  
+      // Cambiar el estado del viaje según su estado actual
+      const nuevoEstado =
+        viaje.estado === 'Pendiente' ? 'En Curso' :
+        viaje.estado === 'En Curso' ? 'Finalizado' : null;
+  
+      if (!nuevoEstado) return false;
+  
+      await viajeDoc.update({ estado: nuevoEstado });
+      return true;
+    } catch (error) {
+      console.error("Error al cambiar el estado del viaje:", error);
+      return false;
+    }
+  }
+  
   
   public async esConductorDelViaje(id_viaje: string, rut: string): Promise<boolean> {
     const viajeSnap = await this.firestore.collection('viajes').doc(id_viaje.toString()).get().toPromise();

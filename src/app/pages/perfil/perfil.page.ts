@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { NavController } from '@ionic/angular';
+import { ApiService } from 'src/app/services/api.service';
 
 @Component({
   selector: 'app-perfil',
@@ -15,7 +16,7 @@ export class PerfilPage implements OnInit {
   viajesHistorial: { destino: string; fecha: Date }[] = []; 
   nuevoViaje: string = ''; 
 
-  constructor(private navController: NavController) {}
+  constructor(private navController: NavController, private api: ApiService) {}
 
   ngOnInit() {
     const personaJSON = localStorage.getItem("persona");
@@ -65,6 +66,13 @@ export class PerfilPage implements OnInit {
       this.nuevoViaje = ''; 
     }
   }
+
+  consumirAPI(){
+    this.api.getDatos().gatos.subscribe((data:any)=>{
+      
+    });
+  }
+
 }
 
 

@@ -38,6 +38,7 @@ export class RegistrarViajePage implements OnInit, AfterViewInit {
   ngOnInit() {
     this.persona = JSON.parse(localStorage.getItem("persona") || '');
     this.viaje.controls.conductor.setValue(this.persona.nombre);
+    this.initMap();
   }
 
   public async registrar() {
@@ -88,7 +89,7 @@ export class RegistrarViajePage implements OnInit, AfterViewInit {
   }
   
   ngAfterViewInit() {
-    this.initMap();
+    
   }
 
   initMap() {

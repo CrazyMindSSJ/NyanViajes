@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
-import { CrudViajesService } from 'src/app/services/crud-viajes.service';
+import { FirebaseViajes } from 'src/app/services/fire-viajes.service';
+import { Viaje } from 'src/app/types';
 
 @Component({
   selector: 'app-mis-viajes',
@@ -8,7 +9,7 @@ import { CrudViajesService } from 'src/app/services/crud-viajes.service';
   styleUrls: ['./mis-viajes.page.scss'],
 })
 export class MisViajesPage implements OnInit {
-  misViajes: any[] = [];
+  misViajes: Viaje[] = [];
   persona: any;
   viaje = new FormGroup({
     id_viaje: new FormControl(),
@@ -26,7 +27,7 @@ export class MisViajesPage implements OnInit {
   });
 
 
-  constructor(private crudViajes: CrudViajesService) { }
+  constructor(private crudViajes: FirebaseViajes) { }
 
   ngOnInit() {
     this.persona = JSON.parse(localStorage.getItem("persona") || '');
@@ -34,8 +35,8 @@ export class MisViajesPage implements OnInit {
   }
 
   async obtenerMisViajes() {
-    const allViajes = await this.crudViajes.getViajes();
-    this.misViajes = allViajes
-      .filter(viaje => viaje.estado == "Finalizado"); 
+    this.crudViajes.getViajesFinalizados(this.persona.rut).subscribe((viajes) => {
+      this.misViajes = viajes;
+    });
   }
 }

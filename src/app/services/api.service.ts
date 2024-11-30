@@ -7,10 +7,14 @@ import { HttpClient } from '@angular/common/http';
 export class ApiService {
 
   url_mindicador: string = "https://mindicador.cl/api";
+  url_gatos: string = "https://api.thecatapi.com/v1/images/search?limit=10";
+  
 
   constructor(private http: HttpClient) { }
 
   getDatos(){
-    return this.http.get(this.url_mindicador);
+    return {dolar: this.http.get(this.url_mindicador), gatos :  this.http.get(this.url_gatos)};
   }
+
+
 }

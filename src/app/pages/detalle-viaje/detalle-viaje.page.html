@@ -13,12 +13,12 @@
 
 <ion-content>
   <ion-card class="detalle-card">
-    <div id="map_html" style="height: 400px;"></div>
+    <div id="map_html"></div>
 
     <ion-card-header>
-      
+
       <ion-card-title>Destino: {{viaje.destino}}</ion-card-title>
-      <ion-card-subtitle>{{viaje.estado?.toLowerCase() | titlecase}}</ion-card-subtitle>
+      <ion-card-subtitle>{{viaje.estado.toLowerCase() | titlecase}}</ion-card-subtitle>
     </ion-card-header>
 
     <ion-card-content>
@@ -49,15 +49,15 @@
     </ion-card-content>
   </ion-card>
 
-  <ion-button expand="full" shape="round" style="color: #000000;" (click)="tomarViaje()" *ngIf="!esConductor && puedeTomarViaje">
+  <ion-button expand="full" shape="round" style="color: #000000;" (click)="tomarViaje()" *ngIf="!esConductor && puedeTomarViaje" [disabled]="isLoading">
     Tomar viaje
   </ion-button>
 
-  <ion-button expand="full" shape="round" style="color: #000000;" (click)="salirDelViaje()" *ngIf="!esConductor && !puedeTomarViaje">
+  <ion-button expand="full" shape="round" style="color: #000000;" (click)="salirDelViaje()" *ngIf="!esConductor && !puedeTomarViaje" [disabled]="isLoading">
     Salir de viaje
   </ion-button>
 
-  <ion-button expand="full" shape="round" style="color: #000000;" (click)="cambiarEstado()" [disabled]="viajeFinalizado"  *ngIf="esConductor">
+  <ion-button expand="full" shape="round" style="color: #000000;" (click)="cambiarEstadoViaje()" [disabled]="viajeFinalizado" *ngIf="esConductor" [disabled]="isLoading">
     Cambiar Estado
   </ion-button>
 </ion-content>

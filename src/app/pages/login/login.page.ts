@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { CrudService } from 'src/app/services/crud.service';
+import { FirebaseUsuarioService } from 'src/app/services/firebase-usuario.service';
 
 @Component({
   selector: 'app-login',
@@ -15,11 +16,12 @@ export class LoginPage implements OnInit {
 
   constructor(
     private router: Router, 
-    private crudService: CrudService
+    private fireUsuario: FirebaseUsuarioService
   ) { }
 
   async login() {
-    if(await this.crudService.login(this.email,this.contrasena)){
+    if(await this.fireUsuario.login(this.email,this.contrasena)){
+      console.log(this.email, this.contrasena)
       this.router.navigate(['/home']);
     }else{
       alert("CORREO O CONTRASEÑA INCORRECTOS!");

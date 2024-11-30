@@ -50,7 +50,7 @@ export class ViajesPage implements OnInit {
   }
 
   consumirAPI(){
-    this.api.getDatos().subscribe((data:any)=>{
+    this.api.getDatos().dolar.subscribe((data:any)=>{
       this.dolar = data.dolar.valor;
       this.actualizarValoresDolar();
     });
