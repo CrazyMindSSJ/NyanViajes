@@ -2,13 +2,18 @@ import { Injectable } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { Persona } from '../types';
+import { AlertController } from '@ionic/angular';
+import { firstValueFrom, Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class FirebaseUsuarioService {
 
-  constructor(private fireStore: AngularFirestore, private fireAuthentication: AngularFireAuth) { }
+  constructor(private fireStore: AngularFirestore, 
+    private fireAuthentication: AngularFireAuth, 
+    private alertController: AlertController,
+    private fireAuth: AngularFireAuth,) { }
 
   async crearUsuario(persona: any){
     const docRef = this.fireStore.collection('personas').doc(persona.rut);
@@ -62,6 +67,36 @@ export class FirebaseUsuarioService {
     } catch (error) {
       console.error('Error en el login:', error);
       return false;
+    }
+  }
+
+  async recuperarContrasena(email: string): Promise<void> {
+    try {
+      await this.fireAuth.sendPasswordResetEmail(email);
+      const alert = await this.alertController.create({
+        header: 'Éxito',
+        message: 'Se ha enviado el restablecimiento de la Contraseña a su Correo',
+        buttons: ['OK'],
+      });
+      await alert.present();
+    } catch (error: any) {
+      const alert = await this.alertController.create({
+        header: 'Error',
+        message: this.obtenerMensajeError(error.code),
+        buttons: ['OK'],
+      });
+      await alert.present();
+    }
+  }
+
+  private obtenerMensajeError(codigo: string): string {
+    switch (codigo) {
+      case 'auth/user-not-found':
+        return 'No existe este correo';
+      case 'auth/invalid-email':
+        return 'El correo ingresado no es válido.';
+      default:
+        return 'Ocurrió un error. Intente nuevamente.';
     }
   }
 

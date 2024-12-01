@@ -9,7 +9,7 @@
 
 <ion-content>
   <ion-item>
-    <ion-input [(ngModel)]="email" type="email" label="Ingrese correo registrado" labelPlacement="floating" placeholder="Miau@gmail.com"></ion-input>
+    <ion-input #emailInput type="email" label="Ingrese correo registrado" labelPlacement="floating" placeholder="Miau@gmail.com"></ion-input>
   </ion-item>
-  <ion-button (click)="recuperar()" size="block" color="success">RECUPERAR</ion-button> 
+  <ion-button (click)="recuperarContrasena(emailInput.value ? emailInput.value.toString() : '')" size="block" color="warning">RECUPERAR</ion-button> 
 </ion-content>
