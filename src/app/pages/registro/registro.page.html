@@ -119,8 +119,9 @@
 
 
         <!-- Campos adicionales para automóvil -->
-        <ion-input *ngIf="persona.controls.tiene_auto.value == 'Si'" formControlName="modelo" type="text" placeholder="Modelo del automóvil" label="Modelo" labelPlacement="stacked"></ion-input>
         <ion-input *ngIf="persona.controls.tiene_auto.value == 'Si'" formControlName="marca" type="text" placeholder="Marca del automóvil" label="Marca" labelPlacement="stacked"></ion-input>
+        <ion-input *ngIf="persona.controls.tiene_auto.value == 'Si'" formControlName="modelo" type="text" placeholder="Modelo del automóvil" label="Modelo" labelPlacement="stacked"></ion-input>
+        <ion-input *ngIf="persona.controls.tiene_auto.value == 'Si'" formControlName="patente" type="text" placeholder="Patente del automóvil" label="Patente" labelPlacement="stacked"></ion-input>
         <ion-input *ngIf="persona.controls.tiene_auto.value == 'Si'" formControlName="color" type="text" placeholder="Color del automóvil" label="Color" labelPlacement="stacked"></ion-input>
 
         <!-- Botón de Registro -->
