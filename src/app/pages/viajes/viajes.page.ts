@@ -20,6 +20,7 @@ export class ViajesPage implements OnInit {
   viaje = new FormGroup({
     id: new FormControl(),
     conductor: new FormControl(),
+    rut_conductor: new FormControl(),
     capa_disp: new FormControl(),
     destino: new FormControl(),
     lat: new FormControl(),
@@ -38,10 +39,10 @@ export class ViajesPage implements OnInit {
   constructor(private fireViajes: FirebaseViajes, private router: Router, private api: ApiService) { }
 
   ngOnInit() {
-    //this.obtenerViajes();
+;
     this.persona = JSON.parse(localStorage.getItem("persona") || '');
-    //this.consumirAPI();
-    console.log(this.viaje.controls.id)
+
+
   }
 
   ionViewWillEnter() {

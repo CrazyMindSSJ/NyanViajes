@@ -113,8 +113,13 @@ export class AdministrarPage implements OnInit {
   }
 
   async buscar(persona:any){
-    this.persona.setValue(persona);
-    this.botonModificar = false;
+    if (persona) {
+      this.persona.patchValue(persona); 
+      this.botonModificar = true;
+      console.log(persona)
+    } else {
+      this.botonModificar = false;
+    }
   }
 
   async modificar(){

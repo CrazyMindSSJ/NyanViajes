@@ -20,7 +20,8 @@ export class RegistrarViajePage implements OnInit, AfterViewInit {
   private geocoder: G.Geocoder | undefined;
 
   viaje = new FormGroup({
-    conductor: new FormControl(),  
+    conductor: new FormControl(),
+    rut_conductor: new FormControl(),
     capa_disp: new FormControl('', [Validators.required]),
     destino: new FormControl('', [Validators.required]),
     lat: new FormControl('', [Validators.required]),
@@ -38,6 +39,7 @@ export class RegistrarViajePage implements OnInit, AfterViewInit {
   ngOnInit() {
     this.persona = JSON.parse(localStorage.getItem("persona") || '');
     this.viaje.controls.conductor.setValue(this.persona.nombre);
+    this.viaje.controls.rut_conductor.setValue(this.persona.rut);
     this.initMap();
   }
 

@@ -3,6 +3,13 @@
     <ion-title style="color: rgb(165, 162, 162); font-family: 'Segoe UI', sans-serif; font-weight: bold; font-size: 24px; text-align: center;">
       Registro
     </ion-title>
+    <ion-buttons slot="end">
+      <ion-button 
+        style="--background: #FFB6C1; border-radius: 50%; width: 40px; height: 40px; display: flex; align-items: center; justify-content: center;" 
+        routerLink="/login">
+        <ion-icon name="arrow-forward-outline" style="color: white;"></ion-icon>
+      </ion-button>
+    </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
@@ -123,6 +130,7 @@
         <ion-input *ngIf="persona.controls.tiene_auto.value == 'Si'" formControlName="modelo" type="text" placeholder="Modelo del automóvil" label="Modelo" labelPlacement="stacked"></ion-input>
         <ion-input *ngIf="persona.controls.tiene_auto.value == 'Si'" formControlName="patente" type="text" placeholder="Patente del automóvil" label="Patente" labelPlacement="stacked"></ion-input>
         <ion-input *ngIf="persona.controls.tiene_auto.value == 'Si'" formControlName="color" type="text" placeholder="Color del automóvil" label="Color" labelPlacement="stacked"></ion-input>
+        <ion-input *ngIf="persona.controls.tiene_auto.value == 'Si'" formControlName="cant_asiento" type="text" placeholder="Asientos del automóvil" label="Cantidad de asientos" labelPlacement="stacked"></ion-input>
 
         <!-- Botón de Registro -->
         <ion-button id="present-alert" [disabled]="persona.invalid" type="submit" size="block" style="background: linear-gradient(to right, #FFB6C1, #FFC0CB); color: white; font-weight: bold; margin-top: 20px;">

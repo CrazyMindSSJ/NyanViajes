@@ -28,12 +28,12 @@ export class AdministrarViajesPage implements OnInit {
 
   constructor(private fireViajes: FirebaseViajes) { }
 
-  async ngOnInit() {
-    await this.cargarViajes();
+   ngOnInit() {
+     this.cargarViajes();
   }
 
-  async cargarViajes() {
-   await this.fireViajes.getViajes();
+   cargarViajes() {
+   this.fireViajes.getViajes();
   }
 
   seleccionarViaje(viaje: any) {

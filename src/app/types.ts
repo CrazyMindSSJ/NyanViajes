@@ -1,6 +1,7 @@
 export interface Viaje {
     id: number;
     conductor: string;
+    rut_conductor: string;
     capa_disp: number;
     destino: string;
     lat: string;

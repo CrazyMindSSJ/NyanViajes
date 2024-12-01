@@ -17,6 +17,7 @@ export class DetalleViajePage implements OnInit, AfterViewInit {
   viaje: Viaje = {
     id: 0,
     conductor: '',
+    rut_conductor: '',
     capa_disp: 0,
     destino: '',
     lat: '',
@@ -58,7 +59,7 @@ export class DetalleViajePage implements OnInit, AfterViewInit {
   async obtenerViaje() {
     const viaje = await firstValueFrom(this.fireViajes.getViaje(this.id));
     if (viaje) {
-      this.viaje = viaje;
+      this.viaje = viaje ;
     } else {
       console.error('Viaje no encontrado');
       return;
@@ -105,7 +106,8 @@ export class DetalleViajePage implements OnInit, AfterViewInit {
 
   async cambiarEstadoViaje() {
     this.isLoading = true;
-    const exito = await this.fireViajes.cambiarEstado(this.id, this.persona.rut);
+    const exito = await this.fireViajes.cambiarEstado(this.id, this.viaje.rut_conductor);
+    console.log(exito)
     if (exito) {
       console.log("Estado del viaje cambiado");
       await this.obtenerViaje();

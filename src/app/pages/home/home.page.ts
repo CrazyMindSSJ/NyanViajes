@@ -1,6 +1,7 @@
 import { Component, OnInit} from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { NavController } from '@ionic/angular';
+import { ApiService } from 'src/app/services/api.service';
 
 
 @Component({
@@ -11,6 +12,7 @@ import { NavController } from '@ionic/angular';
 
 export class HomePage implements OnInit{
   persona: any;
+  clima: string = '';
 
   viaje = new FormGroup({
     id_viaje: new FormControl(),
@@ -25,10 +27,11 @@ export class HomePage implements OnInit{
     pasajeros: new FormControl([])
   });
 
-  constructor(private navController: NavController) {}
+  constructor(private navController: NavController, private api: ApiService) {}
 
   ngOnInit(){
     this.persona = JSON.parse(localStorage.getItem("persona") || '');
+    this.consumirAPI();
   }
 
   logout(){
@@ -36,5 +39,9 @@ export class HomePage implements OnInit{
     this.navController.navigateRoot('/login')
   }
 
-  
+  consumirAPI(){
+    this.api.getDatos().clima.subscribe((data:any)=>{
+      this.clima = data.temperature; 
+    });
+  }
 }

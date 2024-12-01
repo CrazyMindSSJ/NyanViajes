@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { FirebaseUsuarioService } from './firebase-usuario.service';
 import { Viaje } from '../types';
+import { firstValueFrom } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -40,11 +41,11 @@ export class FirebaseViajes{
       // Añadir el ID al objeto del viaje
       viaje.id = newId;
 
-      const conductor = await this.fireUsuario.getUsuario(rutConductor);
+      const conductor = await firstValueFrom(this.fireUsuario.getUsuario(rutConductor));
       if (!conductor) {
           return false; 
       }
-
+      console.log(conductor)
       const docRef = this.firestore.collection('viajes').doc(newId.toString());
       const docActual = await docRef.get().toPromise();
 
@@ -150,7 +151,7 @@ export class FirebaseViajes{
       const viaje = viajeSnap.data() as any;
   
       // Validar que solo el conductor pueda cambiar el estado
-      if (viaje.conductor !== rutConductor) return false;
+      if (viaje.rut_conductor !== rutConductor) return false;
   
       // Cambiar el estado del viaje según su estado actual
       const nuevoEstado =

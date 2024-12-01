@@ -67,12 +67,6 @@ export class PerfilPage implements OnInit {
     }
   }
 
-  consumirAPI(){
-    this.api.getDatos().gatos.subscribe((data:any)=>{
-      
-    });
-  }
-
 }
 
 
