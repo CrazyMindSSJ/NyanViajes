@@ -13,7 +13,7 @@ describe('HomePage', () => {
     fixture.detectChanges();
   });
 
-  it('should create', () => {
+  it('2) El home se crea', () => {
     expect(component).toBeTruthy();
   });
 });

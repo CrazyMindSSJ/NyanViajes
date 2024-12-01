@@ -1,30 +1,31 @@
 <ion-menu contentId="main-content">
   <ion-header>
-    <ion-toolbar style="--background: #9c6fff; box-shadow: none;">
+    <ion-toolbar style="--background: #ffb3b3; box-shadow: none;">
       <ion-title style="color: #ffffff; font-weight: bold; font-size: 18px;">Menú inicio</ion-title>
     </ion-toolbar>
   </ion-header>
 
-  <ion-content style="background: #f8bbd0; margin: 0; padding: 0; box-shadow: none;">
-    <ion-list style="margin: 0; padding: 0; background: #f8bbd0;">
+  <ion-content style="background: transparent; margin: 0; padding: 0; box-shadow: none;">
+    <ion-list style="margin: 0; padding: 0;">
+      
       <!-- Mis Viajes -->
       <ion-item expand="block" routerLink="/mis-viajes" 
-        style="--background: #9c6fff; color: white; border-radius: 10px; margin-bottom: 12px; margin-top: 20px; font-family: 'Comic Sans MS', sans-serif; font-size: 16px; box-shadow: none; transition: all 0.3s ease-in-out;">
-        <ion-icon name="airplane-outline" slot="start" style="color: #ffffff; font-size: 22px;"></ion-icon>
+        style="--background: linear-gradient(135deg, #ffccff, #ffb3cc); color: white; border-radius: 10px; margin-bottom: 12px; margin-top: 20px; font-family: 'Comic Sans MS', sans-serif; font-size: 16px; box-shadow: none; transition: all 0.3s ease-in-out;">
+        <ion-icon name="airplane-outline" slot="start" style="color: #f8ffbe; font-size: 22px;"></ion-icon>
         <span>Mis Viajes</span>
       </ion-item>
 
       <!-- Contacto -->
       <ion-item expand="block" routerLink="/contacto" 
-        style="--background: #9c6fff; color: white; border-radius: 10px; margin-bottom: 12px; font-family: 'Comic Sans MS', sans-serif; font-size: 16px; box-shadow: none; transition: all 0.3s ease-in-out;">
-        <ion-icon name="mail-outline" slot="start" style="color: #ffffff; font-size: 22px;"></ion-icon>
+        style="--background: linear-gradient(135deg, #ffccff, #ffb3cc); color: white; border-radius: 10px; margin-bottom: 12px; font-family: 'Comic Sans MS', sans-serif; font-size: 16px; box-shadow: none; transition: all 0.3s ease-in-out;">
+        <ion-icon name="mail-outline" slot="start" style="color: #f67e7e; font-size: 22px;"></ion-icon>
         <span>Contacto</span>
       </ion-item>
 
       <!-- Cerrar Sesión -->
       <ion-item (click)="logout()" expand="block" 
-        style="--background: #ffb74d; color: rgb(50, 47, 47); border-radius: 10px; margin-top: 20px; font-family: 'Comic Sans MS', sans-serif; font-size: 16px; padding: 12px 0; text-align: center; font-weight: bold; box-shadow: none; transition: all 0.3s ease-in-out;">
-        <ion-icon name="log-out-outline" slot="start" style="color: white; font-size: 22px;"></ion-icon>
+        style="--background: linear-gradient(135deg, #ffcc99, #ffebcc); color: rgb(50, 47, 47); border-radius: 10px; margin-top: 20px; font-family: 'Comic Sans MS', sans-serif; font-size: 16px; padding: 12px 0; text-align: center; font-weight: bold; box-shadow: none; transition: all 0.3s ease-in-out;">
+        <ion-icon name="log-out-outline" slot="start" style="color: rgb(199, 255, 220); font-size: 22px;"></ion-icon>
         <span>Cerrar sesión</span>
       </ion-item>
 
@@ -36,10 +37,6 @@
     </ion-list>
   </ion-content>
 </ion-menu>
-
-
-
-
 
 
 
@@ -126,9 +123,3 @@
 <div class="twinkle-star" style="top: 35%; left: 55%; font-size: 28px;">✦</div>  
 <div class="twinkle-star" style="top: 40%; left: 10%; font-size: 30px;">✧</div>  
 <div class="twinkle-star" style="top: 60%; left: 80%; font-size: 26px;">✦</div>  
- 
-
-
-
-
-

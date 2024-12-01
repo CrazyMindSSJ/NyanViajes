@@ -68,9 +68,3 @@ export class PerfilPage implements OnInit {
   }
 
 }
-
-
-
-
-
-

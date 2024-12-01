@@ -6,23 +6,41 @@ import { Component } from '@angular/core';
   styleUrls: ['./contacto.page.scss'],
 })
 export class ContactoPage {
-  registeredEmails: string[] = ['usuario1@example.com', 'usuario2@example.com']; // Lista de correos registrados
+  // Lista de usuarios registrados con correo y nombre
+  registeredUsers: { name: string, email: string }[] = [
+    { name: 'Usuario1', email: 'usuario1@duocuc.cl' },
+    { name: 'Usuario2', email: 'usuario2@duocuc.cl' },
+  ];
+
   email: string = '';
+  name: string = '';
   message: string = '';
 
   constructor() {}
 
-  isEmailRegistered(email: string): boolean {
-    return this.registeredEmails.includes(email);
+  // Verifica si el usuario (nombre y correo) está registrado
+  isUserRegistered(name: string, email: string): boolean {
+    return this.registeredUsers.some(user => user.name === name && user.email === email);
   }
 
+  // Método para enviar el mensaje
   sendMessage() {
-    if (this.isEmailRegistered(this.email)) {
-      // Lógica para enviar el mensaje
+    // Validación de longitud del mensaje
+    if (this.message.length < 10 || this.message.length > 300) {
+      alert('El mensaje debe tener entre 10 y 300 caracteres.');
+      return;
+    }
+
+    if (this.message.length < 10 || this.message.length > 300) {
+      alert('El mensaje debe tener entre 10 y 300 caracteres.');
+      return;
+    }
+
+    if (this.email.endsWith('@duocuc.cl') && this.isUserRegistered(this.name, this.email)) {
       console.log('Mensaje enviado:', this.message);
       alert('Mensaje enviado con éxito');
     } else {
-      alert('El correo electrónico no está registrado. No puedes enviar un mensaje.');
+      alert('El correo electrónico no está registrado.');
     }
   }
 }

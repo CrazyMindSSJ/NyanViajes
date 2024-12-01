@@ -17,45 +17,31 @@
   <ion-card style="background-color: white; border-radius: 20px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); padding: 20px;">
     <ion-card-content>
       <form [formGroup]="persona" (ngSubmit)="registrar()">
-
+        
         <!-- RUT -->
         <ion-item style="margin-bottom: 15px; border-radius: 10px; --background: #FFEBEF;">
+          <ion-icon slot="start" name="person-circle-outline" style="color: #696767;"></ion-icon>
           <ion-label position="stacked" style="color: #696767;">RUT</ion-label>
           <ion-input formControlName="rut" type="text" placeholder="11111111-1"></ion-input>
         </ion-item>
-        <ion-text color="danger" *ngIf="persona.controls.rut.touched && persona.controls.rut.errors?.['required']">
-          El RUT es obligatorio
-        </ion-text>
-        <ion-text color="danger" *ngIf="persona.controls.rut.touched && persona.controls.rut.errors?.['pattern']">
-          El RUT no es válido
-        </ion-text>
-        <ion-text color="danger" *ngIf="persona.controls.rut.errors?.['rutChileno']">
-          El RUT debe ser chileno
-        </ion-text>
 
         <!-- Nombre -->
         <ion-item style="margin-bottom: 15px; border-radius: 10px; --background: #FFEBEF;">
+          <ion-icon slot="start" name="person-outline" style="color: #696767;"></ion-icon>
           <ion-label position="stacked" style="color: #696767;">Nombre</ion-label>
           <ion-input formControlName="nombre" type="text"></ion-input>
         </ion-item>
-        <ion-text color="danger" *ngIf="persona.controls.nombre.touched && persona.controls.nombre.errors?.['required']">
-          El nombre es obligatorio
-        </ion-text>
-        <ion-text color="danger" *ngIf="persona.controls.nombre.touched && persona.controls.nombre.errors?.['pattern']">
-          El nombre debe tener al menos 3 caracteres
-        </ion-text>
 
         <!-- Fecha de Nacimiento -->
         <ion-item style="margin-bottom: 15px; border-radius: 10px; --background: #FFEBEF;">
+          <ion-icon slot="start" name="calendar-outline" style="color: #696767;"></ion-icon>
           <ion-label position="stacked" style="color: #696767;">Fecha de nacimiento</ion-label>
           <ion-datetime formControlName="fecha_nacimiento" display-format="MM/DD/YYYY"></ion-datetime>
         </ion-item>
-        <ion-text color="danger" *ngIf="persona.controls.fecha_nacimiento.touched && persona.controls.fecha_nacimiento.errors?.['menorDeEdad']">
-          Debe ser mayor de 18 años
-        </ion-text>
 
         <!-- Género -->
         <ion-item style="margin-bottom: 15px; border-radius: 10px; --background: #FFEBEF;">
+          <ion-icon slot="start" name="male-female" style="color: #696767;"></ion-icon>
           <ion-label position="stacked" style="color: #696767;">Género</ion-label>
           <ion-select formControlName="genero">
             <ion-select-option>Masculino</ion-select-option>
@@ -63,45 +49,31 @@
             <ion-select-option>Otro</ion-select-option>
           </ion-select>
         </ion-item>
-        <ion-text color="danger" *ngIf="persona.controls.genero.touched && persona.controls.genero.errors?.['required']">
-          El género es obligatorio
-        </ion-text>
 
         <!-- Correo Electrónico -->
         <ion-item style="margin-bottom: 15px; border-radius: 10px; --background: #FFEBEF;">
+          <ion-icon slot="start" name="mail-outline" style="color: #696767;"></ion-icon>
           <ion-label position="stacked" style="color: #696767;">Correo Electrónico</ion-label>
           <ion-input formControlName="email" type="email" placeholder="Miau@duocuc.cl"></ion-input>
         </ion-item>
-        <ion-text color="danger" *ngIf="persona.controls.email.touched && persona.controls.email.errors?.['pattern']">
-          El formato del correo es inválido
-        </ion-text>
 
         <!-- Contraseña -->
         <ion-item style="margin-bottom: 15px; border-radius: 10px; --background: #FFEBEF;">
+          <ion-icon slot="start" name="lock-closed-outline" style="color: #696767;"></ion-icon>
           <ion-label position="stacked" style="color: #696767;">Contraseña</ion-label>
           <ion-input formControlName="contra" type="password"></ion-input>
         </ion-item>
-        <ion-text color="danger" *ngIf="persona.controls.contra.touched && persona.controls.contra.errors?.['required']">
-          La contraseña es obligatoria
-        </ion-text>
-        <ion-text color="danger" *ngIf="persona.controls.contra.touched && persona.controls.contra.errors?.['minlength']">
-          La contraseña debe tener al menos 8 caracteres
-        </ion-text>
-        <ion-text color="danger" *ngIf="persona.controls.contra.touched && persona.controls.contra.errors?.['maxlength']">
-          La contraseña no puede exceder los 16 caracteres
-        </ion-text>
 
         <!-- Repetir Contraseña -->
         <ion-item style="margin-bottom: 15px; border-radius: 10px; --background: #FFEBEF;">
+          <ion-icon slot="start" name="lock-closed-outline" style="color: #696767;"></ion-icon>
           <ion-label position="stacked" style="color: #696767;">Repetir Contraseña</ion-label>
           <ion-input formControlName="contraVali" type="password"></ion-input>
         </ion-item>
-        <ion-text color="danger" *ngIf="persona.controls.contraVali.touched && persona.controls.contraVali.errors?.['required']">
-          Debe repetir la contraseña
-        </ion-text>
 
         <!-- Categoría -->
         <ion-item style="margin-bottom: 15px; border-radius: 10px; --background: #FFEBEF;">
+          <ion-icon slot="start" name="people-outline" style="color: #696767;"></ion-icon>
           <ion-label position="stacked" style="color: #696767;">Categoría</ion-label>
           <ion-select formControlName="categoria">
             <ion-select-option value="Estudiante">Estudiante</ion-select-option>
@@ -109,21 +81,21 @@
           </ion-select>
         </ion-item>
 
-   <!-- ¿Tiene Automóvil? -->
-<ion-item style="margin-bottom: 15px; border-radius: 10px; --background: #FFEBEF;">
-  <ion-label position="stacked" style="color: #696767; font-weight: bold; margin-bottom: 10px;">¿Tiene automóvil?</ion-label>
-  <ion-radio-group formControlName="tiene_auto" style="display: flex; flex-direction: row; justify-content: space-around; align-items: center; gap: 20px; margin-top: 10px;">
-    <div style="display: flex; flex-direction: column; align-items: center; cursor: pointer;">
-      <ion-radio value="Si" style="--background: transparent; --border-width: 2px; --border-color: #FF69B4; width: 20px; height: 20px;"></ion-radio>
-      <span style="color: #696767; margin-top: 5px;">Sí</span>
-    </div>
-    <div style="display: flex; flex-direction: column; align-items: center; cursor: pointer;">
-      <ion-radio value="No" style="--background: transparent; --border-width: 2px; --border-color: #FF69B4; width: 20px; height: 20px;"></ion-radio>
-      <span style="color: #696767; margin-top: 5px;">No</span>
-    </div>
-  </ion-radio-group>
-</ion-item>
-
+        <!-- ¿Tiene Automóvil? -->
+        <ion-item style="margin-bottom: 15px; border-radius: 10px; --background: #FFEBEF;">
+          <ion-icon slot="start" name="car-outline" style="color: #696767;"></ion-icon>
+          <ion-label position="stacked" style="color: #696767; font-weight: bold; margin-bottom: 10px;">¿Tiene automóvil?</ion-label>
+          <ion-radio-group formControlName="tiene_auto" style="display: flex; flex-direction: row; justify-content: space-around; align-items: center; gap: 20px; margin-top: 10px;">
+            <div style="display: flex; flex-direction: column; align-items: center; cursor: pointer;">
+              <ion-radio value="Si" style="--background: transparent; --border-width: 2px; --border-color: #FF69B4; width: 20px; height: 20px;"></ion-radio>
+              <span style="color: #696767; margin-top: 5px;">Sí</span>
+            </div>
+            <div style="display: flex; flex-direction: column; align-items: center; cursor: pointer;">
+              <ion-radio value="No" style="--background: transparent; --border-width: 2px; --border-color: #FF69B4; width: 20px; height: 20px;"></ion-radio>
+              <span style="color: #696767; margin-top: 5px;">No</span>
+            </div>
+          </ion-radio-group>
+        </ion-item>
 
         <!-- Campos adicionales para automóvil -->
         <ion-input *ngIf="persona.controls.tiene_auto.value == 'Si'" formControlName="marca" type="text" placeholder="Marca del automóvil" label="Marca" labelPlacement="stacked"></ion-input>
@@ -141,6 +113,3 @@
     </ion-card-content>
   </ion-card>
 </ion-content>
-
-
-

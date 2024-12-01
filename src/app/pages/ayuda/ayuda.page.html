@@ -1,48 +1,48 @@
 <ion-header>
   <ion-toolbar color="light">
-    <ion-item routerLink="/perfil" detail="true">
+    <ion-item routerLink="/perfil">
       <ion-icon name="help-circle-outline" slot="start" style="color: #FFB6C1;"></ion-icon>
       <span style="font-size: 1.2rem; color: #696767;">Ayuda</span>
     </ion-item>
-    <ion-buttons slot="end">
-      <ion-button routerLink="/perfil">
-      </ion-button>
-    </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
+<ion-content style="background-color: #F9F9F9;">
   <div class="ion-padding">
-    <h2 style="color: #FFB6C1; text-align: center;">Centro de Ayuda</h2>
+    <!-- Título de la página -->
+    <h2 style="color: #FFB6C1; text-align: center; font-size: 2rem; font-weight: bold; margin-bottom: 30px;">Centro de Ayuda</h2>
 
-    <ion-card>
+    <!-- Tarjeta 1 - Crear viaje -->
+    <ion-card style="border-radius: 10px; box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1); margin-bottom: 20px; background-color: #FFEBEE;">
       <ion-card-header>
-        <ion-card-title style="font-size: 1.5rem; color: #696767;">¿Cómo crear un viaje?</ion-card-title>
+        <ion-card-title style="font-size: 1.4rem; color: #333333; font-weight: bold;">¿Cómo crear un viaje?</ion-card-title>
       </ion-card-header>
       <ion-card-content>
         <p style="color: #696767;">Para crear un viaje, dirígete a la sección "Registrar Viaje" en la aplicación. Completa el formulario con los siguientes datos:</p>
-        <ul>
+        <ul style="color: #696767; padding-left: 20px;">
           <li>Origen y destino</li>
           <li>Fecha y hora del viaje</li>
           <li>Capacidad del vehículo</li>
         </ul>
-        <ion-button expand="full" style="background-color: #FFB6C1; color: #696767; margin-top: 10px;" routerLink="/viajes">Ir a Viajes</ion-button>
+        <ion-button expand="full" style="background-color: #FFB6C1; color: #696767; margin-top: 10px; border-radius: 10px;" routerLink="/viajes">Ir a Viajes</ion-button>
       </ion-card-content>
     </ion-card>
 
-    <ion-card>
+    <!-- Tarjeta 2 - Problemas con la aplicación -->
+    <ion-card style="border-radius: 10px; box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1); margin-bottom: 20px; background-color: #E3F2FD;">
       <ion-card-header>
-        <ion-card-title style="font-size: 1.5rem; color: #696767;">¿Qué hacer si tengo problemas con la aplicación?</ion-card-title>
+        <ion-card-title style="font-size: 1.4rem; color: #333333; font-weight: bold;">¿Qué hacer si tengo problemas con la aplicación?</ion-card-title>
       </ion-card-header>
       <ion-card-content>
         <p style="color: #696767;">Si experimentas algún problema, por favor contáctanos a través de la sección "Contacto" en la aplicación. También puedes consultar nuestras preguntas frecuentes.</p>
-        <ion-button expand="full" style="background-color: #FFB6C1; color: #696767; margin-top: 10px;" routerLink="/contacto">Contáctanos</ion-button>
+        <ion-button expand="full" style="background-color: #B3E5FC; color: #696767; margin-top: 10px; border-radius: 10px;" routerLink="/contacto">Contáctanos</ion-button>
       </ion-card-content>
     </ion-card>
 
-    <ion-card>
+    <!-- Tarjeta 3 - FAQs -->
+    <ion-card style="border-radius: 10px; box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1); margin-bottom: 20px; background-color: #E8F5E9;">
       <ion-card-header>
-        <ion-card-title style="font-size: 1.5rem; color: #696767;">FAQs</ion-card-title>
+        <ion-card-title style="font-size: 1.4rem; color: #333333; font-weight: bold;">FAQs</ion-card-title>
       </ion-card-header>
       <ion-card-content>
         <p style="color: #696767;">Consulta nuestras preguntas frecuentes para obtener respuestas rápidas a tus inquietudes sobre la aplicación y el servicio.</p>
@@ -50,9 +50,10 @@
           <li><strong>1. ¿Cómo restablezco mi contraseña?</strong><br> Puedes restablecer tu contraseña desde la pantalla de inicio de sesión. Haz clic en "Olvidé mi contraseña" y sigue las instrucciones.</li>
           <li><strong>2. ¿Puedo modificar un viaje una vez que ha sido creado?</strong><br> Sí, puedes modificar los detalles de tu viaje desde la sección "Mis Viajes". Selecciona el viaje y elige la opción para editar.</li>
           <li><strong>3. ¿Qué debo hacer si mi viaje no aparece en la lista?</strong><br> Asegúrate de haber creado el viaje correctamente. Si el problema persiste, contáctanos para recibir asistencia.</li>
-          <li><strong>4. ¿Cómo puedo calificar a un conductor?</strong><br> Después de completar un viaje, se te dará la opción de calificar a tu conductor en la aplicación directamente en su perfil</li>
+          <li><strong>4. ¿Cómo puedo calificar a un conductor?</strong><br> Después de completar un viaje, se te dará la opción de calificar a tu conductor en la aplicación directamente en su perfil.</li>
           <li><strong>5. ¿Hay un costo asociado con el uso de la aplicación?</strong><br> El uso de la aplicación es gratuito, pero los costos de los viajes dependen de los conductores y las condiciones del servicio.</li>
         </ul>
       </ion-card-content>
     </ion-card>
-
+  </div>
+</ion-content>

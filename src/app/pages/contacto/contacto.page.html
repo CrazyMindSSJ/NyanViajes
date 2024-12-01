@@ -2,6 +2,10 @@
   <ion-toolbar color="light">
       <ion-icon name="mail-outline" slot="start" style="color: #FFB6C1;"></ion-icon>
       <span style="font-size: 1.2rem; color: #696767;">Contacto</span>
+    <ion-item routerLink="/perfil">
+      <ion-icon name="mail-outline" slot="start" style="color: #FAD02E;"></ion-icon>
+      <span style="font-size: 1.4rem; color: #6A4C93; font-weight: bold;">Contacto</span>
+    </ion-item>
     <ion-buttons slot="end">
       <ion-button routerLink="/home">
         <ion-icon name="arrow-forward-outline" style="color: white;"></ion-icon>
@@ -10,57 +14,68 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
+
+<ion-content style="background: #F9F7F7;">
   <div class="ion-padding">
-    <h2 style="color: #FFB6C1; text-align: center;">Contáctanos</h2>
+    <h2 style="color: #FF9B9B; text-align: center; font-family: 'Roboto', sans-serif; font-weight: bold;">Contáctanos</h2>
     
-    <ion-card>
+    <ion-card style="box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1); border-radius: 12px;">
       <ion-card-header>
-        <ion-card-title style="font-size: 1.5rem; color: #696767;">¿Tienes preguntas o dudas?</ion-card-title>
+        <ion-card-title style="font-size: 1.5rem; color: #6A4C93; font-weight: 600; font-family: 'Roboto', sans-serif;">
+          ¿Tienes preguntas o dudas?
+        </ion-card-title>
       </ion-card-header>
       <ion-card-content>
-        <p style="color: #696767;">Estamos aquí para ayudarte. Completa el formulario a continuación y nos pondremos en contacto contigo a la brevedad.</p>
+        <p style="color: #6A4C93; font-family: 'Roboto', sans-serif; font-size: 1.1rem;">
+          Estamos aquí para ayudarte. Completa el formulario a continuación y nos pondremos en contacto contigo a la brevedad.
+        </p>
 
         <form (ngSubmit)="sendMessage()">
-          <ion-item>
-            <ion-label position="stacked">Nombre</ion-label>
-            <ion-input type="text" placeholder="Ingresa tu nombre" required></ion-input>
+          <ion-item style="border-radius: 10px; background-color: #FFF2CC;">
+            <ion-label position="stacked" style="color: #FAD02E; font-weight: bold;">Nombre</ion-label><br>
+            <ion-input type="text" placeholder="Ingresa tu nombre" required style="--padding-start: 10px; border-radius: 10px; background: #FF9B9B; color: #FFF;"></ion-input>
           </ion-item>
           
-          <ion-item>
-            <ion-label position="stacked">Correo Electrónico</ion-label>
-            <ion-input type="email" placeholder="Ingresa tu correo" required [(ngModel)]="email" name="email"></ion-input>
+          <ion-item style="border-radius: 10px; background-color: #E0BBE4;">
+            <ion-label position="stacked" style="color: #6A4C93; font-weight: bold;">Correo Electrónico</ion-label><br>
+            <ion-input type="email" placeholder="Ingresa tu correo" required [(ngModel)]="email" name="email" style="--padding-start: 10px; border-radius: 10px; background: #FDCB82; color: #FFF;"></ion-input>
           </ion-item>
         
-          <ion-item>
-            <ion-label position="stacked">Mensaje</ion-label>
-            <ion-textarea placeholder="Escribe tu mensaje" required [(ngModel)]="message" name="message"></ion-textarea>
+          <ion-item style="border-radius: 10px; background-color: #D4E157;">
+            <ion-label position="stacked" style="color: #F57F17; font-weight: bold;">Mensaje</ion-label> <br>
+            <ion-textarea placeholder="Escribe tu mensaje" required [(ngModel)]="message" name="message" style="--padding-start: 10px; border-radius: 10px; background: #80C7E4; color: #FFF;"></ion-textarea>
           </ion-item>
         
-          <ion-button expand="full" type="submit" style="background-color: #FFB6C1; color: #696767; margin-top: 10px;">
+          <ion-button expand="full" type="submit" style="background-color: #FF9B9B; color: #FFF; border-radius: 10px; margin-top: 10px; font-weight: bold;">
             Enviar Mensaje
           </ion-button>
         </form>
-        
-
-        
-        
       </ion-card-content>
     </ion-card>
 
-    <ion-card style="margin-top: 20px;">
+    <ion-card style="margin-top: 20px; box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1); border-radius: 12px;">
       <ion-card-header>
-        <ion-card-title style="font-size: 1.5rem; color: #696767;">Otras formas de contacto</ion-card-title>
+        <ion-card-title style="font-size: 1.5rem; color: #6A4C93; font-weight: 600; font-family: 'Roboto', sans-serif;">
+          Otras formas de contacto
+        </ion-card-title>
       </ion-card-header>
       <ion-card-content>
-        <p style="color: #696767;">También puedes ponerte en contacto con nosotros a través de:</p>
-        <ul style="color: #696767;">
-          <li><ion-icon name="call-outline" style="color: #FFB6C1;"></ion-icon> Teléfono: (+56) 2 2585 6990</li>
-          <li><ion-icon name="logo-whatsapp" style="color: #FFB6C1;"></ion-icon> WhatsApp:  +56958142089</li>
-          <li><ion-icon name="mail-outline" style="color: #FFB6C1;"></ion-icon> Email: NyanSoporte&#64;duocuc.cl</li> 
+        <p style="color: #6A4C93; font-family: 'Roboto', sans-serif;">También puedes ponerte en contacto con nosotros a través de:</p>
+        <ul style="color: #6A4C93; font-family: 'Roboto', sans-serif; list-style-type: none; padding: 0;">
+          <li style="margin-bottom: 10px;">
+            <ion-icon name="call-outline" style="color: #FAD02E; font-size: 24px;"></ion-icon> 
+            Teléfono: (+56) 2 2585 6990
+          </li>
+          <li style="margin-bottom: 10px;">
+            <ion-icon name="logo-whatsapp" style="color: #E0BBE4; font-size: 24px;"></ion-icon> 
+            WhatsApp: +56958142089
+          </li>
+          <li style="margin-bottom: 10px;">
+            <ion-icon name="mail-outline" style="color: #F57F17; font-size: 24px;"></ion-icon> 
+            Email: NyanSoporte&#64;duocuc.cl
+          </li> 
         </ul>
       </ion-card-content>
     </ion-card>
   </div>
 </ion-content>
-

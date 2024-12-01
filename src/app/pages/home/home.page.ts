@@ -14,18 +14,6 @@ export class HomePage implements OnInit{
   persona: any;
   clima: string = '';
 
-  viaje = new FormGroup({
-    id_viaje: new FormControl(),
-    conductor: new FormControl(),
-    capa_disp: new FormControl(),
-    destino: new FormControl(),
-    lat: new FormControl(),
-    long: new FormControl(),
-    dis_met: new FormControl(),
-    tie_min: new FormControl(),
-    estado: new FormControl('pendiente'),
-    pasajeros: new FormControl([])
-  });
 
   constructor(private navController: NavController, private api: ApiService) {}
 
