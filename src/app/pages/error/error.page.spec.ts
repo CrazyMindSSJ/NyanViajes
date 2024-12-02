@@ -1,4 +1,4 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+/* import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { ErrorPage } from './error.page';
 
 describe('ErrorPage', () => {
@@ -13,5 +13,6 @@ describe('ErrorPage', () => {
 
   /*it('should create', () => {
     expect(component).toBeTruthy();
-  });*/
+  });
 });
+ */

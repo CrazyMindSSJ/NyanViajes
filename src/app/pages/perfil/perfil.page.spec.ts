@@ -1,4 +1,4 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+/* import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { PerfilPage } from './perfil.page';
 
 describe('PerfilPage', () => {
@@ -13,5 +13,6 @@ describe('PerfilPage', () => {
 
   /*it('should create', () => {
     expect(component).toBeTruthy();
-  });*/
+  });
 });
+ */

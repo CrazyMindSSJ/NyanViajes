@@ -32,8 +32,9 @@ export class AdministrarViajesPage implements OnInit {
      this.cargarViajes();
   }
 
-   cargarViajes() {
+  cargarViajes() {
    this.fireViajes.getViajes();
+   console.log(this.viajes)
   }
 
   seleccionarViaje(viaje: any) {
