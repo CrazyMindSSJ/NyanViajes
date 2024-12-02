@@ -1,15 +1,31 @@
+import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { IonicModule } from '@ionic/angular';
-import { HomePage } from './home.page';
 import { RouterTestingModule } from '@angular/router/testing';
-import { Router } from '@angular/router';
-import { of } from 'rxjs';
+import { IonicModule } from '@ionic/angular';
+import { ApiService } from 'src/app/services/api.service';
+
+import { HomePage } from './home.page';
 
 describe('Página Home', () => {
   let component: HomePage;
   let fixture: ComponentFixture<HomePage>;
-  let router: Router;
-  let usuarioPrueba = { /* datos de usuario */ };
+  let usuarioPrueba = {
+    id: 1,
+    nombre: 'Usuario de prueba',
+    email: 'test@test.com',
+    contra: '123456',
+    cant_asiento: 0,
+    categoria: 'usuario',
+    color: 'azul',
+    contraVali: '123456',
+    fecha_nacimiento: '2021-01-01',
+    genero: 'masculino',
+    marca: 'Toyota',
+    modelo: 'Corolla',
+    patente: 'AAA123',
+    rut: '12345678-9',
+    tiene_auto: 'si',
+  };
 
   beforeEach(async () => {
     const localStorageMock = {
@@ -24,18 +40,36 @@ describe('Página Home', () => {
     };
     Object.defineProperty(window, 'localStorage', { value: localStorageMock });
 
-    
-
     await TestBed.configureTestingModule({
       declarations: [HomePage],
       imports: [IonicModule.forRoot(), RouterTestingModule],
+      providers: [provideHttpClient(withInterceptorsFromDi()), ApiService]
     }).compileComponents();
 
     fixture = TestBed.createComponent(HomePage);
     component = fixture.componentInstance;
-    router = TestBed.inject(Router);
     fixture.detectChanges();
   });
 
- 
+  it('5. Verificar si la página se crea correctamente', () => {
+    expect(component).toBeTruthy();
+  });
+
+  it('6. Validar que los datos del usuario se cargan desde localStorage', () => {
+    expect(localStorage.getItem).toHaveBeenCalledWith('persona');
+    expect(component.persona).toEqual(usuarioPrueba);
+  });
+
+
+  it('7. Verificar que los elementos HTML se rendericen correctamente', () => {
+    const compiled = fixture.debugElement.nativeElement;
+    const title = compiled.querySelector('ion-title');
+    expect(title.textContent).toContain('Menú inicio');
+  });
+
+  it('8. Verificar que no haya errores en la consola', () => {
+    const consoleSpy = spyOn(console, 'error');
+    fixture.detectChanges();
+    expect(consoleSpy).not.toHaveBeenCalled();
+  });
 });

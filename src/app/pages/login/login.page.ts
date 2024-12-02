@@ -21,7 +21,6 @@ export class LoginPage implements OnInit {
 
   async login() {
     if(await this.fireUsuario.login(this.email,this.contrasena)){
-      console.log(this.email, this.contrasena)
       this.router.navigate(['/home']);
     }else{
       alert("CORREO O CONTRASEÑA INCORRECTOS!");
