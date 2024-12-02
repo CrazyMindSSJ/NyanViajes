@@ -21,7 +21,7 @@ export class PerfilPage implements OnInit {
   ngOnInit() {
     const personaJSON = localStorage.getItem("persona");
     this.persona = personaJSON ? JSON.parse(personaJSON) : { nombre: 'Usuario', categoria: 'General' };
-    this.biografia = 'Escribe tu biografía aqui';
+    this.biografia = localStorage.getItem("biografia") || 'Escribe tu biografía aqui';
   }
 
   // Método para agregar un comentario con el nombre del usuario
@@ -43,19 +43,20 @@ export class PerfilPage implements OnInit {
         }
       }, 100);
     } else {
-      this.saveName(); // Guardar el nombre al salir de la edición
+      this.saveBio(); // Guardar biografía al salir de la edición
+      this.saveName(); // Guardar nombre
     }
   }
 
   // Guardar el nombre
   saveName() {
-    this.isEditing = false;
+    localStorage.setItem('persona', JSON.stringify(this.persona));
     console.log("Nombre guardado: ", this.persona.nombre);
   }
 
   // Guardar la biografía
   saveBio() {
-    this.isEditing = false;
+    localStorage.setItem('biografia', this.biografia);
     console.log("Biografía guardada: ", this.biografia);
   }
 
@@ -66,5 +67,4 @@ export class PerfilPage implements OnInit {
       this.nuevoViaje = ''; 
     }
   }
-
 }

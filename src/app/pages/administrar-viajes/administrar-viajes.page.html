@@ -6,7 +6,7 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
+<ion-content style="background-color: #F0F8FF;"> <!-- Fondo suave azul pastel -->
   <!-- Lista de viajes -->
   <ion-list *ngFor="let viaje of viajes">
     <ion-item-sliding>
@@ -33,50 +33,70 @@
   </ion-list>
 
   <!-- Formulario de edición -->
-  <ion-card>
+  <ion-card style="background: #ffffff; box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);">
     <form (ngSubmit)="actualizarViaje()">
+      
+      <!-- Inputs con colores del arcoíris -->
       <ion-item>
         <ion-label position="stacked">Capacidad Disponible</ion-label>
-        <ion-input type="number" [(ngModel)]="viajeSeleccionado.capa_disp" name="capa_disp"></ion-input>
+        <br>
+        <ion-input type="number" [(ngModel)]="viajeSeleccionado.capa_disp" name="capa_disp" style="background-color: #FFB3B3;"></ion-input> <!-- Rosa pastel -->
       </ion-item>
+
       <ion-item>
         <ion-label position="stacked">Destino</ion-label>
-        <ion-input [(ngModel)]="viajeSeleccionado.destino" name="destino"></ion-input>
+        <br>
+        <ion-input [(ngModel)]="viajeSeleccionado.destino" name="destino" style="background-color: #FFEB99;"></ion-input> <!-- Amarillo pastel -->
       </ion-item>
+
       <ion-item>
         <ion-label position="stacked">Latitud</ion-label>
-        <ion-input type="text" [(ngModel)]="viajeSeleccionado.lat" name="lat"></ion-input>
+        <br>
+        <ion-input type="text" [(ngModel)]="viajeSeleccionado.lat" name="lat" style="background-color: #D9FFB3;"></ion-input> <!-- Verde pastel -->
       </ion-item>
+
       <ion-item>
         <ion-label position="stacked">Longitud</ion-label>
-        <ion-input type="text" [(ngModel)]="viajeSeleccionado.long" name="long"></ion-input>
+        <br>
+        <ion-input type="text" [(ngModel)]="viajeSeleccionado.long" name="long" style="background-color: #A2D2FF;"></ion-input> <!-- Azul pastel -->
       </ion-item>
+
       <ion-item>
         <ion-label position="stacked">Distancia (metros)</ion-label>
-        <ion-input type="number" [(ngModel)]="viajeSeleccionado.dis_met" name="dis_met"></ion-input>
+        <br>
+        <ion-input type="number" [(ngModel)]="viajeSeleccionado.dis_met" name="dis_met" style="background-color: #FFD1DC;"></ion-input> <!-- Rosa pastel -->
       </ion-item>
+
       <ion-item>
         <ion-label position="stacked">Tiempo (minutos)</ion-label>
-        <ion-input type="number" [(ngModel)]="viajeSeleccionado.tie_min" name="tie_min"></ion-input>
+        <br>
+        <ion-input type="number" [(ngModel)]="viajeSeleccionado.tie_min" name="tie_min" style="background-color: #FFCC99;"></ion-input> <!-- Naranja pastel -->
       </ion-item>
+
       <ion-item>
         <ion-label position="stacked">Valor</ion-label>
-        <ion-input type="number" [(ngModel)]="viajeSeleccionado.valor" name="valor"></ion-input>
+        <br>
+        <ion-input type="number" [(ngModel)]="viajeSeleccionado.valor" name="valor" style="background-color: #D9B3FF;"></ion-input> <!-- Lila pastel -->
       </ion-item>
+
       <ion-item>
         <ion-label position="stacked">Hora de Salida</ion-label>
-        <ion-input [(ngModel)]="viajeSeleccionado.hora_salida" name="hora_salida"></ion-input>
+        <br>
+        <ion-input [(ngModel)]="viajeSeleccionado.hora_salida" name="hora_salida" style="background-color: #C2FFCC;"></ion-input> <!-- Verde menta pastel -->
       </ion-item>
+
       <ion-item>
         <ion-label position="stacked">Estado</ion-label>
-        <ion-select [(ngModel)]="viajeSeleccionado.estado" name="estado">
+        <br>
+        <ion-select [(ngModel)]="viajeSeleccionado.estado" name="estado" style="background-color: #FFD700;">
           <ion-select-option value="Pendiente">Pendiente</ion-select-option>
           <ion-select-option value="En curso">En curso</ion-select-option>
           <ion-select-option value="Finalizado">Finalizado</ion-select-option>
         </ion-select>
       </ion-item>
-
+<br><br><br>
       <ion-button expand="block" type="submit" color="success">Actualizar</ion-button>
     </form>
   </ion-card>
 </ion-content>
+

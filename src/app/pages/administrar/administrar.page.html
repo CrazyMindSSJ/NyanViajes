@@ -1,36 +1,38 @@
 <ion-header>
-  <ion-toolbar style="--background: #FFB6C1;">
+  <ion-toolbar style="--background: #FFD1DC;">
     <div style="display: flex; justify-content: space-between; align-items: center;">
-      <ion-title style="color: #696767; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; font-weight: 600;">
+      <ion-title style="color: #4E4E4E; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; font-weight: 600;">
         Administrar
       </ion-title>
     </div>
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
-  <ion-card>
-    <form [formGroup]="persona" (ngSubmit)="registrar()">
+<ion-content style="background: #F0F8FF; border: 2px solid #81D4FA; border-radius: 10px; padding: 10px;">
+  <ion-card style="border-radius: 12px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);">
+    <form [formGroup]="persona" (ngSubmit)="registrar()" style="padding: 20px;">
       <!-- Campos del formulario -->
-      <ion-input formControlName="rut" type="text" labelPlacement="stacked" label="RUT" placeholder="11111111-1"></ion-input>
-      <ion-input formControlName="nombre" type="text" labelPlacement="stacked" label="Nombre"></ion-input>
-      <ion-input formControlName="fecha_nacimiento" type="date" labelPlacement="stacked" label="Fecha de nacimiento"></ion-input>
-      <ion-select formControlName="genero" label="Género" labelPlacement="stacked">
+      <ion-input formControlName="rut" type="text" labelPlacement="stacked" label="RUT" placeholder="11111111-1" style="--background: #FFEBEE; --border-color: #FFCDD2;"></ion-input>
+      <ion-input formControlName="nombre" type="text" labelPlacement="stacked" label="Nombre" style="--background: #FFF3E0; --border-color: #FFCC80;"></ion-input>
+      <ion-input formControlName="fecha_nacimiento" type="date" labelPlacement="stacked" label="Fecha de nacimiento" style="--background: #E1F5FE; --border-color: #81D4FA;"></ion-input>
+      <ion-select formControlName="genero" label="Género" labelPlacement="stacked" style="--background: #E8F5E9; --border-color: #A5D6A7;">
         <ion-select-option value="Masculino">Masculino</ion-select-option>
         <ion-select-option value="Femenino">Femenino</ion-select-option>
         <ion-select-option value="Otro">Otro</ion-select-option>
       </ion-select>
-      <ion-input formControlName="email" type="email" labelPlacement="stacked" label="Correo electrónico"></ion-input>
-      <ion-input formControlName="contra" type="password" labelPlacement="stacked" label="Contraseña"></ion-input>
-      <ion-input formControlName="contraVali" type="password" labelPlacement="stacked" label="Repita su Contraseña"></ion-input>
+      <ion-input formControlName="email" type="email" labelPlacement="stacked" label="Correo electrónico" style="--background: #FFECB3; --border-color: #FFF176;"></ion-input>
+      <ion-input formControlName="contra" type="password" labelPlacement="stacked" label="Contraseña" style="--background: #FFEBEE; --border-color: #FFCDD2;"></ion-input>
+      <ion-input formControlName="contraVali" type="password" labelPlacement="stacked" label="Repita su Contraseña" style="--background: #FFEBEE; --border-color: #FFCDD2;"></ion-input>
+
       <ion-item>
         <ion-label>Categoría</ion-label>
-        <ion-select formControlName="categoria" labelPlacement="stacked" cancelText="Cancelar">
+        <ion-select formControlName="categoria" labelPlacement="stacked" cancelText="Cancelar" >
           <ion-select-option value="Estudiante">Estudiante</ion-select-option>
           <ion-select-option value="Profesor">Profesor</ion-select-option>
           <ion-select-option value="Administrador">Administrador</ion-select-option>
         </ion-select>
       </ion-item>
+
       <ion-label style="font-size: 11px;">¿Tiene automóvil?</ion-label>
       <br>
       <ion-radio-group formControlName="tiene_auto" style="display: flex; justify-content: space-around; margin-top: 10px;">
@@ -44,38 +46,57 @@
         </ion-item>
       </ion-radio-group>
 
-      <ion-input *ngIf="persona.controls['tiene_auto'].value === 'Si'" formControlName="modelo" type="text" label="Modelo automóvil" labelPlacement="stacked"></ion-input>
-      <ion-input *ngIf="persona.controls['tiene_auto'].value === 'Si'" formControlName="marca" type="text" label="Marca automóvil" labelPlacement="stacked"></ion-input>
-      <ion-input *ngIf="persona.controls['tiene_auto'].value === 'Si'" formControlName="color" type="text" label="Color automóvil" labelPlacement="stacked"></ion-input>
-      <ion-select *ngIf="persona.controls['tiene_auto'].value === 'Si'" formControlName="cant_asiento" label="Cantidad de asientos" labelPlacement="stacked">
+      <ion-input *ngIf="persona.controls['tiene_auto'].value === 'Si'" formControlName="modelo" type="text" label="Modelo automóvil" labelPlacement="stacked" style="--background: #F1F8E9; --border-color: #DCEDC8;"></ion-input>
+      <ion-input *ngIf="persona.controls['tiene_auto'].value === 'Si'" formControlName="marca" type="text" label="Marca automóvil" labelPlacement="stacked" style="--background: #F1F8E9; --border-color: #DCEDC8;"></ion-input>
+      <ion-input *ngIf="persona.controls['tiene_auto'].value === 'Si'" formControlName="color" type="text" label="Color automóvil" labelPlacement="stacked" style="--background: #F1F8E9; --border-color: #DCEDC8;"></ion-input>
+      <ion-select *ngIf="persona.controls['tiene_auto'].value === 'Si'" formControlName="cant_asiento" label="Cantidad de asientos" labelPlacement="stacked" style="--background: #E3F2FD; --border-color: #90CAF9;">
         <ion-select-option value="3">3</ion-select-option>
         <ion-select-option value="4">4</ion-select-option>
         <ion-select-option value="5">5</ion-select-option>
         <ion-select-option value="6">6</ion-select-option>
         <ion-select-option value="7">7</ion-select-option>
       </ion-select>
-      <ion-input *ngIf="persona.controls['tiene_auto'].value === 'Si'" formControlName="patente" type="text" label="Patente automóvil" labelPlacement="stacked" placeholder="PTCL21"></ion-input>
+      <ion-input *ngIf="persona.controls['tiene_auto'].value === 'Si'" formControlName="patente" type="text" label="Patente automóvil" labelPlacement="stacked" placeholder="XX-XX-XX" style="--background: #FFF3E0; --border-color: #FFCC80;"></ion-input>
     </form>
   </ion-card>
-  <ion-button [disabled]="persona.invalid" (click)="registrar()" type="submit" size="block" color="warning"><ion-icon name="save-outline"></ion-icon></ion-button>
-  <ion-button (click)="modificar()" size="block" color="dark"><ion-icon name="repeat-outline"></ion-icon></ion-button>
-  <ion-button (click)="limpiar()" type="reset" size="block" color="primary"><ion-icon name="refresh-outline"></ion-icon></ion-button>
 
+  <!-- Botones -->
+  <ion-button [disabled]="persona.invalid" (click)="registrar()" type="submit" size="block" color="success" style="margin-top: 20px; --background: #A5D6A7; --border-color: #388E3C;">
+    <ion-icon name="save-outline"></ion-icon>
+    Guardar
+  </ion-button>
+  
+  <ion-button (click)="modificar()" size="block" color="warning" style="margin-top: 10px; --background: #FFEB3B; --border-color: #FFCA28;">
+    <ion-icon name="repeat-outline"></ion-icon>
+    Modificar
+  </ion-button>
+  
+  <ion-button (click)="limpiar()" type="reset" size="block" color="primary" style="margin-top: 10px; --background: #80DEEA; --border-color: #4DD0E1;">
+    <ion-icon name="refresh-outline"></ion-icon>
+    Limpiar
+  </ion-button>
+
+  <!-- Lista de personas -->
   <ion-list *ngFor="let persona of personas">
-        <ion-item-sliding>
+    <ion-item-sliding>
       <ion-item-options side="start">
-        <ion-item-option (click)="buscar(persona)" color="warning"><ion-icon name="search-circle-outline"></ion-icon></ion-item-option>
+        <ion-item-option (click)="buscar(persona)" color="warning">
+          <ion-icon name="search-circle-outline"></ion-icon>
+        </ion-item-option>
       </ion-item-options>
 
       <ion-item>{{persona.rut}} - {{persona.nombre}}</ion-item>
 
       <ion-item-options side="end">
-        <ion-item-option (click)="eliminar(persona.rut)" color="danger"><ion-icon name="trash-outline"></ion-icon></ion-item-option>
+        <ion-item-option (click)="eliminar(persona.rut)" color="danger">
+          <ion-icon name="trash-outline"></ion-icon>
+        </ion-item-option>
       </ion-item-options>
     </ion-item-sliding>
   </ion-list>
-
 </ion-content>
+
+
 
 
 
