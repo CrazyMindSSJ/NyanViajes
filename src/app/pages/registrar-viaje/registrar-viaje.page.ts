@@ -106,6 +106,7 @@ export class RegistrarViajePage implements OnInit, AfterViewInit {
 
   initMap() {
     this.map = L.map('map_html').locate({ setView: true, maxZoom: 16 });
+    const puntoOrigen = L.latLng(-33.59844040672239, -70.57881148451541); 
 
     L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
       maxZoom: 19,
@@ -144,7 +145,7 @@ export class RegistrarViajePage implements OnInit, AfterViewInit {
     
         routeControl = L.Routing.control({
           waypoints: [
-            L.latLng(lat, long),
+            puntoOrigen,
             destinationLatLng,
           ],
           fitSelectedRoutes: true,

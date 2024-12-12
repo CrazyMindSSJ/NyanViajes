@@ -33,7 +33,6 @@ export class DetalleViajePage implements OnInit {
 
   persona: any;
   puedeTomarViaje: boolean = false;
-  esConductor: boolean = false;
   viajeFinalizado: boolean = false;
   isLoading: boolean = true;
   private map: L.Map | undefined;
@@ -47,7 +46,6 @@ export class DetalleViajePage implements OnInit {
   async ngOnInit() {
     this.id = this.activatedRouted.snapshot.paramMap.get('id') || '';
     this.persona = JSON.parse(localStorage.getItem("persona") || '{}');
-    this.esConductor = this.viaje.rut_conductor == this.persona.rut;
     await this.obtenerViaje();
   }
 
@@ -69,7 +67,6 @@ export class DetalleViajePage implements OnInit {
     }
 
     this.puedeTomarViaje =
-      !this.esConductor &&
       this.viaje.capa_disp > 0 &&
       !this.viaje.pasajeros.includes(this.persona.rut);
     this.initMap();

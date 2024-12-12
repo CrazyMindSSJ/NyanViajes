@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { CrudViajesService } from 'src/app/services/crud-viajes.service';
 import { FirebaseViajes } from 'src/app/services/fire-viajes.service';
 
 @Component({
@@ -10,7 +9,7 @@ import { FirebaseViajes } from 'src/app/services/fire-viajes.service';
 export class AdministrarViajesPage implements OnInit {
 
   viajes: any[] = [];
-  viajeSeleccionado: any = null;
+  viajeSeleccionado: any = {};
   nuevoViaje: any = {
     capa_disp: '',
     conductor: '',

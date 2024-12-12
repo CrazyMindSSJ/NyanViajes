@@ -48,15 +48,15 @@
     </ion-card-content>
   </ion-card>
 
-  <ion-button expand="full" shape="round" style="color: #000000;" (click)="tomarViaje()" *ngIf="!esConductor && puedeTomarViaje" [disabled]="isLoading">
+  <ion-button expand="full" shape="round" style="color: #000000;" (click)="tomarViaje()" *ngIf="persona.tiene_auto == 'No' || persona.rut !== viaje.rut_conductor && puedeTomarViaje">
     Tomar viaje
   </ion-button>
 
-  <ion-button expand="full" shape="round" style="color: #000000;" (click)="salirDelViaje()" *ngIf="!esConductor && !puedeTomarViaje" [disabled]="isLoading">
+  <ion-button expand="full" shape="round" style="color: #000000;" (click)="salirDelViaje()" *ngIf="persona.tiene_auto == 'No' || persona.rut !== viaje.rut_conductor && !puedeTomarViaje">
     Salir de viaje
   </ion-button>
 
-  <ion-button expand="full" shape="round" style="color: #000000;" (click)="cambiarEstadoViaje()" [disabled]="viajeFinalizado" *ngIf="esConductor" [disabled]="isLoading">
+  <ion-button expand="full" shape="round" style="color: #000000;" (click)="cambiarEstadoViaje()" [disabled]="viajeFinalizado" *ngIf="persona.tiene_auto == 'Si' && persona.rut == viaje.rut_conductor" >
     Cambiar Estado
   </ion-button>
 </ion-content>
