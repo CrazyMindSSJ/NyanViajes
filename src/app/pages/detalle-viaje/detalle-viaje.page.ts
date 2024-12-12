@@ -12,9 +12,9 @@ import type { Viaje } from 'src/app/types';
   templateUrl: './detalle-viaje.page.html',
   styleUrls: ['./detalle-viaje.page.scss'],
 })
-export class DetalleViajePage implements OnInit, AfterViewInit {
+export class DetalleViajePage implements OnInit {
   id: string = '';
-  viaje: Viaje = {
+  viaje: any = {
     id: 0,
     conductor: '',
     rut_conductor: '',
@@ -30,6 +30,7 @@ export class DetalleViajePage implements OnInit, AfterViewInit {
     pasajeros: [],
     pasajerosNombres: []
   };
+
   persona: any;
   puedeTomarViaje: boolean = false;
   esConductor: boolean = false;
@@ -46,14 +47,8 @@ export class DetalleViajePage implements OnInit, AfterViewInit {
   async ngOnInit() {
     this.id = this.activatedRouted.snapshot.paramMap.get('id') || '';
     this.persona = JSON.parse(localStorage.getItem("persona") || '{}');
-    this.esConductor = this.persona.tiene_auto === 'Si';
-
-    this.ngOnDestroy();
+    this.esConductor = this.viaje.rut_conductor == this.persona.rut;
     await this.obtenerViaje();
-    this.isLoading = false;
-
-    console.log('ID obtenido de la ruta:', this.id);
-    console.log('Latitud del viaje:', this.viaje);
   }
 
   async obtenerViaje() {
@@ -117,9 +112,6 @@ export class DetalleViajePage implements OnInit, AfterViewInit {
     this.isLoading = false;
   }
 
-  ngAfterViewInit() {
-    this.initMap();
-  }
 
   ngOnDestroy() {
     if (this.map) {

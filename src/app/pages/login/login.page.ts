@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { CrudService } from 'src/app/services/crud.service';
 import { FirebaseUsuarioService } from 'src/app/services/firebase-usuario.service';
 
 @Component({

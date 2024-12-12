@@ -5,6 +5,7 @@ import { CrudViajesService } from 'src/app/services/crud-viajes.service';
 import { ApiService } from 'src/app/services/api.service';
 import { FirebaseViajes } from 'src/app/services/fire-viajes.service';
 import { map } from 'rxjs/operators';
+import { AngularFireAuth } from '@angular/fire/compat/auth';
 
 @Component({
   selector: 'app-viajes',
@@ -33,21 +34,26 @@ export class ViajesPage implements OnInit {
     hora_salida: new FormControl(),
     pasajeros: new FormControl([]),
   });
+  
 
   viajes: any[] = [];
   
-  constructor(private fireViajes: FirebaseViajes, private router: Router, private api: ApiService) { }
+  constructor(private fireViajes: FirebaseViajes, private router: Router, private api: ApiService) {
+    
+  }
 
   ngOnInit() {
-;
-    this.persona = JSON.parse(localStorage.getItem("persona") || '');
+    this.validarUsuario();
+  }
 
-
+  async validarUsuario() {
+    this.persona = JSON.parse(localStorage.getItem("persona") || '{}');
+    
   }
 
   ionViewWillEnter() {
-    this.consumirAPI(); // Cargar el valor del dólar al entrar a la página
-    this.obtenerViajes(); // Actualizar la lista de viajes
+    this.consumirAPI();
+    this.obtenerViajes(); 
   }
 
   consumirAPI(){
@@ -74,14 +80,16 @@ export class ViajesPage implements OnInit {
       )
       .subscribe(
         (viajesFiltrados) => {
+          console.log("Viajes filtrados:", viajesFiltrados); // <-- Aquí inspeccionamos los datos
           this.viajes = viajesFiltrados;
-          this.actualizarValoresDolar(); // Actualizamos los valores en dólares
+          this.actualizarValoresDolar();
         },
         (error) => {
           console.error("Error obteniendo los viajes:", error);
         }
       );
   }
+  
   
 
   irAHistorial() {

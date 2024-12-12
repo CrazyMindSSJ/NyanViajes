@@ -3,13 +3,23 @@ import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { FirebaseUsuarioService } from './firebase-usuario.service';
 import { Viaje } from '../types';
 import { firstValueFrom } from 'rxjs';
+import { AngularFireAuth } from '@angular/fire/compat/auth';
 
 @Injectable({
   providedIn: 'root'
 })
 export class FirebaseViajes{
 
-  constructor(private firestore: AngularFirestore, private fireUsuario: FirebaseUsuarioService) {}
+  constructor(private firestore: AngularFirestore, private fireUsuario: FirebaseUsuarioService, private fireAuth: AngularFireAuth) {}
+
+
+  async obtenerDatosUsuario() {
+    const usuario = await this.fireAuth.authState.toPromise();
+    if (usuario) {
+      return this.firestore.collection('usuarios').doc(usuario.uid).valueChanges();
+    }
+    return null;
+  }
 
   // Método para obtener y actualizar el contador global
   private async getNewId(): Promise<number> {
@@ -170,7 +180,7 @@ export class FirebaseViajes{
   
   
   public async esConductorDelViaje(id_viaje: string, rut: string): Promise<boolean> {
-    const viajeSnap = await this.firestore.collection('viajes').doc(id_viaje.toString()).get().toPromise();
+    const viajeSnap = await this.firestore.collection('viajes').doc(id_viaje).get().toPromise();
   
     if (!viajeSnap?.exists) return false;
   

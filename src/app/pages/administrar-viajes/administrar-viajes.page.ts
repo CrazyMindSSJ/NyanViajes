@@ -13,15 +13,17 @@ export class AdministrarViajesPage implements OnInit {
   viajeSeleccionado: any = null;
   nuevoViaje: any = {
     capa_disp: '',
+    conductor: '',
     destino: '',
+    dis_met: '',
+    estado: 'Pendiente',
+    hora_salida: '',
+    id: '',
     lat: '',
     long: '',
-    dis_met: '',
+    pasajeros: [],
     tie_min: '',
-    estado: 'Pendiente',
-    valor: '',
-    hora_salida: '',
-    pasajeros: []
+    valor: ''
   };
 
   viaje: any;
@@ -33,8 +35,20 @@ export class AdministrarViajesPage implements OnInit {
   }
 
   cargarViajes() {
-   this.fireViajes.getViajes();
-   console.log(this.viajes)
+    this.fireViajes.getViajes().subscribe(
+      (data: any[]) => {
+        this.viajes = data.map(viaje => ({
+          capa_disp: viaje.capa_disp || 'No disponible',
+          destino: viaje.destino || 'Sin destino',
+          estado: viaje.estado || 'Pendiente',
+          ...viaje // Conserva otras propiedades
+        }));
+        console.log('Viajes cargados:', this.viajes);
+      },
+      (error) => {
+        console.error('Error al cargar los viajes:', error);
+      }
+    );
   }
 
   seleccionarViaje(viaje: any) {
@@ -42,13 +56,20 @@ export class AdministrarViajesPage implements OnInit {
   }
 
   async actualizarViaje() {
-    this.fireViajes.updateViaje(this.nuevoViaje.value).then(()=>{
-      alert("Viaje modificado!");
-      this.viajeSeleccionado.reset();
-    }).catch(error=>{
-      console.log("ERROR: "+ error)
-    })
+    if (this.viajeSeleccionado) {
+      try {
+        await this.fireViajes.updateViaje(this.viajeSeleccionado);
+        alert("Viaje modificado!");
+        this.viajeSeleccionado = null; 
+        this.cargarViajes();
+      } catch (error) {
+        console.error("ERROR:", error);
+      }
+    } else {
+      alert("No hay viaje seleccionado.");
+    }
   }
+  
 
   eliminarViaje(id_viaje: string) {
    this.fireViajes.deleteViaje(id_viaje);
