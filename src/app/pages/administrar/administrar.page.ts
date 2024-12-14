@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AbstractControl, FormControl, FormGroup, ValidationErrors, ValidatorFn, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { UnsubscriptionError } from 'rxjs';
-import { CrudService } from 'src/app/services/crud.service';
+import { formatDate } from '@angular/common';
 import { FirebaseUsuarioService } from 'src/app/services/firebase-usuario.service';
 import { __awaiter } from 'tslib';
 
@@ -139,6 +138,9 @@ export class AdministrarPage implements OnInit {
   limpiar() {
     this.persona.reset();
   }
+
+  formatearFecha(fecha: string): string {
+    if (!fecha) return '';
+    return formatDate(new Date(fecha), 'dd/MM/yyyy', 'en-US');
+  }
 }
-
-

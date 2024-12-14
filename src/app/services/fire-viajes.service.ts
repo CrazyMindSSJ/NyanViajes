@@ -87,11 +87,12 @@ export class FirebaseViajes{
   }
 
   updateViaje(viaje: any) {
-    return this.firestore.collection('viajes').doc(viaje.id).update(viaje);
+    return this.firestore.collection('viajes').doc(viaje.id.toString()).update(viaje);
   }
+  
 
   deleteViaje(id_viaje: string) {
-    return this.firestore.collection('viajes').doc(id_viaje).delete();
+    return this.firestore.collection('viajes').doc(id_viaje.toString()).delete();
   }
 
   public async tomarViaje(id_viaje: string, rut: string): Promise<boolean> {
