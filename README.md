@@ -115,6 +115,32 @@ EJECUTA EN CONSOLA de git bash
 > npm install leaflet-routing-machine
 ✧
 > npm install @types/leaflet-routing-machine
+✧
+> npm install -g firebase-tools
+✧
+> firebase login
+✧
+> firebase init
+✧
+> ionic build
+✧
+> firebase deploy
+✧
+> npm install -g @angular/cli
+✧
+> ionic build (generación de APK)
+✧
+> npm install @capacitor/cli
+✧
+> npm install @capacitor/core
+✧
+> npm install @capacitor/android
+✧
+> npx cap add android
+✧
+> npx cap sync android
+✧
+> npx cap open android
 
 </div>  
 
