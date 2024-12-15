@@ -127,6 +127,7 @@ EJECUTA EN CONSOLA de git bash
 
 ![d9hk7o3-2b772ce9-c592-4bbe-a521-df7c640bd209](https://github.com/user-attachments/assets/7ef526af-33b4-449e-b805-a13bf747dad3) Sebastian Urrutia
 ![ddeuo3e-8b4d5beb-6c2f-41e1-acc9-52ddbd85040d](https://github.com/user-attachments/assets/e5e0d0bc-af72-4a83-97dd-2277ce3db461) Betzabe Ruiz
+![d9hk7o3-2b772ce9-c592-4bbe-a521-df7c640bd209](https://github.com/user-attachments/assets/7ef526af-33b4-449e-b805-a13bf747dad3) Cristóbal Rivero
 
 ![dbbypmk-d107bad7-d34b-4cbd-9a1b-c32e7c191524](https://github.com/user-attachments/assets/a6fa0e47-af50-486a-89a4-e282c90850ce)
 
