@@ -27,7 +27,11 @@
 
 ✦                4|_¿Dónde recibir ayuda?_ 
 
-✦                5|_Como levantar el proyecto en Git Bash_ 
+✦                5|_Como levantar el proyecto_ 
+
+✦                5|_Estado del proyecto_ 
+
+✦                5|_Desarrolladores_ 
 
 
 ︿︿︿︿︿︿︿︿( 🚗 )︿︿︿︿︿︿︿︿
@@ -40,7 +44,7 @@
 
 
 > Si consideras  util nuestra aplicación apoyanos con una ★
-
+---
 </div>
     
 ✧ ˖ ꒰ ੭´ — — — — — — — — — — — — ✰⁺ಿೖ୭
@@ -60,11 +64,13 @@ Este proyecto soluciona problemas de movilidad en la comunidad estudiantil, ofre
 #### ✧ ![dacdh0c-ac97d1fc-32a1-49ca-b8ba-cf42630f733b](https://github.com/user-attachments/assets/e058da1c-0ca7-4bd7-a9a4-6b366088d5d8) ✧ OBJETIVO DE NyanViajes:
 Es aqui cuando Nuestra Aplicación entra para ofrecer y brindar solución. Busacamos proporcionar una plataforma que permita a los estudiantes organizarse y compartir transporte, facilitando su regreso 
 a casa de forma segura y económica.
+
 <div align="center">
 __  .   .   .   .   .   .   .   ︿   ^•⩊•^  ︿   .   .   .   .   .   .   .  __
 
 #### ✧ ![dacdh0c-ac97d1fc-32a1-49ca-b8ba-cf42630f733b](https://github.com/user-attachments/assets/e058da1c-0ca7-4bd7-a9a4-6b366088d5d8) ✧¿Dónde recibir ayuda?
 Para asistencia, puedes abrir un "Issue" en el repositorio o contactar al equipo de desarrollo a través de la página de soporte en GitHub.
+
 <div align="center">
   
 
@@ -91,58 +97,86 @@ Actualmente, **NyanViajes** se encuentra en fase de desarrollo. Estamos trabajan
 
 - **Ionic Framework** para el desarrollo de la interfaz móvil.
 - **Angular** para la lógica de la aplicación.
-- **Node.js**  para el backend.
+- **Node.js** para el backend.
+- **Leaflet** para la integración de mapas interactivos.
+- **Leaflet-Control-Geocoder** para geocodificación.
+- **Leaflet-Routing-Machine** para el enrutamiento en mapas interactivos.
+- **Firebase** para la gestión de datos, autenticación y hosting.
+- **API de Clima** para obtener información meteorológica.
+- **API de Dinero** para la gestión de conversiones y transacciones monetarias.
+- **Capacitor** para la generación de APKs y sincronización con Android.
+- **Firebase Tools** para el despliegue y hosting del proyecto.
+
+---
+## ✧ ![dacdh0c-ac97d1fc-32a1-49ca-b8ba-cf42630f733b](https://github.com/user-attachments/assets/8e4060de-63b7-42f6-a56e-5dbe95ada786) ✧ Pasos para Levantar el Proyecto: ✧ ✧
+
+#### ✧ 1. Clonar el Repositorio desde GitHub:  
+Abre Git Bash y clona el repositorio utilizando el siguiente enlace:  
+> https://github.com/CrazyMindSSJ/NyanViajes.git  
+
+#### ✧ 2. Navegar al Directorio del Proyecto:  
+Después de clonar el repositorio, accede al directorio del proyecto con el siguiente comando:  
+> `cd NyanViajes`
+
+#### ✧ 3. Instalar Dependencias:  
+El proyecto utiliza **Ionic** y **Angular**, por lo que necesitarás tener **Node.js** y **npm** instalados.  
+Si no los tienes, descárgalos desde [Node.js](https://nodejs.org). Luego, instala las dependencias ejecutando:  
+> `npm install`
+
+#### ✧ 4. Iniciar el Servidor de Desarrollo:  
+Una vez instaladas todas las dependencias, puedes iniciar el servidor de desarrollo de **Ionic** con el siguiente comando:  
+> `ionic serve`
+Esto abrirá la aplicación en tu navegador, permitiéndote visualizar la interfaz de **NyanViajes**.
+
+#### ✧ 5. Explorar el Código:  
+Si deseas explorar el código del proyecto, utiliza tu editor de preferencia (como **VS Code**) y navega por las carpetas del proyecto.
+
+#### ✧ 6. Instalar Dependencias Adicionales:  
+Para que la aplicación funcione correctamente, ejecuta los siguientes comandos en Git Bash:
+
+> `npm install leaflet`  
+✧  
+> `npm install @types/leaflet`  
+✧  
+> `npm install leaflet-control-geocoder`  
+✧  
+> `npm install leaflet-routing-machine`  
+✧  
+> `npm install @types/leaflet-routing-machine`  
+✧  
+> `npm install -g firebase-tools`  
+✧  
+> `firebase login`  
+✧  
+> `firebase init`  
+✧  
+> `ionic build`  
+✧  
+> `firebase deploy`  
+✧  
+> `npm install -g @angular/cli`  
+✧  
+> `ionic build` (generación de APK)  
+✧  
+> `npm install @capacitor/cli`  
+✧  
+> `npm install @capacitor/core`  
+✧  
+> `npm install @capacitor/android`  
+✧  
+> `npx cap add android`  
+✧  
+> `npx cap sync android`  
+✧  
+> `npx cap open android`
+
+#### ✧ 7. Generar y Probar APK:  
+Con los pasos anteriores completados, puedes generar y probar el APK en un dispositivo Android utilizando **Android Studio**.
+
+---
 
 
-## ✧ ![dacdh0c-ac97d1fc-32a1-49ca-b8ba-cf42630f733b](https://github.com/user-attachments/assets/8e4060de-63b7-42f6-a56e-5dbe95ada786)✧ Pasos para Levantar el Proyecto: ✧ ✧
-#### ✧ 1. Clonar el Repositorio desde GitHub:Abrir Git Bash y clona el repositorio  ( https://github.com/CrazyMindSSJ/NyanViajes.git )
-#### ✧ 2.Navegar al Directorio del Proyecto: Después de clonar el repositorio, accede al directorio del proyecto con el siguiente comando:
->cd NyanViajes
-#### ✧ 3.Instalar Dependencias: El proyecto utiliza Ionic y Angular, por lo que necesitarás tener Node.js y npm instalados. Si no los tienes, instálalos:
-> Comando:npm install
-#### ✧ 4.Iniciar el Servidor de Desarrollo Una vez que todas las dependencias estén instaladas, puedes iniciar el servidor de desarrollo de Ionic utilizando el siguiente comando:
-> ionic serve
-#### ✧ 5. FINALMENTE: Esto abrirá la aplicación en el navegador, permitiéndote visualizar  la interfaz de NyanViajes.
-#### ✧ 6. Si deseas explorar el codigo de este proyecto, puedes acceder desde GitBash colocando el siguiente comando antes de levantar el servidor.
-####  ✧7. Además debes agregar los otros comandos de npm install que son dependencias para que la aplciación funcione correctamente:
-EJECUTA EN CONSOLA de git bash
-> npm install leaflet
-✧
-> npm install @types/leaflet
-✧
-> npm install leaflet-control-geocoder
-✧
-> npm install leaflet-routing-machine
-✧
-> npm install @types/leaflet-routing-machine
-✧
-> npm install -g firebase-tools
-✧
-> firebase login
-✧
-> firebase init
-✧
-> ionic build
-✧
-> firebase deploy
-✧
-> npm install -g @angular/cli
-✧
-> ionic build (generación de APK)
-✧
-> npm install @capacitor/cli
-✧
-> npm install @capacitor/core
-✧
-> npm install @capacitor/android
-✧
-> npx cap add android
-✧
-> npx cap sync android
-✧
-> npx cap open android
 
-</div>  
 
 
 
